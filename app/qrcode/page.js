@@ -103,7 +103,7 @@ if (loading) {return (
         <input type="username" name="qrname" value={a} onChange={(e) => setA(e.target.value)} className="input1"/>
         <button className='button2' onClick={handleGenerate}>Generate</button>
 
-        {aQ && <div style={{width: "60%", margin:"auto", marginTop: "30px"}}>
+        {aQ && <div style={{width: "60%", margin:"auto", marginTop: "30px", marginBottom:"40px"}}>
             <Canvas style={{margin: "30px"}}
       text={aQ}
       options={{

@@ -19,7 +19,7 @@ export default function ObjektModal( { id, serial, img, member, season }) {
     return <div>
         <div>
             <div style={{backgroundColor: "gray", height: "auto",width:"90%", margin: "auto",borderRadius: "10px", color: "white", padding: "30px"}} >
-            <h1 className="whitetext big bold">Loaded into XXXX! 🌑</h1>
+            <h1 className="whitetext bigel bold">Loaded into Umbra! 🌑</h1>
             <font color="white"><span style={helveticaNeueBold.style}>{member}</span> </font><font color="white"><span style={helveticaNeueBold.style}>{id}</span></font><font color="white"><span style={dotMat.style}>#{serial.toString().padStart(5, '0')}</span></font>
             <img style={{margin: "auto"}}src={img}/>
             <br></br>
