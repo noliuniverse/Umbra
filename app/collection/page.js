@@ -39,7 +39,6 @@ export default function Collection() {
             if (datas) {
                 
                 setDatas(datas)
-                console.log(datas)
             }}
             
             fetchObjekts()
@@ -125,7 +124,7 @@ if(!mounted) return null;
       </header>
 
       <div className="div1">
-      <h1 className='whitetext bold'>Scan</h1>
+      <h1 className='whitetext bold'>Collection</h1>
        
             <p className='whitetext'>You need to sign in to get access to collection!</p>
             </div>

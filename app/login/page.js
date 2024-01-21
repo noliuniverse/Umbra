@@ -89,7 +89,7 @@ if(!mounted) return null;
     if (loading) {return (
     <main>
             <header className="navbarheader">
-        <img src='https://i.imgur.com/p5sivm6.png'  className='logo'/>
+        <img src='https://i.imgur.com/I3ouDmc.png'  className='logo'/>
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -105,7 +105,7 @@ if(!mounted) return null;
     if (user) {return (
         <main>
                 <header className="navbarheader">
-                <img src='https://i.imgur.com/p5sivm6.png'  className='logo'/>
+                <img src='https://i.imgur.com/I3ouDmc.png'  className='logo'/>
                 <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -128,7 +128,7 @@ if(!mounted) return null;
 
         <main>
         <header className="navbarheader">
-        <img src='https://i.imgur.com/p5sivm6.png'  className='logo'/>
+        <img src='https://i.imgur.com/I3ouDmc.png'  className='logo'/>
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
