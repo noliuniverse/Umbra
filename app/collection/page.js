@@ -1,6 +1,6 @@
 'use client';
 
-import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+import { supabase } from '@/utils/supabaseClient'
 import { useRouter} from "next/navigation";
 import React, { useRef, useState, useEffect } from 'react';
 import Objekt from "@/components/objekt.js";
@@ -21,7 +21,6 @@ export default function Collection() {
         router.push(re)
       }
 
-    const supabase = createClientComponentClient();
 
     useEffect(() => {
         async function getUser(){

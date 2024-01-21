@@ -5,7 +5,8 @@ import { useRouter} from "next/navigation";
 import { QrReader } from "react-qr-reader";
 import dynamic from "next/dynamic";
 import ObjektModal from '@/components/ObjektModal';
-import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+import { supabase } from '@/utils/supabaseClient'
+
 import { Noto_Kufi_Arabic } from 'next/font/google';
 /*
 {isRecording && 
@@ -58,7 +59,6 @@ export default function Scan() {
 
       const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClientComponentClient();
   const closeCam = async () => {
 
 };

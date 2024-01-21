@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useRouter} from "next/navigation";
 import { useQRCode } from 'next-qrcode';
 import { v4 } from 'uuid';
-import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+import { supabase } from '@/utils/supabaseClient'
 
 import dynamic from "next/dynamic";
 import { Noto_Kufi_Arabic } from 'next/font/google';
@@ -22,7 +22,6 @@ export default function QR() {
   const [aQ, setAQ] = useState('');
 
   const [loading, setLoading] = useState(true);
-  const supabase = createClientComponentClient();
 
   useEffect(() => {
     async function getUser(){

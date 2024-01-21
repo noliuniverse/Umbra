@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter} from "next/navigation";
-import {createClientComponentClient} from "@supabase/auth-helpers-nextjs";
+import { supabase } from '@/utils/supabaseClient'
 
 import dynamic from "next/dynamic";
 import { Noto_Kufi_Arabic } from 'next/font/google';
