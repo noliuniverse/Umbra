@@ -32,6 +32,7 @@ export default function Collection() {
                 const { data:datas, error:errors } = await supabase
                 .from('objektcollection')
                 .select('id, serial, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
+                .eq('user_uuid', user.id.toString())
     
             if (errors) {
                 console.info(errors)
