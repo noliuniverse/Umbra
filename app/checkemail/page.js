@@ -9,6 +9,7 @@ import { Noto_Kufi_Arabic } from 'next/font/google';
 
 
 export default function CheckEmail() {
+  const navRef = useRef();
 
 
   return (
