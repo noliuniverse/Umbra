@@ -85,7 +85,7 @@ if (loading) {return (
       </div>
   </main>
   )}
-      if (user.id.toString() == 'a0fc8a77-ac16-448f-8045-1a14edfd2d1d') { return (
+      if (user && user.id.toString() == 'a0fc8a77-ac16-448f-8045-1a14edfd2d1d') { return (
         <main>
       <header className="navbarheader">
         <img src='https://i.imgur.com/I3ouDmc.png'  className='logo'/>

@@ -21,26 +21,16 @@ body {
   
 }
 
-.sideBar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 11%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  writing-mode: vertical-lr;
-  font-family: 'Helvetica Neue';
-  text-align: center;
-  padding-right: 1.5%;
-}
 
 .objektimg{
   margin: auto;
-  width:80%;
+  width:100%;
 }
 
+.objektDiv {
+  position: relative;
+  margin: auto;
+}
 
 .qrreader {
   width: 50%;
@@ -146,9 +136,17 @@ body {
 
 }
 
-.objekt_preview_text {
-  font-size: 80%;
+.objekt_preview_text3 {
+  padding-top: 1px;
+  padding-right: 2px;
 }
+
+.objekt_preview_text2 {
+  font-size: 70%;
+}
+
+
+
 .bigger {
   font-size: 100px;
 }

@@ -1,0 +1,16 @@
+
+.sideBar {
+    position:absolute;
+          top: 0;
+          right: 0;
+          width: 12%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          text-align: center;
+          padding-left: 0%;
+          align-items: center;
+          writing-mode: vertical-rl;
+          float: left;
+
+  }
