@@ -63,7 +63,7 @@ export default function QR() {
             }
             }
             const { data, error } = await supabase.from('objektqrdata').insert({ card_uuid: a, qr_id: theUU.toString()})
-            setAQ("https://umbra.vercel.app/objekt?i=" +theUU.toString())
+            setAQ("https://umbra-two.vercel.app/objekt?i=" +theUU.toString())
             setError(null)
 
 

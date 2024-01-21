@@ -68,7 +68,7 @@ export default function Scan() {
             
             const searchParams = new URLSearchParams(string.split("?")[1]);
             console.log("la" + searchParams.get('i'));
-            if (searchParams.get('i').toString() == null) {setData("Not a valid code!");} else if (string.split("?")[0] != ('https://umbra.vercel.app/objekt')){setData("Not a valid code!");}
+            if (searchParams.get('i').toString() == null) {setData("Not a valid code!");} else if (string.split("?")[0] != ('https://umbra-two.vercel.app/objekt')){setData("Not a valid code!");}
             else {
               if (lastResult.current === result.text) {
                 return
