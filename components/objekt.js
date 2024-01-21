@@ -37,7 +37,7 @@ export default function Objekt( { unique, bckcolor, color, id, serial, img, uuid
                 <img className="objektimg" src={img} onLoad={() => setLoaded(true)} alt={id} onClick={slidefunction}/>
             <div style={{backgroundColor: bckcolor,width:"90%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>
             <font color={color}><p style={helveticaNeueBold.style}>{member}</p></font>
-            <font color={color}><span style={helveticaNeueBold.style}>{id}</span></font><font color={color}><span style={dotMat.style}>#{serial.toString().padStart(5, '0')}</span></font>  
+            <font color={color}><span style={helveticaNeueBold.style} className="objekt_preview_text">{id}</span></font><font color={color}><span style={dotMat.style} className="objekt_preview_text">#{serial.toString().padStart(5, '0')}</span></font>  
             
             <font color={color}><p style={halavrBreitRg.style}>{season}</p></font>           
             </div>

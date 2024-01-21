@@ -145,6 +145,10 @@ body {
   margin: auto;
 
 }
+
+.objekt_preview_text {
+  font-size: 80%;
+}
 .bigger {
   font-size: 100px;
 }
