@@ -59,9 +59,10 @@ if(!mounted) return null;
         password,
         options: {
             data: {user_name: user_name},
-            emailRedirectTo: `${location.origin}/auth/callback`
+            emailRedirectTo: `${location.origin}/`
         }
     })
+    //auth/callback
     setUser(res.data.user);
     router.refresh();
     setEmail('');
