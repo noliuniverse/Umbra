@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image'
 
 import { supabase } from '@/utils/supabaseClient'
 import { useRouter} from "next/navigation";
