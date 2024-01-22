@@ -3,7 +3,6 @@ import styles from "@/app/globals.css"
 import localFont from "next/font/local"
 import { useState } from "react"
 import { useRouter} from "next/navigation";
-
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})

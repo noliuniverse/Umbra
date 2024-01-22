@@ -39,6 +39,8 @@ export default function Scan() {
   const [theID, setTheID] = useState('309A')
   const [member, setMember] = useState('SooMin')
   const [serial, setSerial] = useState('1')
+  const [color, setColor] = useState('#000000')
+  const [bckcolor, setBckcolor] = useState('#FFFFFF')
 
   const [isModalOpen, setModalOpen] = useState(false)
   const [dataID, setData] = useState('');
@@ -103,6 +105,8 @@ export default function Scan() {
               setimg(datas2[0]["photo"])
               setTheID(datas2[0]["card_id"])
               setMember(datas2[0]["member"])
+              setColor(datas2[0]["text_color"])
+              setBckcolor(datas2[0]["bg_color"])
               setSerial(collection.length+1)
 
               const { error4 } = await supabase
@@ -198,7 +202,7 @@ if (user) { return (
      <button className='button2 sc' onClick={(e) => {setcameraDirection("environment")}}>Rear</button>
      </div>}
           <p className='whitetext'>{dataID.toString()}</p>
-          {isModalOpen && <ObjektModal img={img} id={theID} member={member} serial={serial}/>}
+          {isModalOpen && <ObjektModal img={img} id={theID} member={member} serial={serial} color={color} bckcolor={bckcolor}/>}
           </div>
   </main>
 )}

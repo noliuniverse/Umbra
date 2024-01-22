@@ -78,7 +78,6 @@ if (loading) {return (
         <h1 className='whitetext bold big' style={{color: "rgb(127, 86, 201)"}}>Welcome to UMBRA!</h1>
         <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
-        <p>s</p>
         </div>
     </main>
   )
