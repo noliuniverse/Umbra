@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import { Noto_Kufi_Arabic } from 'next/font/google';
 
 
-export default function CheckEmail() {
+export default function Verified() {
   const navRef = useRef();
   const router = useRouter();
 
@@ -26,8 +26,8 @@ export default function CheckEmail() {
         </nav>
       </header>
         <div className='div1'>
-        <h1 className='whitetext bold big'>Check your email to verify your email!</h1>
-        <small className='whitetext'>Without verifying, you are more likely to be flagged as a bot.</small>
+        <h1 className='whitetext bold big'>You are verified!</h1>
+        <small className='whitetext'>Click the home button to go back home!</small>
         </div>
     </main>
   )

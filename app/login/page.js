@@ -59,7 +59,7 @@ if(!mounted) return null;
         password,
         options: {
             data: {user_name: user_name},
-            emailRedirectTo: `${location.origin}/`
+            emailRedirectTo: `${location.origin}/verified`
         }
     })
     //auth/callback
@@ -68,6 +68,7 @@ if(!mounted) return null;
     setEmail('');
     setPassword('');
     setuser_name('');
+    router.push("/checkemail")
     }
     const handleLogout = async () => {
         await supabase.auth.signOut();

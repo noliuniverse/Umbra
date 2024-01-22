@@ -116,6 +116,12 @@ export default function Scan() {
               .eq('uuid', parseInt(uuid))
               .eq('serial', collection.length+1)
               if (alrthere.length > 0) {} else {const { data, error } = await supabase.from('objektcollection').insert({ uuid: parseInt(uuid), serial: parseInt(collection.length+1), user_uuid: user.id.toString()})}
+              const { data:alrthere2, error:errors42 } = await supabase
+              .from('objektcollection')
+              .select()
+              .eq('uuid', parseInt(uuid))
+              .eq('serial', collection.length+1)
+              if (alrthere2.length > 1) {} else {const { data, error } = await supabase.from('objektcollection').delete().eq("user_uuid", user.id.toString()).eq("uuid", parseInt(uuid)).eq("serial", parseInt(collection.length+1))}
               setModalOpen(true)
               
 

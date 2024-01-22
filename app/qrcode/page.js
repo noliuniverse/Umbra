@@ -3,8 +3,10 @@ import Image from 'next/image'
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter} from "next/navigation";
 import { useQRCode } from 'next-qrcode';
+import { saveAs } from 'file-saver';
 import { v4 } from 'uuid';
 import { supabase } from '@/utils/supabaseClient'
+import html2canvas from 'html2canvas';
 
 import dynamic from "next/dynamic";
 import { Noto_Kufi_Arabic } from 'next/font/google';
@@ -14,15 +16,35 @@ export default function QR() {
 
   const [data, setData] = useState('No result');
   const { Canvas } = useQRCode();
+  const printRef = React.useRef();
+
   const router = useRouter()
   const navRef = useRef();
   const [user, setUser] = useState(null);
   const [a, setA] = useState('');
+  const [imagesrc, setImageSRC] = useState('')
   const [errormessage, setError] = useState(null)
   const [aQ, setAQ] = useState('');
 
   const [loading, setLoading] = useState(true);
-
+  const handleDownloadImage = async () => {
+    try {const element = printRef.current;
+        const canvas = await html2canvas(element);
+    
+        const data = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+    
+        if (typeof link.download === 'string') {
+          link.href = data;
+          link.download = 'image.png';
+    
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          window.open(data);
+        }} catch (e) {console.info(e)}
+  };
   useEffect(() => {
     async function getUser(){
         const {data: {user}} = await supabase.auth.getUser()
@@ -65,6 +87,9 @@ export default function QR() {
             const { data, error } = await supabase.from('objektqrdata').insert({ card_uuid: a, qr_id: theUU.toString()})
             setAQ("https://umbra-two.vercel.app/objekt?i=" +theUU.toString())
             setError(null)
+            handleDownloadImage();
+            console.log("Downloaded!")
+
 
 
           }
@@ -101,10 +126,11 @@ if (loading) {return (
         <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <p className='whitetext'>PUT ID. (EX. 4)</p>
         <input type="username" name="qrname" value={a} onChange={(e) => setA(e.target.value)} className="input1"/>
-        <button className='button2' onClick={handleGenerate}>Generate</button>
-
-        {aQ && <div style={{width: "60%", margin:"auto", marginTop: "30px", marginBottom:"40px"}}>
-            <Canvas style={{margin: "30px"}}
+        <button id="thisbutton" className='button2' onClick={handleGenerate}>Generate</button>
+        
+        {aQ && <div style={{width: "60%", margin:"auto", marginTop: "30px", marginBottom:"40px"}}> <div ref={printRef}>
+            <Canvas style={{margin: "0px"}} 
+    
       text={aQ}
       options={{
         errorCorrectionLevel: 'M',
@@ -116,8 +142,9 @@ if (loading) {return (
           light: '#FFFFFF',
         },
       }}
-    /></div>}
+    /><p className='whitetext'>{imagesrc.toString()}</p></div></div>}
         {errormessage && <p className='whitetext'>{errormessage}</p>}
+        
         </div>
       </main>
       )}
