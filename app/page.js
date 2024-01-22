@@ -3,7 +3,6 @@ import Image from 'next/image'
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter} from "next/navigation";
 import { supabase } from '@/utils/supabaseClient'
-
 import dynamic from "next/dynamic";
 import { Noto_Kufi_Arabic } from 'next/font/google';
 
@@ -35,7 +34,7 @@ export default function Home() {
 if (loading) {return (
   <main>
           <header className="navbarheader">
-      <img src='https://i.imgur.com/I3ouDmc.png'  className='logo'/>
+          <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
       <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
       <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
       <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -50,7 +49,7 @@ if (loading) {return (
       if (user) { return (
         <main>
       <header className="navbarheader">
-        <img src='https://i.imgur.com/I3ouDmc.png'  className='logo'/>
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -68,7 +67,7 @@ if (loading) {return (
   return (
     <main>
       <header className="navbarheader">
-        <img src='https://i.imgur.com/I3ouDmc.png'  className='logo'/>
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
