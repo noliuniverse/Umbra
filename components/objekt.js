@@ -52,7 +52,7 @@ const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, seaso
                     {serial && <span style={dotMat.style} className="objekt_preview_text3">#{serial.toString().padStart(5, '0')}</span>}
                 </div>
                 </div>
-            <div style={{backgroundColor: bckcolor,width:"100%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>
+            <div style={{background: bckcolor,width:"100%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>
             <font color={color}><p style={helveticaNeueBold.style}>{member}</p></font>
             <font color={color}><span style={helveticaNeueBold.style} className="objekt_preview_text2">{id}</span></font>{serial && <font color={color}><span style={dotMat.style} className="objekt_preview_text2">#{serial.toString().padStart(5, '0')}</span></font>}  
             
