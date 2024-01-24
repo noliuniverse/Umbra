@@ -98,7 +98,7 @@ export default function QR() {
 if (loading) {return (
   <main>
           <header className="navbarheader">
-          <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
       <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
       <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
       <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -113,7 +113,7 @@ if (loading) {return (
       if (user && user.id.toString() == 'a0fc8a77-ac16-448f-8045-1a14edfd2d1d') { return (
         <main>
       <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -151,7 +151,7 @@ if (loading) {return (
   return (
     <main>
       <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>

@@ -7,12 +7,18 @@ import { useRef, useState, useLayoutEffect } from "react"
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
+const HelveticaNeueLight = localFont({src: "../fonts/HelveticaNeueLight.otf"})
+
+
 
 //{ children },
-const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, season }) => {
-    const maxHeight = "75px";
+const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, season, artist }) => {
+    var maxHeight = "75px";
+    // 25 EACH LOGO
     const targetRef = useRef()
-    const [loaded, setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(null);
+    const [loadedOpacity, setLoadedOpacity] = useState("1%");
+
     const [heightofBOX, setBOXHEIGHT] = useState("0px")
     const [dimensions, setDimensions] = useState({ width:0, height: 0 });
     const [uuID, setuuID] = useState(uuid);
@@ -24,13 +30,14 @@ const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, seaso
     }
 
     useLayoutEffect(() => {
-        if (targetRef.current) {
-          setDimensions({
-            width: targetRef.current.offsetWidth,
-            height: targetRef.current.offsetHeight
-          });
+          if (targetRef.current) {
+            setDimensions({
+              width: targetRef.current.offsetWidth,
+              height: targetRef.current.offsetHeight
+            });
         }
       }, []);
+
 
     function slideUp() {
         try {var elem = document.getElementById(unique)
@@ -44,9 +51,12 @@ const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, seaso
       }
 
       
-    return <div>
+    return <div >
+      
+            {(loaded == null) && <div className='objekt-skeleton' key={unique}/>}
+      <div style={{opacity: loadedOpacity, width: "100%"}}>
         <div className="objektDiv">
-            <img className="objektimg" src={img} onLoad={() => setLoaded(true)} alt={id} onClick={slidefunction} ref={targetRef}/>
+            <img className="objektimg" src={img} onLoad={() => {setLoaded(true); setLoadedOpacity("100%")}} alt={id} onClick={slidefunction} ref={targetRef}/>
                 <div className={stylestwo.sideBar} style={{color: color, fontSize: dimensions.width/7.5/2}}>
                     <span style={helveticaNeueBold.style} className="objekt_preview_text">{id}</span>
                     {serial && <span style={dotMat.style} className="objekt_preview_text3">#{serial.toString().padStart(5, '0')}</span>}
@@ -56,9 +66,10 @@ const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, seaso
             <font color={color}><p style={helveticaNeueBold.style}>{member}</p></font>
             <font color={color}><span style={helveticaNeueBold.style} className="objekt_preview_text2">{id}</span></font>{serial && <font color={color}><span style={dotMat.style} className="objekt_preview_text2">#{serial.toString().padStart(5, '0')}</span></font>}  
             
-            <font color={color}><p style={halavrBreitRg.style}>{season}</p></font>           
+            <font color={color}><p style={halavrBreitRg.style}>{season}</p></font>   
             </div>
-            
+        
+            </div>
     </div>
 
 

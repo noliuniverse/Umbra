@@ -20,7 +20,7 @@ export default function Verified() {
   return (
     <main>
       <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <nav ref={navRef}>
         </nav>

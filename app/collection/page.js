@@ -4,11 +4,15 @@ import { supabase } from '@/utils/supabaseClient'
 import { useRouter} from "next/navigation";
 import React, { useRef, useState, useEffect } from 'react';
 import Objekt from "@/components/objekt.js";
+import FetchMoreObjekts from '@/components/fetchObjekts.js';
+import { useInView } from "react-intersection-observer";
 
 
 export default function Collection() {
-
+    const batchSize = 30;
     const navRef = useRef();
+
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user_name, setuser_name] = useState('');
@@ -16,6 +20,8 @@ export default function Collection() {
     const [warning, setWarning] = useState('');
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+
     const router = useRouter()
     const handleRedirect = (re) => {
         router.push(re)
@@ -28,11 +34,20 @@ export default function Collection() {
             setUser(user)
 
             const fetchObjekts = async () => {
-
-                const { data:datas, error:errors } = await supabase
-                .from('objektcollection')
-                .select('id, serial, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
-                .eq('user_uuid', user.id.toString())
+                var endNumber = batchSize-1;
+                var startNumber = 0;
+                const { data:datas1, error:errors1 } = await supabase
+        .from('objektcollection')
+        .select('id, serial, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
+        .eq('user_uuid', user.id.toString())
+        if (startNumber+batchSize > datas1.length) {
+            endNumber = datas1.length;
+        }
+        const { data:datas, error:errors } = await supabase
+        .from('objektcollection')
+        .select('id, serial, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
+        .eq('user_uuid', user.id.toString())
+        .range(startNumber, endNumber)
     
             if (errors) {
                 console.info(errors)
@@ -50,8 +65,10 @@ export default function Collection() {
             .eq("id", user.id.toString())
 
             setuser_name(datas[0]["username"].toString());
-        
-            setLoading(false)
+            setTimeout(function(){
+                setLoading(false)
+            }, 50);
+            
         }
 
         getUser();
@@ -72,7 +89,7 @@ if(!mounted) return null;
     if (loading) {return (
     <main>
             <header className="navbarheader">
-            <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+            <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -80,7 +97,11 @@ if(!mounted) return null;
         </nav>
       </header>
         <div className="div1">
-        <h1 className="whitetext bigger">Loading...</h1>
+        <p className="whitetext"><small>Username: </small><span className="big bold"></span></p>
+        <br></br>
+        <div className='objektgrid'>
+        {Array.from({length: 20}).map((item,index)=>{return <div className='objekt-skeleton' key={index}/>})}
+        </div>
         </div>
     </main>
     )}
@@ -88,7 +109,7 @@ if(!mounted) return null;
     if (user) {return (
         <main>
                 <header className="navbarheader">
-                <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
                 <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -100,13 +121,8 @@ if(!mounted) return null;
             <div className="div1">
                 <p className="whitetext"><small>Username: </small><span className="big bold">{user_name}</span></p>
                 <br/>
-            {datas && <div className="objektgrid">
-            {datas.map((item,index)=>{return <Objekt className="grid-objekt" unique={index} key={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} uuid={item["objektdata"]["id"]}/>
-})}
-                                </div>}
+            {datas && <FetchMoreObjekts datas={datas} userid={user.id}></FetchMoreObjekts>}
             {(datas && datas.length == 0) && <p className="whitetext">Wow! Looks like you have no objekts!</p>}
-            <button className="button2">XXXX</button>
-            <p>{user.id.toString()}</p>
             </div>
         </main>
         )}
@@ -116,7 +132,7 @@ if(!mounted) return null;
 
         <main>
       <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>

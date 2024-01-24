@@ -159,7 +159,7 @@ export default function Scan() {
 if (loading) {return (
   <main>
           <header className="navbarheader">
-          <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+          <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
       <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
       <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
       <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -175,7 +175,7 @@ if (loading) {return (
 if (user) { return (
   <main >
     <header className="navbarheader">
-    <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+    <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
       <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
       <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
       <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -210,7 +210,7 @@ if (user) { return (
   return (
     <main>
       <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="114" height="114" />
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
