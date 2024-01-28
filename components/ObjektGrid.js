@@ -10,7 +10,7 @@ const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 
 //{ children },
 export default function ObjektGrid( { datas}) {
-    const batchSize = 30;
+    const batchSize = 2;
     var objektdatas = datas;
 
     return <div className="objektgrid">

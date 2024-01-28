@@ -9,7 +9,7 @@ import { useInView } from "react-intersection-observer";
 
 
 export default function Collection() {
-    const batchSize = 30;
+    const batchSize = 40;
     const navRef = useRef();
 
 
@@ -45,8 +45,9 @@ export default function Collection() {
         }
         const { data:datas, error:errors } = await supabase
         .from('objektcollection')
-        .select('id, serial, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
+        .select('id, serial, created_at, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
         .eq('user_uuid', user.id.toString())
+        .order('created_at', { ascending: false })
         .range(startNumber, endNumber)
     
             if (errors) {
@@ -118,10 +119,11 @@ if(!mounted) return null;
                 <nav ref={navRef}>
                 </nav>
             </header>
-            <div className="div1">
+            <div className="div1" style={{paddingBottom: "10px"}}>
                 <p className="whitetext"><small>Username: </small><span className="big bold">{user_name}</span></p>
                 <br/>
             {datas && <FetchMoreObjekts datas={datas} userid={user.id}></FetchMoreObjekts>}
+            
             {(datas && datas.length == 0) && <p className="whitetext">Wow! Looks like you have no objekts!</p>}
             </div>
         </main>

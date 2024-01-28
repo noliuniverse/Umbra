@@ -12,7 +12,7 @@ const HelveticaNeueLight = localFont({src: "../fonts/HelveticaNeueLight.otf"})
 
 
 //{ children },
-const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, season, artist }) => {
+const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, artist }) => {
     var maxHeight = "75px";
     // 25 EACH LOGO
     const targetRef = useRef()
@@ -60,6 +60,9 @@ const Objekt = ( { unique, bckcolor, color, id, serial, img, uuid, member, seaso
                 <div className={stylestwo.sideBar} style={{color: color, fontSize: dimensions.width/7.5/2}}>
                     <span style={helveticaNeueBold.style} className="objekt_preview_text">{id}</span>
                     {serial && <span style={dotMat.style} className="objekt_preview_text3">#{serial.toString().padStart(5, '0')}</span>}
+                </div>
+                <div style={helveticaNeueBold.style}>
+                {created_at && <div style={{ position: "absolute", bottom: dimensions.width/7.5/4.5, left: dimensions.width/7.5/5,background: "rgb(127, 86, 201)", paddingRight: "5%", paddingLeft: "5%",borderRadius: "10px", height:  dimensions.width/7.5}} className="whitetext"><span style={{margin: "auto", fontSize: "70%"}}>NEW</span></div>}
                 </div>
                 </div>
             <div style={{background: bckcolor,width:"100%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>
