@@ -23,6 +23,7 @@ export default function Home() {
   const navRef = useRef();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const INTERVAL_VAL = 3000;
 
   const { bootstrap } = items;
   const [index, setIndex] = useState(0);
@@ -75,7 +76,7 @@ if (loading) {return (
       <div className='carousel'>
       <Carousel activeIndex={index} onSelect={handleSelect}>
           {bootstrap.map((item, index) => (
-            <Carousel.Item key={item.id} className={styles.itemP} interval={4000}>
+            <Carousel.Item key={item.id} className={styles.itemP} interval={INTERVAL_VAL}>
               <img src={item.imageUrl} alt="slides" />
             </Carousel.Item>
           ))}
@@ -103,7 +104,7 @@ if (loading) {return (
         <div className='carousel'>
       <Carousel activeIndex={index} onSelect={handleSelect}>
           {bootstrap.map((item) => (
-            <Carousel.Item key={item.id} className={styles.itemP} interval={4000}>
+            <Carousel.Item key={item.id} className={styles.itemP} interval={INTERVAL_VAL}>
               <img src={item.imageUrl} alt="slides" />
             </Carousel.Item>
           ))}
