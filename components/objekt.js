@@ -1,7 +1,7 @@
 
 import styles from "@/app/globals.css"
 import stylestwo from "@/app/sidebar.module.css"
-
+import Image from 'next/image'
 import localFont from "next/font/local"
 import { useRef, useState, useLayoutEffect } from "react"
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
