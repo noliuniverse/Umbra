@@ -8,29 +8,7 @@ import ObjektModal from '@/components/ObjektModal';
 import { supabase } from '@/utils/supabaseClient'
 
 import { Noto_Kufi_Arabic } from 'next/font/google';
-/*
-{isRecording && 
-     <QrReader
-              onScan={(result, error) => {
-                  if (!!result) {
 
-                    this.look;
-                      
-                    if (dataID == true){
-                      var string = result?.text.split("?")[1];
-
-
-                    }
-
-
-                  }
-
-                  
-              }}
-              onError={(error) => {}}
-              facingMode="user"
-              style={{ width: '50%' , margin:'auto'}}
-          />}*/
 
 export default function Scan() {
 
@@ -61,9 +39,7 @@ export default function Scan() {
 
       const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const closeCam = async () => {
 
-};
       const handleScan = async (result, error) => {
             if (!!result) {
             var string = result?.text;
