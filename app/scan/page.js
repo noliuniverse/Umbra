@@ -41,7 +41,6 @@ export default function Scan() {
   const [serial, setSerial] = useState('1')
   const [color, setColor] = useState('#000000')
   const [bckcolor, setBckcolor] = useState('#FFFFFF')
-  const { ref, inView } = useInView()
 
   const [isModalOpen, setModalOpen] = useState(false)
   const [dataID, setData] = useState('');
