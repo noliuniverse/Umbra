@@ -45,7 +45,7 @@ export default function Collection() {
         }
         const { data:datas, error:errors } = await supabase
         .from('objektcollection')
-        .select('id, serial, created_at, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
+        .select('id, serial, created_at, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id, eventhost, eventhostlink)')
         .eq('user_uuid', user.id.toString())
         .order('created_at', { ascending: false })
         .range(startNumber, endNumber)

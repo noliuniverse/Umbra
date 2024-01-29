@@ -1,5 +1,4 @@
 import styles from "@/app/globals.css"
-import localFont from "next/font/local"
 import { useEffect, useState, useRef } from "react"
 import { useRouter} from "next/navigation";
 import { supabase } from '@/utils/supabaseClient'
@@ -9,6 +8,7 @@ import Objekt from "@/components/objekt.js";
 import { fetchObjekts } from "@/functions/fetchObjekt.js";
 import { useInView } from "react-intersection-observer";
 import { useCallback } from "react";
+import localFont from "next/font/local"
 
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
@@ -86,7 +86,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     
 
     return <div style={{marginBottom: "0px"}}><div className="objektgrid">
-    {objekts.map((item,index)=>{return <Objekt className="grid-objekt" unique={index} key={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]} uuid={item["objektdata"]["id"]}/>
+    {objekts.map((item,index)=>{return <Objekt className="grid-objekt" unique={index} key={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/>
 })}
                         <div style={{marginBottom: "100px"}}></div></div>
                         {hasPages && <button className="button2 more" style={{ marginTop: "60px", opacity:"10%"}}

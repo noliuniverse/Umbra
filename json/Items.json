@@ -1,0 +1,30 @@
+{
+    "items": {
+      "bootstrap": [
+        {
+          "id": 1,
+          "title": "JooBin Custom Example",
+          "body": "Carousel 1",
+          "imageUrl": "JooBin102S.png"
+        },
+        {
+            "id": 2,
+            "title": "Kotone Custom Example",
+            "body": "Carousel 2",
+            "imageUrl": "Kotone106SC.png"
+        },
+        {
+            "id": 3,
+            "title": "YuBin Custom Example",
+            "body": "Carousel 3",
+            "imageUrl": "YuBin110S.png"
+        },
+        {
+            "id": 4,
+            "title": "YooYeon Custom Example",
+            "body": "Carousel 4",
+            "imageUrl": "YooYeon106S.png"
+        }
+    ]
+    }
+}

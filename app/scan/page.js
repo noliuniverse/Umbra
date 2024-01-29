@@ -41,6 +41,7 @@ export default function Scan() {
   const [serial, setSerial] = useState('1')
   const [color, setColor] = useState('#000000')
   const [bckcolor, setBckcolor] = useState('#FFFFFF')
+  const { ref, inView } = useInView()
 
   const [isModalOpen, setModalOpen] = useState(false)
   const [dataID, setData] = useState('');
@@ -89,8 +90,7 @@ export default function Scan() {
             } 
             else if (datas.length == 1) {
               var uuid = datas[0]["card_uuid"];
-              setData('Checking... DO NOT CLOSE YOUR BROWSER OR YOU MAY LOSE YOUR CARD.');
-              setData('')
+              setData('Checking... DO NOT CLOSE YOUR BROWSER NOR POWER OFF YOUR DEVICE OR YOU MAY LOSE YOUR CARD.');
               setDelayScan(false);
               setIsRecording(false);
               const { data:datas2, error:errors2 } = await supabase
@@ -126,6 +126,7 @@ export default function Scan() {
               .eq('uuid', parseInt(uuid))
               .eq('serial', collection.length+1)
               if (alrthere2.length > 1) {} else {const { data, error } = await supabase.from('objektcollection').delete().eq("user_uuid", user.id.toString()).eq("uuid", parseInt(uuid)).eq("serial", parseInt(collection.length+1))}
+              setData('')
               setModalOpen(true)
               
 
