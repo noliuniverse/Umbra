@@ -18,9 +18,8 @@ const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 
 //{ children },
 const Carousel = ({interval}) => {
-    const loadSlide = () => {
-        
-        try {
+    const [pass, setPass] = useState(false)
+    useEffect(()=>{
             const myCarousel = document.getElementById("carouselExampleIndicators");
     const carouselIndicators = myCarousel.querySelectorAll(
       ".carousel-indicators button span"
@@ -60,10 +59,10 @@ const Carousel = ({interval}) => {
         }
       }, 50);
     }
-        } catch {}
-    }
+     
+    }, [pass])
     
-    return <div style={{marginBottom: "10px"}} onLoad={() => {loadSlide()}}>
+    return <div style={{marginBottom: "10px"}} onLoad={() => {setPass(true)}}>
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" data-bs-pause="true">
   <div className="carousel-indicators" style={{marginTop: "10%"}}>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"  aria-label="Slide 1">
