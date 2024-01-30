@@ -85,7 +85,7 @@ if (loading) {return (
         <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px"}} className='button2'><u>Bug/Suggestion</u></a>
+        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         </div>
       </main>
       )}
@@ -99,7 +99,7 @@ if (loading) {return (
         <nav ref={navRef}>
         </nav>
       </header>
-        <div className='div1' style={{width: "100%"}}>
+        <div className='div1' style={{width: "100%", marginBottom: "10px"}}>
         <div className='carousel'>
       <Carousel activeIndex={index} onSelect={handleSelect}>
           {bootstrap.map((item) => (
@@ -113,7 +113,7 @@ if (loading) {return (
         <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" className='button2'><u>Bug/Suggestion</u></a>
+        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         </div>
     </main>
   )
