@@ -74,7 +74,7 @@ if (loading) {return (
       </header>
       <div className='div1'>
       <div className='carousel'>
-        <Carousel interval={3000}/>
+      {(loading == false) && <Carousel interval={3000}/>}
       </div>
       <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
         <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
@@ -96,7 +96,7 @@ if (loading) {return (
       </header>
         <div className='div1' style={{width: "100%"}}>
         <div className='carousel'>
-        <Carousel interval={3000}/>
+        {(loading == false) && <Carousel interval={3000}/>}
         </div>
         <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
         <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
