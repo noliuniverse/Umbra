@@ -64,9 +64,9 @@ const Carousel = ({interval}) => {
             }
             
      
-    }, [pass])
+    })
     
-    return <div style={{marginBottom: "10px"}} onLoad={() => {setPass(true)}}>
+    return <div style={{marginBottom: "10px"}}>
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" data-bs-pause="true">
   <div className="carousel-indicators" style={{marginTop: "10%"}}>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"  aria-label="Slide 1">
