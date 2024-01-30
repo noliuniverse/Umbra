@@ -1,27 +1,15 @@
 "use client";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from "@/app/globals.css"
 
 import { useEffect, useState, useRef } from "react"
-import { useRouter} from "next/navigation";
-import { supabase } from '@/utils/supabaseClient'
 
-import { useInView } from "react-intersection-observer";
-import { useCallback } from "react";
+import * as bootstrap from 'bootstrap'
 
-import bootstrap from '../node_modules/bootstrap/dist/js/bootstrap.min.js';
-
-import localFont from "next/font/local"
-
-const dotMat = localFont({src: "../fonts/dotmat.ttf"})
-const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
-const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
-
-//{ children },
 const Carousel = ({interval}) => {
+    window.bootstrap = bootstrap
     const [pass, setPass] = useState(false)
     useEffect(()=>{
-        if (typeof window !== "undefined") {
+        if (typeof document !== "undefined") {
             const myCarousel = document.getElementById("carouselExampleIndicators");
     const carouselIndicators = myCarousel.querySelectorAll(
       ".carousel-indicators button span"

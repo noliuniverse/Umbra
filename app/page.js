@@ -7,15 +7,15 @@ import dynamic from "next/dynamic";
 import styles from "@/app/Bootstrap.module.css"
 import styles2 from '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Noto_Kufi_Arabic } from 'next/font/google';
-import itemsl from "../json/Items.json";
-import Carousel from '@/components/Carousel';
+import { items } from "../json/Items.json";
+import { Carousel } from "react-bootstrap";
 import localFont from "next/font/local"
 
 const ParaboleDisplay = localFont({src: "../fonts/Parabole-DisplayRegular.otf"})
 const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
 
 export default function Home() {
-  const {items} = itemsl
+
   
   const [data, setData] = useState('No result');
   
@@ -23,7 +23,7 @@ export default function Home() {
   const navRef = useRef();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const INTERVAL_VAL = 3000;
+  const INTERVAL_VAL = 2000;
 
   const { bootstrap } = items;
   const [index, setIndex] = useState(0);
@@ -74,13 +74,19 @@ if (loading) {return (
       </header>
       <div className='div1'>
       <div className='carousel'>
-      {(loading == false) && <Carousel interval={3000}/>}
+      <Carousel activeIndex={index} onSelect={handleSelect}>
+          {bootstrap.map((item, index) => (
+            <Carousel.Item key={item.id} className={styles.itemP} interval={INTERVAL_VAL}>
+              <img src={item.imageUrl} alt="slides" />
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </div>
       <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
         <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width:"40%", minWidth: "170px"}} className='button2'><u>Bug/Suggestion</u></a>
+        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" className='button2'><u>Bug/Suggestion</u></a>
         </div>
       </main>
       )}
@@ -96,13 +102,19 @@ if (loading) {return (
       </header>
         <div className='div1' style={{width: "100%"}}>
         <div className='carousel'>
-        {(loading == false) && <Carousel interval={3000}/>}
-        </div>
+      <Carousel activeIndex={index} onSelect={handleSelect}>
+          {bootstrap.map((item) => (
+            <Carousel.Item key={item.id} className={styles.itemP} interval={INTERVAL_VAL}>
+              <img src={item.imageUrl} alt="slides" />
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
         <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
         <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width:"40%", minWidth: "170px"}} className='button2'><u>Bug/Suggestion</u></a>
+        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" className='button2'><u>Bug/Suggestion</u></a>
         </div>
     </main>
   )
