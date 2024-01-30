@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import styles from "@/app/Bootstrap.module.css"
 import styles2 from '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Noto_Kufi_Arabic } from 'next/font/google';
-import { items } from "../json/Items.json";
+import itemsdata from "../json/Items.json";
 import { Carousel } from "react-bootstrap";
 import localFont from "next/font/local"
 
@@ -15,8 +15,7 @@ const ParaboleDisplay = localFont({src: "../fonts/Parabole-DisplayRegular.otf"})
 const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
 
 export default function Home() {
-
-  
+  let items = itemsdata["items"];
   const [data, setData] = useState('No result');
   
   const router = useRouter()
@@ -72,7 +71,7 @@ if (loading) {return (
         <nav ref={navRef}>
         </nav>
       </header>
-      <div className='div1'>
+      <div className='div1' style={{paddingBottom:"10px"}}>
       <div className='carousel'>
       <Carousel activeIndex={index} onSelect={handleSelect}>
           {bootstrap.map((item, index) => (
@@ -86,7 +85,7 @@ if (loading) {return (
         <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" className='button2'><u>Bug/Suggestion</u></a>
+        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px"}} className='button2'><u>Bug/Suggestion</u></a>
         </div>
       </main>
       )}
