@@ -29,6 +29,7 @@ body {
   width:100%;
 }
 
+
 .objektDiv {
   width: 100%;
   position: relative;
@@ -59,6 +60,7 @@ body {
   display: block;
   margin:auto;
   margin-top: 10px;
+  text-align: center;
 }
 .text1 {
   color: white;
@@ -203,6 +205,7 @@ body {
   padding: 0.5rem; 
 border-radius: 0.375rem; 
 font-weight: 700; 
+font-size: 80%;
 background-color: rgb(78, 38, 151); 
 color: white;
 transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
@@ -222,4 +225,24 @@ transition-duration: 300ms;
 
 .whitetext {
   color: white;
+}
+
+/* FOR CAROUSEL */
+.carousel-indicators [data-bs-target] {
+  position: relative;
+  width: 60px;
+  height: 6px;
+  border: none;
+  border-radius: 1px;
+}
+
+.carousel-indicators [data-bs-target] span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgb(78, 38, 151);
+  border-radius: inherit;
 }
