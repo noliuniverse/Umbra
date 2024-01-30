@@ -20,7 +20,6 @@ const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 const Carousel = ({interval}) => {
     const [pass, setPass] = useState(false)
     useEffect(()=>{
-        if (typeof document !== "undefined") {
             const myCarousel = document.getElementById("carouselExampleIndicators");
     const carouselIndicators = myCarousel.querySelectorAll(
       ".carousel-indicators button span"
@@ -60,8 +59,7 @@ const Carousel = ({interval}) => {
         }
       }, 50);
     }
-            }
-            
+
      
     }, [pass])
     
