@@ -20,7 +20,8 @@ const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 export default function Carousel  ({interval}) {
     const loadSlide = () => {
         
-        const myCarousel = document.getElementById("carouselExampleIndicators");
+        try {
+            const myCarousel = document.getElementById("carouselExampleIndicators");
     const carouselIndicators = myCarousel.querySelectorAll(
       ".carousel-indicators button span"
     );
@@ -59,6 +60,7 @@ export default function Carousel  ({interval}) {
         }
       }, 50);
     }
+        } catch {}
     }
     
     return <div style={{marginBottom: "10px"}} onLoad={() => {loadSlide()}}>
