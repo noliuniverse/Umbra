@@ -1,3 +1,4 @@
+"use client";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import styles from "@/app/globals.css"
 
@@ -20,6 +21,7 @@ const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 const Carousel = ({interval}) => {
     const [pass, setPass] = useState(false)
     useEffect(()=>{
+        if (typeof window !== "undefined") {
             const myCarousel = document.getElementById("carouselExampleIndicators");
     const carouselIndicators = myCarousel.querySelectorAll(
       ".carousel-indicators button span"
@@ -59,7 +61,8 @@ const Carousel = ({interval}) => {
         }
       }, 50);
     }
-
+            }
+            
      
     }, [pass])
     
