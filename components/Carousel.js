@@ -17,7 +17,7 @@ const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 
 //{ children },
-export default function Carousel  ({interval}) {
+const Carousel = ({interval}) => {
     const loadSlide = () => {
         
         try {
@@ -108,3 +108,4 @@ export default function Carousel  ({interval}) {
 
 }
 
+export default Carousel;
