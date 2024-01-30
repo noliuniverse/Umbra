@@ -64,7 +64,7 @@ export default function Carousel  ({interval}) {
     return <div style={{marginBottom: "10px"}} onLoad={() => {loadSlide()}}>
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" data-bs-pause="true">
   <div className="carousel-indicators" style={{marginTop: "10%"}}>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"  aria-label="Slide 1">
       <span></span>
     </button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">
@@ -73,12 +73,12 @@ export default function Carousel  ({interval}) {
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">
       <span></span>
     </button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" className="active" aria-current="true" aria-label="Slide 4">
       <span></span>
     </button>
   </div>
   <div className="carousel-inner">
-    <div className="carousel-item active">
+    <div className="carousel-item">
       <img src="YuBin110S.png" style={{width:"40%", maxWidth: "240px", margin: "auto"}} alt="YuBin 110S"/>
     </div>
     <div className="carousel-item">
@@ -87,7 +87,7 @@ export default function Carousel  ({interval}) {
     <div className="carousel-item">
       <img src="JooBin102S.png" style={{width:"40%", maxWidth: "240px", margin: "auto"}} alt="JooBin 102S"/>
     </div>
-    <div className="carousel-item">
+    <div className="carousel-item active">
       <img src="YooYeon106S.png" style={{width:"40%", maxWidth: "240px", margin: "auto"}} alt="YooYeon 106S"/>
     </div>
   </div>
