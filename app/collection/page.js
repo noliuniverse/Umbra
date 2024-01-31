@@ -30,10 +30,11 @@ export default function Collection() {
 
     useEffect(() => {
         async function getUser(){
-            const {data: {user}} = await supabase.auth.getUser()
+            const {data: {user}, error:errors} = await supabase.auth.getUser()
             setUser(user)
 
-            const fetchObjekts = async () => {
+            if (user == null) {} else
+            {const fetchObjekts = async () => {
                 var endNumber = batchSize-1;
                 var startNumber = 0;
                 const { data:datas1, error:errors1 } = await supabase
@@ -65,7 +66,7 @@ export default function Collection() {
             .select('username')
             .eq("id", user.id.toString())
 
-            setuser_name(datas[0]["username"].toString());
+            setuser_name(datas[0]["username"].toString());}
             setTimeout(function(){
                 setLoading(false)
             }, 50);
