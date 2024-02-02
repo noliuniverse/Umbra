@@ -29,7 +29,7 @@ export default function QR() {
   const [loading, setLoading] = useState(true);
   const handleDownloadImage = async () => {
     try {const element = printRef.current;
-        const canvas = await html2canvas(element);
+        const canvas = await html2canvas(element, { letterRendering: 1, useCORS:true, allowTaint     : true, onrendered     : function (canvas) {                 } });
     
         const data = canvas.toDataURL('image/png');
         const link = document.createElement('a');
@@ -128,9 +128,9 @@ if (loading) {return (
         <input type="username" name="qrname" value={a} onChange={(e) => setA(e.target.value)} className="input1"/>
         <button id="thisbutton" className='button2' onClick={handleGenerate}>Generate</button>
         
-        {aQ && <div style={{width: "60%", margin:"auto", marginTop: "30px", marginBottom:"40px"}}> <div ref={printRef}>
+        {aQ && <div ref={printRef}><div style={{width: "60%", margin:"auto", marginTop: "30px", marginBottom:"40px"}}> 
             <Canvas style={{margin: "0px"}} 
-    
+    logo={{src: "URLCODEUMBRA.png", options: {width:"104"}}}
       text={aQ}
       options={{
         errorCorrectionLevel: 'M',

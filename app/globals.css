@@ -98,6 +98,7 @@ body {
   margin:auto;
   margin-top: 10px;
   width: 19%;
+  min-width: 200px;
 }
 .navbarheader {
   width: 100%;
@@ -227,6 +228,28 @@ transition-duration: 300ms;
   color: white;
 }
 
+/* FOR LOGIN DROPDOWN */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* FOR CAROUSEL */
 .carousel-indicators [data-bs-target] {
   position: relative;
@@ -246,3 +269,4 @@ transition-duration: 300ms;
   background: rgb(78, 38, 151);
   border-radius: inherit;
 }
+

@@ -14,11 +14,14 @@ export default function LoginPage() {
     const [user_name, setuser_name] = useState('');
     const [warning, setWarning] = useState('');
     const [user, setUser] = useState(null);
+    const [signIn, setSignIn] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [dropdownEnabled, setDropdownEnabled] = useState(false);
     const router = useRouter()
     const handleRedirect = (re) => {
         router.push(re)
       }
+
 
 
     useEffect(() => {
@@ -45,10 +48,10 @@ if(!mounted) return null;
     .from('profiles')
     .select('username')
     .eq('username', user_name)
-    console.log(datas)
-    console.log(user_name)
+
     if (datas.length != 0) {setWarning("Username already being used"); return}
     if (user_name.replace(" ", "") == user_name == false) {setWarning("No spaces on your username"); return}
+    if (user_name.length > 16) {setWarning("Username has to be longer than 16."); return}
     if (email.replace(" ", "") == email == false) {setWarning("No spaces on your email"); return}
     if (password.replace(" ", "") == password == false) {setWarning("No spaces on your password"); return}
     if (user_name == '' || email == '' || password == ''){
@@ -125,7 +128,6 @@ if(!mounted) return null;
         </main>
         )}
 
-    console.log(loading, user)
     
     return (
 
@@ -140,7 +142,14 @@ if(!mounted) return null;
         </nav>
       </header>
             <div className="div1">
-                <h1 className="text1">EMAIL:</h1>
+            <div className="dropdown">
+                <span className='whitetext' style={{background: "rgb(78,38,151)",background: "linear-gradient(90deg, rgba(78,38,151,1) 0%, rgba(0,0,0,1) 35%, rgba(41,28,66,1) 100%)", padding: "10px", borderRadius:"100px", margin:"auto", cursor: "pointer"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}><b>Press here to sign in OR sign up.</b></span>
+                {dropdownEnabled && <div className="dropdown-content" >
+                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(false)}}>Sign-up</button>
+                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(true)}}>Sign-in</button>
+                </div>}
+                </div>
+                {(signIn == false) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
                 <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input1"/>
                 <br/>
                 <h1 className="text1">PASSWORD:</h1>
@@ -148,10 +157,16 @@ if(!mounted) return null;
                 <br/>
                 <h1 className="text1">USERNAME:</h1>
                 <h3 className="whitetext">You can not change this later (for now).</h3>
-                <p className="whitetext">!! If you are signing in, no need to put the username !!.</p>
                 <input type="username" name="username" value={user_name} onChange={(e) => setuser_name(e.target.value)} className="input1"/>
                 <button className='button2' onClick={handleSignUp}>Sign up</button>
-                <button className='button2' onClick={handleSignIn}>Sign in</button>
+                </div>}
+                {(signIn == true) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
+                <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input1"/>
+                <br/>
+                <h1 className="text1">PASSWORD:</h1>
+                <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input1"/>
+                <br/>
+                <button className='button2' onClick={handleSignIn}>Sign in</button></div>}
                 <h1 className="whitetext">{warning}</h1>
             </div>
         </main>
