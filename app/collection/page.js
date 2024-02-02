@@ -123,7 +123,7 @@ if(!mounted) return null;
             <div className="div1" style={{paddingBottom: "10px"}}>
                 <p className="whitetext"><small>Username: </small><span className="big bold">{user_name}</span></p>
                 <br/>
-            {datas && <FetchMoreObjekts datas={datas} userid={user.id}></FetchMoreObjekts>}
+            {datas && <div style={{paddingBottom: "20px"}}> <FetchMoreObjekts datas={datas} userid={user.id}></FetchMoreObjekts></div>}
             
             {(datas && datas.length == 0) && <p className="whitetext">Wow! Looks like you have no objekts!</p>}
             </div>

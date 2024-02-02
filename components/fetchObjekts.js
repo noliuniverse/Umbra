@@ -85,10 +85,10 @@ export default function FetchMoreObjekts  ({datas, userid}) {
 
     
 
-    return <div style={{marginBottom: "0px"}}><div className="objektgrid">
+    return <div ><div className="objektgrid">
     {objekts.map((item,index)=>{return <Objekt className="grid-objekt" unique={index} key={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/>
 })}
-                        <div style={{marginBottom: "100px"}}></div></div>
+                        </div>
                         {hasPages && <button className="button2 more" style={{ marginTop: "60px", opacity:"10%"}}
                         >-</button>} 
 </div>
