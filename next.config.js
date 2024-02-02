@@ -6,6 +6,9 @@ const nextConfig = {reactStrictMode: false,
           "i.imgur.com",
           "upload.wikimedia.org",
         ],
+      },
+      experimental: {
+        missingSuspenseWithCSRBailout: false,
       },}
 
 module.exports = nextConfig

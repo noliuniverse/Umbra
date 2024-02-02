@@ -6,7 +6,6 @@ import { QrReader } from "react-qr-reader";
 import dynamic from "next/dynamic";
 import ObjektModal from '@/components/ObjektModal';
 import { supabase } from '@/utils/supabaseClient'
-
 import { Noto_Kufi_Arabic } from 'next/font/google';
 
 
