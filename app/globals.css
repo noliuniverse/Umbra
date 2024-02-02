@@ -236,7 +236,7 @@ transition-duration: 300ms;
 }
 
 .dropdown-content {
-  display: none;
+  display: block;
   position: absolute;
   background-color: #f9f9f9;
   border-radius: 3px;
@@ -246,9 +246,6 @@ transition-duration: 300ms;
   z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 
 /* FOR CAROUSEL */
 .carousel-indicators [data-bs-target] {

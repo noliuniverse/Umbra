@@ -9,6 +9,7 @@ import React, { useRef, useState, useEffect } from 'react';
 export default function LoginPage() {
 
     const navRef = useRef();
+    const dropdown = useRef()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user_name, setuser_name] = useState('');
@@ -35,6 +36,17 @@ export default function LoginPage() {
         
     }, [])
     useEffect(() => setMounted(true),[])
+    useEffect(() => {
+        if (!dropdownEnabled) return;
+        function handleClick(event) {
+          if (dropdown.current && !dropdown.current.contains(event.target)) {
+            setDropdownEnabled(false);
+          }
+        }
+        document.addEventListener("click", handleClick);
+        // clean up
+        return () => document.removeEventListener("click", handleClick);
+      }, [dropdownEnabled]);
 
     const [mounted, setMounted] = useState(false);
 
@@ -144,9 +156,9 @@ if(!mounted) return null;
             <div className="div1">
             <div className="dropdown">
                 <span className='whitetext' style={{background: "rgb(78,38,151)",background: "linear-gradient(90deg, rgba(78,38,151,1) 0%, rgba(0,0,0,1) 35%, rgba(41,28,66,1) 100%)", padding: "10px", borderRadius:"100px", margin:"auto", cursor: "pointer"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}><b>Press here to sign in OR sign up.</b></span>
-                {dropdownEnabled && <div className="dropdown-content" >
-                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(false)}}>Sign-up</button>
-                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(true)}}>Sign-in</button>
+                {dropdownEnabled && <div className="dropdown-content" id="dropdownmenu" ref={dropdown}>
+                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(false); setDropdownEnabled(false)}}>Sign-up</button>
+                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(true); setDropdownEnabled(false)}}>Sign-in</button>
                 </div>}
                 </div>
                 {(signIn == false) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
