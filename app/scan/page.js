@@ -160,12 +160,12 @@ if (user) { return (
       </nav>
     </header>
 
-    <div className="div1">
+    <div className="div1" style={{paddingBottom:"20px"}}>
     <h1 className='whitetext bold'>Scan</h1>
     <small className='whitetext'>Place your custom objekt's QR code in the center.</small>
     { isRecording && <div className='qrreader' style={{margin: "auto"}}>
      <QrReader
-              className="lg:h-[400px] lg:w-[400px] h-[300px] w-[300px]"
+              
               onResult={handleScan}
               constraints={{ facingMode: cameraDirection }}
               style={{ width: "40%", height: "40%", margin: "auto"}}
