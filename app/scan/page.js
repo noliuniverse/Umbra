@@ -24,11 +24,11 @@ export default function Scan() {
   const [isRecording, setIsRecording] = useState(true)
   const [delayScan, setDelayScan] = useState(500)
   const [cameraDirection, setcameraDirection] = useState("environment")
-  
   const router = useRouter()
   const navRef = useRef();
   const qrRef = useRef(null);
   const lastResult = useRef();
+  let stateloading = 0;
     const handleRedirect = (re) => {
         router.push(re)
         router.refresh();
@@ -44,7 +44,6 @@ export default function Scan() {
             var string = result?.text;
             
             const searchParams = new URLSearchParams(string.split("?")[1]);
-            console.log("la" + searchParams.get('i'));
             if (searchParams.get('i').toString() == null) {setData("Not a valid code!");} else if (string.split("?")[0] != ('https://umbra-two.vercel.app/objekt')){setData("Not a valid code!");}
             else {
               if (lastResult.current === result.text) {
@@ -57,10 +56,11 @@ export default function Scan() {
               .select('card_uuid')
               .eq('qr_id', searchI)
               .eq('used', false)
-              console.log(datas);
-              console.log(searchI);
+
             if (datas.length == 0) {
               setData('This objekt is not valid.');
+              stateloading = 0;
+
             } 
             else if (datas.length == 1) {
               var uuid = datas[0]["card_uuid"];
@@ -165,7 +165,19 @@ if (user) { return (
     { isRecording && <div className='qrreader' style={{margin: "auto"}}>
      <QrReader
               
-              onResult={handleScan}
+              onResult={(result, error) => {
+                if (result){
+                  if (stateloading == 0) {
+                    stateloading = 0;
+                  setTimeout(() => {
+                    stateloading++
+                    if (stateloading == 1) {
+                      handleScan(result, error);
+                    }
+                  }, 1000);
+                  }
+                }
+              }}
               constraints={{ facingMode: cameraDirection }}
               style={{ width: "40%", height: "40%", margin: "auto"}}
               ref={qrRef}

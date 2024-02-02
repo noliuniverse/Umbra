@@ -66,7 +66,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
                 {created_at && <div style={{ position: "absolute", bottom: dimensions.width/7.5/4.5, left: dimensions.width/7.5/5,background: "rgb(127, 86, 201)", background: "rgb(127, 86, 201, 0.65)", paddingRight: "5%", paddingLeft: "5%",borderRadius: "10px", textAlign: "center",margin: "auto", fontSize: "50%"}} className="whitetext">NEW</div>}
                 </div>
                 </div>
-            <div style={{background: bckcolor,width:"100%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>
+            <div style={{background:"gray",background: bckcolor,width:"100%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>
             <font color={color}><p style={helveticaNeueBold.style}>{member}</p></font>
             <font color={color}><span style={helveticaNeueBold.style} className="objekt_preview_text2">{id}</span></font>{serial && <font color={color}><span style={dotMat.style} className="objekt_preview_text2">#{serial.toString().padStart(5, '0')}</span></font>}  
             <font color={color}><p style={halavrBreitRg.style}>{season}</p></font>   
