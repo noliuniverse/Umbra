@@ -45,7 +45,7 @@ export default function Collection() {
         if (startNumber+batchSize > datas1.length) {
             endNumber = datas1.length;
         }
-        var asc = true;
+        var asc = false;
         var row = 'created_at'
         
         if (searchParams.get('sort')){
