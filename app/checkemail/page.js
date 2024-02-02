@@ -20,7 +20,7 @@ export default function CheckEmail() {
   return (
     <main>
       <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <nav ref={navRef}>
         </nav>

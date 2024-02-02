@@ -113,7 +113,7 @@ if(!mounted) return null;
     if (loading) {return (
     <main>
             <header className="navbarheader">
-            <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" />
+            <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true} />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -129,7 +129,7 @@ if(!mounted) return null;
     if (user) {return (
         <main>
                 <header className="navbarheader">
-                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" />
+                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}/>
                 <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -151,7 +151,7 @@ if(!mounted) return null;
 
         <main>
         <header className="navbarheader">
-        <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" />
+        <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true} />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>

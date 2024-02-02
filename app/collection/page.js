@@ -6,6 +6,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Objekt from "@/components/objekt.js";
 import FetchMoreObjekts from '@/components/fetchObjekts.js';
 import { useInView } from "react-intersection-observer";
+import { useSearchParams } from 'next/navigation'
 
 
 export default function Collection() {
@@ -27,7 +28,7 @@ export default function Collection() {
         router.push(re)
       }
 
-
+      const searchParams = useSearchParams()
     useEffect(() => {
         async function getUser(){
             const {data: {user}, error:errors} = await supabase.auth.getUser()
@@ -44,11 +45,29 @@ export default function Collection() {
         if (startNumber+batchSize > datas1.length) {
             endNumber = datas1.length;
         }
+        var asc = true;
+        var row = 'created_at'
+        
+        if (searchParams.get('sort')){
+            if (searchParams.get('sort') == "oldest"){
+                asc = true;
+            }
+        
+            if (searchParams.get('sort') == "newest"){
+                asc = false;
+            }
+
+            if (searchParams.get('sort') == "serial"){
+                asc = true;
+                row = 'serial'
+        }
+            
+        }
         const { data:datas, error:errors } = await supabase
         .from('objektcollection')
         .select('id, serial, created_at, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id, eventhost, eventhostlink)')
         .eq('user_uuid', user.id.toString())
-        .order('created_at', { ascending: false })
+        .order(row, { ascending: asc })
         .range(startNumber, endNumber)
     
             if (errors) {
@@ -91,7 +110,7 @@ if(!mounted) return null;
     if (loading) {return (
     <main>
             <header className="navbarheader">
-            <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
+            <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -111,7 +130,7 @@ if(!mounted) return null;
     if (user) {return (
         <main>
                 <header className="navbarheader">
-                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
+                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
                 <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
@@ -135,7 +154,7 @@ if(!mounted) return null;
 
         <main>
       <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={false}  />
+      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
