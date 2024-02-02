@@ -4,7 +4,7 @@ import { useRouter} from "next/navigation";
 import { supabase } from '@/utils/supabaseClient'
 import { debounce, has } from 'lodash'
 import { usePathname } from 'next/navigation'
-
+import { Suspense } from "react";
 import Objekt from "@/components/objekt.js";
 import { fetchObjekts } from "@/functions/fetchObjekt.js";
 import { useInView } from "react-intersection-observer";
@@ -116,7 +116,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
       }, [dropdownEnabled]);
     
 
-    return <div>
+    return <Suspense><div>
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
         {dropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%"}} id="dropdownmenu" ref={dropdown}>
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=oldest")}}>Oldest</button>
@@ -129,7 +129,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
                         </div>
                         {hasPages && <button className="button2 more" style={{ marginTop: "60px", opacity:"10%"}}
                         >-</button>} 
-</div>
+</div></Suspense>
 
 
 
