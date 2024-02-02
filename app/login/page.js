@@ -63,13 +63,14 @@ if(!mounted) return null;
 
     if (datas.length != 0) {setWarning("Username already being used"); return}
     if (user_name.replace(" ", "") == user_name == false) {setWarning("No spaces on your username"); return}
-    if (user_name.length > 16) {setWarning("Username has to be longer than 16."); return}
+    if (user_name.length > 16) {setWarning("Username has to be shorter than 16 characters."); return}
+    if (password.length <= 6) {setWarning("Password has to be longer than 6 characters."); return}
     if (email.replace(" ", "") == email == false) {setWarning("No spaces on your email"); return}
     if (password.replace(" ", "") == password == false) {setWarning("No spaces on your password"); return}
     if (user_name == '' || email == '' || password == ''){
         setWarning("No empty usernames, email, or passwords");
         return}
-
+        setLoading(true)
         const res = await supabase.auth.signUp({
         email,
         password,
@@ -77,17 +78,22 @@ if(!mounted) return null;
             data: {user_name: user_name},
             emailRedirectTo: `${location.origin}/verified`
         }
-    })
-    //auth/callback
-    setUser(res.data.user);
-    router.refresh();
-    setEmail('');
-    setPassword('');
-    setuser_name('');
-    router.push("/checkemail")
+        })
+        //auth/callback
+        setPassword('');
+        setEmail('');
+        setuser_name('');
+        router.push("/checkemail")
+        router.refresh();
+        
+        
+    
     }
     const handleLogout = async () => {
-        await supabase.auth.signOut();
+        const options = {
+            scope: "local"
+        }
+        await supabase.auth.signOut(options);
         router.refresh();
         setUser(null);
     }
