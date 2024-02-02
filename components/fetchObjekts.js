@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react"
 import { useRouter} from "next/navigation";
 import { supabase } from '@/utils/supabaseClient'
 import { debounce, has } from 'lodash'
-import { useSearchParams } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 
 import Objekt from "@/components/objekt.js";
