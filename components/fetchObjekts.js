@@ -42,7 +42,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
                 console.log(params.toString())
                 params.set(filtertext.split('=')[0], filtertext.split('=')[1])
                 window.location.href = url.split('?')[0] + '?' + params.toString();
-            } else {window.location.href = url + filtertext;}
+            } else {window.location.href = url + "&" + filtertext;}
         }
         else {
             window.location.href = url + "?" + filtertext;
@@ -55,7 +55,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
         if (hasPages == true) {
             const pageNumber = pagesLoaded+1;
             
-            fetchObjekts(pageNumber, userid, batchSize).then(res => {
+            fetchObjekts(pageNumber, userid, batchSize, true).then(res => {
                 var vl = res.length;
                 
                 

@@ -14,6 +14,7 @@ import localFont from "next/font/local"
 const ParaboleDisplay = localFont({src: "../fonts/Parabole-DisplayRegular.otf"})
 const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
 
+
 export default function Home() {
   let items = itemsdata["items"];
   const [data, setData] = useState('No result');
@@ -89,7 +90,8 @@ if (loading) {return (
        </div>
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
-        <div className='partners whitetext' style={{marginTop:"20px", margin:"auto"}}>
+        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/collection")}>Event Objekts</button>
+        <div className='partners whitetext' style={{margin:"auto"}}>
         <div className='partner'>
         <a href='https://twitter.com/tripleScosmosPH'><img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
         tripleS Philippines</a>
