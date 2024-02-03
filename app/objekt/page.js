@@ -10,8 +10,9 @@ import { useInView } from "react-intersection-observer";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react';
 import localFont from '@next/font/local'
+import hostsdata from "../other/eventhosts.json";
 
-const HalvarBreitMd = localFont({src: "../font/HalvarBreit-Md.ttf"})
+const HalvarBreitMd = localFont({src: "../other/HalvarBreit-Md.ttf"})
 
 export default function Objekts() {
     const batchSize = 40;
@@ -28,6 +29,11 @@ export default function Objekts() {
     const searchParams = useSearchParams()
 
     const router = useRouter()
+
+    let hosts = hostsdata["hosts"];
+    const { hostlist } = hosts;
+    console.log(hostlist)
+    
 
     const handleObjekts = (urlparam) => {
         
@@ -136,14 +142,12 @@ if(!mounted) return null;
             <div className="div1" style={{paddingBottom: "10px"}}>
                 <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Objekts:</h1></font>
                 <div className='scrolling-div'>
-                    <div className='scrolling-div-child' onClick={() => {handleObjekts('tripleS+PH')}}>
-                        <img src='tripleSPHLogo.png' style={{width: "100px"}}></img>
-                        <p className="whitetext" >tripleS Philippines</p>
+                    {hostlist.map((item, index) => {
+                        return <div key={item.id} className='scrolling-div-child' onClick={() => {handleObjekts(item['eventhostname'].toString().replace(/ /g,"+"))}}>
+                        <img src={item['logo']} style={{width: "80px"}}></img>
+                        <p className="whitetext" >{item['name']}</p>
                     </div>
-                    <div className='scrolling-div-child'>
-                        <img src='WAVer_INAlogo.png' style={{width: "100px"}}></img>
-                        <p className="whitetext" >WAVer_INA</p>
-                    </div>
+                    })}
                 </div>
                 <div style={{marginBottom: "10px", marginTop: "10px"}}>
                     <Suspense>
@@ -160,21 +164,38 @@ if(!mounted) return null;
     return (
 
         <main>
-      <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
-        <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
-        <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
-        <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
-        <nav ref={navRef}>
-        </nav>
-      </header>
-
-      <div className="div1">
-      <h1 className='whitetext bold'>Objekts</h1>
-       
-            
-        </div>
-    </main>
+                <header className="navbarheader">
+                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
+                <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
+                <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
+                <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
+                <nav ref={navRef}>
+                </nav>
+            </header>
+            <div className="div1" style={{paddingBottom: "10px"}}>
+                <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Objekts:</h1></font>
+                <div className='scrolling-div'>
+                    {hostlist.map((item, index) => {
+                        <div key={index} className='scrolling-div-child' onClick={() => {handleObjekts(item['name'].toString().replace(/ /g,"+"))}}>
+                        <img src={item['logo']} style={{width: "100px"}}></img>
+                        <p className="whitetext" >{item['name']}</p>
+                    </div>
+                    })}
+                    
+                    <div className='scrolling-div-child' onClick={() => {handleObjekts('WAVer_INA')}}>
+                        <img src='WAVer_INAlogo.png' style={{width: "100px"}}></img>
+                        <p className="whitetext" >WAVer_INA</p>
+                    </div>
+                </div>
+                <div style={{marginBottom: "10px", marginTop: "10px"}}>
+                    <Suspense>
+                {(datas) && <div style={{paddingBottom: "20px"}}> <ObjektGrid datas={datas} userid={userid} searchParams={searchParams}></ObjektGrid></div>}
+                </Suspense>
+                {(datas && userid && datas.length == 0) && <p className="whitetext">Wow! Looks like the event host has no objekts!</p>}
+                </div>
+                
+            </div>
+        </main>
 
     )
 }  

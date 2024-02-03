@@ -1,0 +1,14 @@
+{
+    "hosts" : {
+        "hostlist" : [
+            {"id": 1,
+            "name" : "tripleS Philippines",
+            "logo":"tripleSPHLogo.png",
+            "eventhostname": "tripleS PH"},
+            {"id": 2,
+            "name" : "WAVer_INA",
+            "logo":"WAVer_INAlogo.png",
+            "eventhostname" : "WAVer_INA"}
+        ]
+    }
+}

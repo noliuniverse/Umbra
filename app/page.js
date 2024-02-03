@@ -17,6 +17,7 @@ const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
 
 export default function Home() {
   let items = itemsdata["items"];
+  const { bootstrap } = items;
   const [data, setData] = useState('No result');
   
   const router = useRouter()
@@ -25,7 +26,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const INTERVAL_VAL = 2000;
 
-  const { bootstrap } = items;
+  
   const [index, setIndex] = useState(0);
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);

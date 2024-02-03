@@ -141,6 +141,7 @@ body {
 
 .scrolling-div {
   overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
   width:95%;
   height: 120px;
@@ -149,16 +150,30 @@ body {
   margin-top: 10px;
 }
 .scrolling-div-child {
+  min-height: 110px;
+  height: fit-content;
   text-align: center;
   width:100px;
-  font-size: 10px;
+  font-size: 60%;
   cursor: pointer;
   background-color: rgb(78, 38, 151);
+  transition: 0.2s;
+}
+.scrolling-div-child:hover {
+  width: 120px;
+  font-size: 12px;
+  background-color: rgb(109, 65, 191);
 }
 
 .scrolling-div-child img {
   margin:auto;
 }
+
+.scrolling-div-child p {
+  width: 90%;
+  margin: auto;
+}
+
 @media only screen and (max-width: 480px) {
   .partner {
     font-size: 70%;
