@@ -125,8 +125,34 @@ body {
   gap: 10px;
   padding: 10px;
 }
+.partners {
+  display: grid;
+  width: 60%;
+  grid-template-columns: repeat(3, 1fr);
+}
 
+.partner {
+  background-color:rgb(78, 38, 151);
+  opacity: 60%;
+  margin: 1px;
+  transition: 0.2s;
+  font-size: 100%;
+}
+@media only screen and (max-width: 480px) {
+  .partner {
+    font-size: 70%;
+  }
+}
+.partners a {
+  color: rgb(255, 255, 255);
+}
 
+.partners a:hover {
+  color: rgb(134, 198, 208);
+}
+.partner:hover {
+  opacity: 100%;
+}
 @media only screen and (max-width: 1000px) {
   .objektgrid {
       grid-template-columns: repeat(4, 1fr);
