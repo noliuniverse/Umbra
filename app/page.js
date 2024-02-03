@@ -88,7 +88,7 @@ if (loading) {return (
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
        </div>
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
-        <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTERS:</h1>
+        <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
         <div className='partners whitetext' style={{marginTop:"20px", margin:"auto"}}>
         <div className='partner'>
         <a href='https://twitter.com/tripleScosmosPH'><img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
@@ -129,7 +129,7 @@ if (loading) {return (
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
        </div>
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
-        <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTERS:</h1>
+        <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
         <div className='partners whitetext' style={{marginTop:"20px", margin:"auto"}}>
         <div className='partner'>
         <a href='https://twitter.com/tripleScosmosPH'><img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
