@@ -90,7 +90,7 @@ if (loading) {return (
        </div>
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
-        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/collection")}>Event Objekts</button>
+        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/objekt")}>Event Objekts</button>
         <div className='partners whitetext' style={{margin:"auto"}}>
         <div className='partner'>
         <a href='https://twitter.com/tripleScosmosPH'><img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
@@ -124,15 +124,16 @@ if (loading) {return (
           ))}
         </Carousel>
       </div>
-        <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
-        <div style={{width:"90%", margin:"auto"}}>
+      <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
+      <div style={{width:"90%", margin:"auto"}}>
        <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
         <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
        </div>
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
-        <div className='partners whitetext' style={{marginTop:"20px", margin:"auto"}}>
+        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/objekt")}>Event Objekts</button>
+        <div className='partners whitetext' style={{margin:"auto"}}>
         <div className='partner'>
         <a href='https://twitter.com/tripleScosmosPH'><img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
         tripleS Philippines</a>
