@@ -27,6 +27,7 @@ body {
 .objektimg{
   margin: auto;
   width:100%;
+  transition: 0.2s;
 }
 
 
@@ -125,19 +126,7 @@ body {
   gap: 10px;
   padding: 10px;
 }
-.partners {
-  display: grid;
-  width: 60%;
-  grid-template-columns: repeat(3, 1fr);
-}
 
-.partner {
-  background-color:rgb(78, 38, 151);
-  opacity: 80%;
-  margin: 1px;
-  transition: 0.2s;
-  font-size: 100%;
-}
 
 .scrolling-div {
   overflow-x: auto;
@@ -155,14 +144,15 @@ body {
   text-align: center;
   width:100px;
   font-size: 60%;
+  color: black;
   cursor: pointer;
-  background-color: rgb(78, 38, 151);
+  background-color: rgb(234, 234, 234);
   transition: 0.2s;
 }
 .scrolling-div-child:hover {
   width: 120px;
   font-size: 12px;
-  background-color: rgb(109, 65, 191);
+  background-color: rgb(255, 255, 255);
 }
 
 .scrolling-div-child img {
@@ -174,17 +164,58 @@ body {
   margin: auto;
 }
 
-@media only screen and (max-width: 480px) {
-  .partner {
-    font-size: 70%;
-  }
-}
-.partners a {
-  color: rgb(255, 255, 255);
+.partners {
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.partners a:hover {
-  color: rgb(134, 198, 208);
+.partner {
+  background-color:rgb(236, 236, 236);
+  border-radius: 10px;
+  opacity: 80%;
+  margin: 1px;
+  width: 97%;
+  transition: 0.2s;
+  display: flex;
+  font-size: 100%;
+}
+@media only screen and (max-width: 500px) {
+  .partner {
+    background-color:rgb(236, 236, 236);
+  border-radius: 10px;
+  opacity: 80%;
+  margin: 1px;
+  display: block;
+  transition: 0.2s;
+    font-size: 70%;
+    height: fit-content;
+    min-height: 150px;
+
+  }
+  
+}
+@media only screen and (max-width: 500px) {
+  .partners {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+}
+@media only screen and (max-width: 500px) {
+  .partners p {
+    margin:0%;
+    margin: auto;
+  }
+}
+.partners p {
+  color: rgb(0, 0, 0);
+  margin: auto;
+  padding:3px;
+  
+}
+
+.partners p:hover {
+  color: rgb(20, 91, 102);
 }
 .partner:hover {
   opacity: 100%;
@@ -289,6 +320,34 @@ transition-duration: 300ms;
 .whitetext {
   color: white;
 }
+
+/* FOR WHEEL */
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 100px;
+  height:100px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* FOR LOGIN DROPDOWN */
 

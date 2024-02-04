@@ -58,53 +58,11 @@ if (loading) {return (
       </nav>
     </header>
       <div className="div1">
-      <h1 className="whitetext bigger">Loading...</h1>
+      <div class="lds-dual-ring"></div>
       </div>
   </main>
   )}
-      if (user) { return (
-        <main>
-      <header className="navbarheader">
-      <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
-        <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
-        <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
-        <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
-        <button className='headerbutton' onClick={() => handleRedirect("/collection")}>Collection</button>
-        <nav ref={navRef}>
-        </nav>
-      </header>
-      <div className='div1' style={{paddingBottom:"10px"}}>
-      <div className='carousel'>
-      <Carousel activeIndex={index} onSelect={handleSelect}>
-          {bootstrap.map((item, index) => (
-            <Carousel.Item key={item.id} className={styles.itemP} interval={INTERVAL_VAL}>
-              <img src={item.imageUrl} alt="slides" />
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
-      <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
-      <div style={{width:"90%", margin:"auto"}}>
-       <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
-        <br></br>
-        <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
-       </div>
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
-        <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
-        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/objekt")}>Event Objekts</button>
-        <div className='partners whitetext' style={{margin:"auto"}}>
-        <div className='partner'>
-        <a href='https://twitter.com/tripleScosmosPH'><img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
-        tripleS Philippines</a>
-        </div>
-        <div className='partner'>
-        <a href='https://twitter.com/WAVer_INA'><img src="WAVer_INAlogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
-        WAVer_INA (Indonesia)</a>
-        </div>
-        </div>
-        </div>
-      </main>
-      )}
+      
   return (
     <main>
       <header className="navbarheader">
@@ -112,6 +70,7 @@ if (loading) {return (
         <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
         <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
         <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
+        {user &&  <button className='headerbutton' onClick={() => handleRedirect("/collection")}>Collection</button>}
         <nav ref={navRef}>
         </nav>
       </header>
@@ -125,7 +84,7 @@ if (loading) {return (
           ))}
         </Carousel>
       </div>
-      <h1 className='whitetext bold big' style={{color: "white"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
+      <h1 className='whitetext big' style={{color: "white", fontWeight: "0px",letterSpacing:"-1px"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
       <div style={{width:"90%", margin:"auto"}}>
        <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
@@ -134,15 +93,17 @@ if (loading) {return (
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
         <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/objekt")}>Event Objekts</button>
-        <div className='partners whitetext' style={{margin:"auto"}}>
-        <div className='partner'>
-        <a href='https://twitter.com/tripleScosmosPH'><img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
-        tripleS Philippines</a>
-        </div>
-        <div className='partner'>
-        <a href='https://twitter.com/WAVer_INA'><img src="WAVer_INAlogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
-        WAVer_INA (Indonesia)</a>
-        </div>
+        <div className='partners whitetext' style={{margin:"auto", marginTop:"10px"}}>
+        <a href='https://twitter.com/tripleScosmosPH' className='partner'>
+        <img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
+        <p>
+        tripleS Philippines</p>
+        </a>
+        <a href='https://twitter.com/WAVer_INA' className='partner'>
+        <img src="WAVer_INAlogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
+        <p >
+        WAVer_INA (Indonesia)</p>
+        </a>
         </div>
         </div>
     </main>

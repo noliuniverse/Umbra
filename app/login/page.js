@@ -121,7 +121,7 @@ if(!mounted) return null;
         </nav>
       </header>
         <div className="div1">
-        <h1 className="whitetext bigger">Loading...</h1>
+        <div class="lds-dual-ring"></div>
         </div>
     </main>
     )}

@@ -28,6 +28,17 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
             if (heightofBOX == maxHeight){slideUp(); } else {slideDown(); }} catch {console.log("failed!")}
 
     }
+    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+    const openImage = async () =>
+    {
+        for ( let i = 0; i < 26; i++){
+          await sleep(0.1)
+          setLoadedOpacity(i*4 + '%')
+          console.log(i + '%')
+        }
+
+    }
 
     useLayoutEffect(() => {
           if (targetRef.current) {
@@ -56,7 +67,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
             {(loaded == null) && <div className='objekt-skeleton' key={unique}/>}
       <div style={{opacity: loadedOpacity, width: "100%"}}>
         <div className="objektDiv">
-            <Image className="objektimg" src={img}onLoad={() => {setLoaded(true); setLoadedOpacity("100%")}} alt={id} width={700}
+            <Image className="objektimg" src={img}onLoad={() => {setLoaded(true); openImage();}} alt={id} width={700}
   height={700} onClick={slidefunction} ref={targetRef}/>
                 <div className={stylestwo.sideBar} style={{color: color, fontSize: dimensions.width/7.5/2}}>
                     <span style={helveticaNeueBold.style} className="objekt_preview_text">{id}</span>
