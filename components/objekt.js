@@ -4,6 +4,8 @@ import stylestwo from "@/app/sidebar.module.css"
 import Image from 'next/image'
 import localFont from "next/font/local"
 import { useRef, useState, useLayoutEffect } from "react"
+import ObjektInfo from '@/components/ObjektInfo';
+
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})

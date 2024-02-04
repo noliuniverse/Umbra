@@ -266,10 +266,82 @@ body {
   }
 }
 
+.objektinfo {
+  min-width: 300px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  z-index: 2;
+  margin-top:-90px;
+
+}
+
+@media only screen and (max-width: 500px) {
+  .objektinfo {
+     width: 100%;
+     margin-top:10px;
+
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+  .objektflipclass {
+     min-width:200px;
+
+}}
+.inobjektinfo {
+  display: flex;
+  width: 100%;
+  background: gray;
+  height: auto;
+  margin-top: 10px;
+  margin: auto;
+  border-radius: 10px;
+  color: white;
+  padding: 30px;
+}
+
+@media only screen and (max-width: 500px) {
+  .inobjektinfo {
+    display: block;
+     width: 80%;
+     padding: 30px;
+     background: gray;
+     color: white;
+     border-radius: 10px;
+     margin-top: -138px;
+     height: fit-content;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .objektflipclass {
+    width: 50%; 
+    margin: auto;
+  }
+}
+
+
+div#blur.active {
+  filter: blur(20px);
+}
+
 .empty {
   padding: 2px;
 }
+.x {
+  backdrop-filter: blur(200px);
+  -webkit-backdrop-filter: blur(200px);
+}
 
+@media only screen and (max-width: 500px) {
+  .x {
+    left: 60px;
+    top: 50%;
+    border-radius: 20px;
+  }
+}
 .objekt_preview_text3 {
   padding-top: 1px;
   padding-right: 1.2%;
@@ -388,3 +460,5 @@ transition-duration: 300ms;
   border-radius: inherit;
 }
 
+
+/* FOR FLIP OBJEKT */

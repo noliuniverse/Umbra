@@ -10,7 +10,8 @@ import { fetchObjekts } from "@/functions/fetchObjekt.js";
 import { useInView } from "react-intersection-observer";
 import { useCallback } from "react";
 import localFont from "next/font/local"
-
+import ObjektModal from "./ObjektModal";
+import ObjektInfo from "./ObjektInfo";
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
@@ -22,7 +23,9 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     const NEW_LIMIT = 86400000; // created less than a day ago is considered new
     const batchSize = 40;
     const [pagesLoaded, setPagesLoaded] = useState(1);
+    const [modalop, setModal] = useState(false);
     const [dropdownEnabled, setDropdownEnabled] = useState(false);
+    const [ids, setIDS] = useState(null);
     const dropdown = useRef();
     const router = useRouter();
 
@@ -31,6 +34,13 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     let loading = false;
 
     const pathname = usePathname();
+
+    const setModals= async (bool) => { 
+        setModal(bool);
+        var blur = document.getElementById('blur');
+        blur.classList.toggle('active');
+
+    }
     const handleSort = async (filtertext) => {
         let path = pathname;
         let url = window.location.href;
@@ -116,15 +126,18 @@ export default function FetchMoreObjekts  ({datas, userid}) {
       }, [dropdownEnabled]);
     
 
-    return <Suspense><div>
+    return <Suspense>
+        {modalop && <div className="objektinfo"><p className="x" style={{background:"white", width:"20px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}>X</p><ObjektInfo id={ids}></ObjektInfo></div>}
+        <div  id="blur">
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
         {dropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%"}} id="dropdownmenu" ref={dropdown}>
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=oldest")}}>Oldest</button>
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=newest")}}>Newest</button>
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=serial")}}>Serial (hi-low)</button>
                 </div>}
-        <div className="objektgrid">
-    {objekts.map((item,index)=>{return <Objekt className="grid-objekt" unique={index} key={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/>
+        
+        <div className="objektgrid" style={{zIndex: 1}}>
+    {objekts.map((item,index)=>{return <div key={index} onDoubleClick={() => {setIDS(item["uuid"]); setModals(true)}}><Objekt className="grid-objekt" unique={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/></div>
 })}
                         </div>
                         {hasPages && <button className="button2 more" style={{ marginTop: "60px", opacity:"10%"}}
