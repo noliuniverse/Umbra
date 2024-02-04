@@ -10,6 +10,7 @@ import { Noto_Kufi_Arabic } from 'next/font/google';
 import itemsdata from "../json/Items.json";
 import { Carousel } from "react-bootstrap";
 import localFont from "next/font/local"
+import hostsdata from "./other/eventhosts.json";
 
 const ParaboleDisplay = localFont({src: "../fonts/Parabole-DisplayRegular.otf"})
 const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
@@ -18,6 +19,9 @@ const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
 export default function Home() {
   let items = itemsdata["items"];
   const { bootstrap } = items;
+  let hosts = hostsdata["hosts"];
+  const { hostlist } = hosts;
+
   const [data, setData] = useState('No result');
   
   const router = useRouter()
@@ -58,7 +62,7 @@ if (loading) {return (
       </nav>
     </header>
       <div className="div1">
-      <div class="lds-dual-ring"></div>
+      <div className="lds-dual-ring"></div>
       </div>
   </main>
   )}
@@ -94,16 +98,15 @@ if (loading) {return (
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
         <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/objekt")}>Event Objekts</button>
         <div className='partners whitetext' style={{margin:"auto", marginTop:"10px"}}>
-        <a href='https://twitter.com/tripleScosmosPH' className='partner'>
-        <img src="tripleSPHLogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
-        <p>
-        tripleS Philippines</p>
-        </a>
-        <a href='https://twitter.com/WAVer_INA' className='partner'>
-        <img src="WAVer_INAlogo.png" style={{display: "block", width: "100px", margin: "auto"}}></img>
-        <p >
-        WAVer_INA (Indonesia)</p>
-        </a>
+        {hostlist.map((item, index) => {
+                        return <a key={index} href={item["twtlink"]} className='partner'>
+                        <img src={item["logo"]} style={{display: "block", width: "100px", margin: "auto"}}></img>
+                        <p>
+                        {item["display_name"]}</p>
+                        </a>
+                    })}
+        
+        
         </div>
         </div>
     </main>

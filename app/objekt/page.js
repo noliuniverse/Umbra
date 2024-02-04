@@ -22,8 +22,6 @@ export default function Objekts() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [userid, setUserID] = useState(null);
-    const [param, setParam] =  useState(false)
-
     const [datas, setDatas] = useState(null);
     const [mounted, setMounted] = useState(false);
     const searchParams = useSearchParams()
@@ -33,11 +31,12 @@ export default function Objekts() {
     let hosts = hostsdata["hosts"];
     const { hostlist } = hosts;
     
+    
 
     const handleObjekts = (urlparam) => {
         setPageLoading(true)
        window.location.href = window.location.href.split('/' + pathname)[0] + '/' + pathname + '?' + 'host=' + urlparam
-       
+
         
     }
     
@@ -120,46 +119,11 @@ if(!mounted) return null;
         </nav>
       </header>
         <div className="div1">
-        <div className='objektgrid' style={{marginTop:"310px"}}>
-        {Array.from({length: 20}).map((item,index)=>{return <div className='objekt-skeleton' key={index}/>})}
-        </div>
+        <div class="lds-dual-ring"></div>
         </div>
     </main>
     )}
 
-    if (user) {return (
-        <main>
-                <header className="navbarheader">
-                <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
-                <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
-                <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
-                <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
-                <nav ref={navRef}>
-                </nav>
-            </header>
-            <div className="div1" style={{paddingBottom: "10px"}}>
-            {pageloading == true && <div class="lds-dual-ring"></div>}
-                {pageloading == false && <div>
-                    <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Objekts:</h1></font>
-                    <small className='whitetext'>Which host's objekt would you like to see?</small>
-                <div className='scrolling-div'>
-                    {hostlist.map((item, index) => {
-                        return <div key={index} className='scrolling-div-child' onClick={() => {handleObjekts(item['eventhostname'].toString().replace(/ /g,"+"))}}>
-                        <img src={item['logo']} style={{width: "80px"}}></img>
-                        <p >{item['name']}</p>
-                    </div>
-                    })}
-                </div>
-                <div style={{marginBottom: "10px", marginTop: "1px"}}>
-                    <Suspense>
-                {(datas) && <div style={{paddingBottom: "20px"}}> <ObjektGrid datas={datas} userid={userid} searchParams={searchParams}></ObjektGrid></div>}
-                </Suspense>
-                {(datas && userid && datas.length == 0) && <p className="whitetext">Wow! Looks like the event host has no objekts!</p>}
-                </div></div>}
-                
-            </div>
-        </main>
-        )}
 
     
     return (
@@ -170,6 +134,7 @@ if(!mounted) return null;
                 <button className='headerbutton' onClick={() => handleRedirect("/")}>Home</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/login")}>Login</button>
                 <button className='headerbutton' onClick={() => handleRedirect("/scan")}>Scan</button>
+                {user &&  <button className='headerbutton' onClick={() => handleRedirect("/collection")}>Collection</button>}
                 <nav ref={navRef}>
                 </nav>
             </header>
@@ -186,6 +151,7 @@ if(!mounted) return null;
                     </div>
                     })}
                 </div>
+                {userid && <h1 className='whitetext bold bigel'>{userid}</h1>}
                 <div style={{marginBottom: "10px", marginTop: "10px"}}>
                     <Suspense>
                 {(datas) && <div style={{paddingBottom: "20px"}}> <ObjektGrid datas={datas} userid={userid} searchParams={searchParams}></ObjektGrid></div>}

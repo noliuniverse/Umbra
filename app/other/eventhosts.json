@@ -4,11 +4,15 @@
             {"id": 1,
             "name" : "tripleS Philippines",
             "logo":"tripleSPHLogo.png",
-            "eventhostname": "tripleS PH"},
+            "eventhostname": "tripleS PH",
+            "twtlink": "https://twitter.com/tripleScosmosPH",
+            "display_name":"tripleS Philippines"},
             {"id": 2,
             "name" : "WAVer_INA",
             "logo":"WAVer_INAlogo.png",
-            "eventhostname" : "WAVer_INA"}
+            "eventhostname" : "WAVer_INA",
+            "twtlink": "https://twitter.com/WAVer_INA",
+            "display_name":"WAVer_INA (Indonesia)"}
         ]
     }
 }

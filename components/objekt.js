@@ -35,7 +35,6 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
         for ( let i = 0; i < 26; i++){
           await sleep(0.1)
           setLoadedOpacity(i*4 + '%')
-          console.log(i + '%')
         }
 
     }
