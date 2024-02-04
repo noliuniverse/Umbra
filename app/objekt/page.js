@@ -176,16 +176,11 @@ if(!mounted) return null;
                 <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Objekts:</h1></font>
                 <div className='scrolling-div'>
                     {hostlist.map((item, index) => {
-                        <div key={index} className='scrolling-div-child' onClick={() => {handleObjekts(item['name'].toString().replace(/ /g,"+"))}}>
-                        <img src={item['logo']} style={{width: "100px"}}></img>
+                        return <div key={index} className='scrolling-div-child' onClick={() => {handleObjekts(item['eventhostname'].toString().replace(/ /g,"+"))}}>
+                        <img src={item['logo']} style={{width: "80px"}}></img>
                         <p className="whitetext" >{item['name']}</p>
                     </div>
                     })}
-                    
-                    <div className='scrolling-div-child' onClick={() => {handleObjekts('WAVer_INA')}}>
-                        <img src='WAVer_INAlogo.png' style={{width: "100px"}}></img>
-                        <p className="whitetext" >WAVer_INA</p>
-                    </div>
                 </div>
                 <div style={{marginBottom: "10px", marginTop: "10px"}}>
                     <Suspense>
