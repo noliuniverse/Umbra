@@ -93,6 +93,7 @@ export default function Objekts() {
             }
             setUser(user)
             setLoading(false)
+            setPageLoading(false)
         }
 
         getUser();
