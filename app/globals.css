@@ -271,8 +271,9 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
-  margin: auto;
   z-index: 2;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   margin-top:-90px;
 
 }
@@ -291,6 +292,12 @@ body {
      min-width:200px;
 
 }}
+
+@media only screen and (max-height: 617px) {
+  .objektflipclass {
+     min-width:130px;
+
+}}
 .inobjektinfo {
   display: flex;
   width: 100%;
@@ -306,15 +313,30 @@ body {
 @media only screen and (max-width: 500px) {
   .inobjektinfo {
     display: block;
-     width: 80%;
+     width: 100%;
      padding: 30px;
      background: gray;
      color: white;
      border-radius: 10px;
      margin-top: -138px;
-     height: fit-content;
+     overflow-y: scroll;
+     top: 0;
+    bottom:0;
+
   }
 }
+
+.objektinfodiv {
+  margin: 10vh;
+}
+@media only screen and (max-width: 500px) {
+  .objektinfodiv {
+    margin: 0px;
+  }
+}
+
+
+
 @media only screen and (max-width: 500px) {
   .objektflipclass {
     width: 50%; 
@@ -325,21 +347,37 @@ body {
 
 div#blur.active {
   filter: blur(20px);
+  pointer-events: none;
 }
 
 .empty {
   padding: 2px;
 }
 .x {
-  backdrop-filter: blur(200px);
-  -webkit-backdrop-filter: blur(200px);
+  z-index: 2;
+  width: 100%;
+  background-color: #ffffff;
+  transition: 0.1s;
+}
+
+.x:hover {
+  background-color: #aeaeae;
 }
 
 @media only screen and (max-width: 500px) {
   .x {
-    left: 60px;
-    top: 50%;
+    left: 6%;
+    top: 0px;
+    z-index: 2;
+    height: 100px;
+    text-align: center;
     border-radius: 20px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .x p{
+    margin-top:250%;
+    font-weight: bold;
   }
 }
 .objekt_preview_text3 {

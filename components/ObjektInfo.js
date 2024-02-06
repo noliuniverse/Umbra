@@ -13,14 +13,26 @@ const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 export default function ObjektInfo( { id }) {
     const router = useRouter()
     const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const getObjekt = async () => {
         const { data:datas, error:errors } = await supabase
     .from('objektdata')
     .select('member, season, photo, artist, text_color, bg_color, back_photo, card_id, eventhost, eventhostlink')
     .eq('uuid', parseInt(id))
-    if (datas && (datas.length != 0)) {
-        setData(datas[0]);
+    const { data:datas1, error:errors1 } = await supabase
+    .from('objektcollection')
+    .select('serial')
+    .eq('uuid', parseInt(id))
+    if (datas1 != null){
+        {var dlen = datas1.length;
+            if (datas && (datas.length != 0)) {
+                setData({...datas[0], "minted":dlen});
+            }
+            setLoading(false)
+    } }
+    else {
+        setLoading(false)
     }
     }
 
@@ -47,16 +59,36 @@ export default function ObjektInfo( { id }) {
     
     return <div>
         <div>
+        {loading && <div class="lds-dual-ring"></div>}
         {data && <div className="inobjektinfo" style={{background: data["bg_color"]}}>
             {data && <div className="objektflipclass side-1"><Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt></div>}
             {(data && data["back_photo"]&& (false == true)) && <div className="objektflipclass side-2"><Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt></div>}
             <br></br>
-            {data && <div style={{color: data["text_color"], fontSize:"90%",  margin:"auto", width: "50%"}}>
+            {data && <div style={{color: data["text_color"], fontSize:"90%",  margin:"auto", width: "70%", border:"3px"}}>
+                <div style={{display: "flex"}}>
+                    <div style={{display: "block", margin:"auto"}}>
                     <p><b>Name</b></p>
-                    <p>{data["member"]}</p>
+                    <p>{data["member"]}</p> 
+                    </div>
+                    <div style={{borderLeft: "1px solid #000", height:"4vh", margin:"auto", display:"absolute"}}></div> 
+                    <div style={{display: "block", margin:"auto"}}>
+                    <p><b>ID</b></p>
+                    <p>{data["card_id"]}</p> 
+                    </div>
+                    </div>
                     <hr></hr>
+                    <div style={{display: "flex"}}>
+                    <div style={{display: "block", margin:"auto"}}>
                     <p><b>Artist</b></p>
                     <p>{data["artist"].join(", ")}</p>
+                    </div>
+                    <div style={{borderLeft: "1px solid #000", height:"4vh", margin:"auto", display:"absolute"}}></div> 
+                    <div style={{display: "block", margin:"auto"}}>
+                    <p><b>Minted</b></p>
+                    <p>{data["minted"]}</p> 
+                    </div>
+                    </div>
+                    
                     <hr></hr>
                     <p><b>Season</b></p>
                     <p>{data["season"]}</p>

@@ -142,7 +142,7 @@ if (loading) {return (
       </nav>
     </header>
       <div className="div1">
-      <div class="lds-dual-ring"></div>
+      <div className="lds-dual-ring"></div>
       </div>
   </main>
   )}

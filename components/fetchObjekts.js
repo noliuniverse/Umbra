@@ -127,7 +127,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     
 
     return <Suspense>
-        {modalop && <div className="objektinfo"><p className="x" style={{background:"white", width:"20px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}>X</p><ObjektInfo id={ids}></ObjektInfo></div>}
+        {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids}></ObjektInfo></div></div>}
         <div  id="blur">
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
         {dropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%"}} id="dropdownmenu" ref={dropdown}>

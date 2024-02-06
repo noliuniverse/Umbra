@@ -119,7 +119,7 @@ if(!mounted) return null;
         </nav>
       </header>
         <div className="div1">
-        <div class="lds-dual-ring"></div>
+        <div className="lds-dual-ring"></div>
         </div>
     </main>
     )}
@@ -139,7 +139,7 @@ if(!mounted) return null;
                 </nav>
             </header>
             <div className="div1" style={{paddingBottom: "10px"}}>
-            {pageloading == true && <div class="lds-dual-ring"></div>}
+            {pageloading == true && <div className="lds-dual-ring"></div>}
                 {pageloading == false && <div>
                     <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Objekts:</h1></font>
                     <small className='whitetext'>Which host's objekt would you like to see?</small>
