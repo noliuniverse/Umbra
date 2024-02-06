@@ -67,7 +67,7 @@ export default function ObjektInfo( { id }) {
                     <p><b>Name</b></p>
                     <p>{data["member"]}</p> 
                     </div>
-                    <div style={{borderLeft: "1px solid #000", height:"4vh", margin:"auto", display:"absolute"}}></div> 
+                    <div style={{borderLeft: "0.2px solid #000", height:"4vh", margin:"auto", display:"absolute", borderColor: data['text_color']}}></div> 
                     <div style={{display: "block", margin:"auto"}}>
                     <p><b>ID</b></p>
                     <p>{data["card_id"]}</p> 
@@ -79,7 +79,7 @@ export default function ObjektInfo( { id }) {
                     <p><b>Artist</b></p>
                     <p>{data["artist"].join(", ")}</p>
                     </div>
-                    <div style={{borderLeft: "1px solid #000", height:"4vh", margin:"auto", display:"absolute"}}></div> 
+                    <div style={{borderLeft: "0.2px solid #000", height:"4vh", margin:"auto", display:"absolute", borderColor: data['text_color']}}></div> 
                     <div style={{display: "block", margin:"auto"}}>
                     <p><b>Minted</b></p>
                     <p>{data["minted"]}</p> 
