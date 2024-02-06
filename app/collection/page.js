@@ -119,6 +119,7 @@ if(!mounted) return null;
       </header>
         <div className="div1">
         <p className="whitetext"><small>Username: </small><span className="big bold"></span></p>
+        <small className="whitetext" style={{ margin: "auto"}}>Double press on objekt to view info.</small>
         <br></br>
         <div className='objektgrid'>
         {Array.from({length: 20}).map((item,index)=>{return <div className='objekt-skeleton' key={index}/>})}
@@ -141,9 +142,10 @@ if(!mounted) return null;
             </header>
             <div className="div1" style={{paddingBottom: "10px"}}>
                 <p className="whitetext"><small>Username: </small><span className="big bold">{user_name}</span></p>
+                <small className="whitetext" style={{ margin: "auto"}}>Double press on objekt to view info.</small>
                 <br/>
                 <Suspense>
-            {datas && <div style={{paddingBottom: "20px"}}> <FetchMoreObjekts datas={datas} userid={user.id}></FetchMoreObjekts></div>}
+            {datas && <div style={{paddingBottom: "20px", paddingTop: "10px"}}> <FetchMoreObjekts datas={datas} userid={user.id}></FetchMoreObjekts></div>}
             </Suspense>
             {(datas && datas.length == 0) && <p className="whitetext">Wow! Looks like you have no objekts!</p>}
             </div>
