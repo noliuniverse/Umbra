@@ -35,10 +35,7 @@ export default function ObjektInfo( { id }) {
         setLoading(false)
     }
     }
-
-    useEffect(()=>{
-        getObjekt();
-    })
+    getObjekt();
 
     const handleRedirect = () => {
         router.push('/')
@@ -59,7 +56,7 @@ export default function ObjektInfo( { id }) {
     
     return <div>
         <div>
-        {loading && <div class="lds-dual-ring"></div>}
+        {loading && <div className="lds-dual-ring"></div>}
         {data && <div className="inobjektinfo" style={{background: data["bg_color"]}}>
             {data && <div className="objektflipclass side-1"><Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt></div>}
             {(data && data["back_photo"]&& (false == true)) && <div className="objektflipclass side-2"><Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt></div>}

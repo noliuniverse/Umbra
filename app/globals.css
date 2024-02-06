@@ -280,6 +280,7 @@ body {
 
 @media only screen and (max-width: 500px) {
   .objektinfo {
+
      width: 100%;
      margin-top:10px;
 
@@ -368,6 +369,7 @@ div#blur.active {
   .x {
     left: 6%;
     top: 0px;
+    width: auto;
     z-index: 2;
     height: 100px;
     text-align: center;
