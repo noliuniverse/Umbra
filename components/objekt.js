@@ -79,10 +79,10 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
                 </div>
                 </div>
             <div style={{background:"gray",background: bckcolor,width:"100%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>
-            <font color={color}><p style={helveticaNeueBold.style}>{member}</p></font>
-            <font color={color}><span style={helveticaNeueBold.style} className="objekt_preview_text2">{id}</span></font>{serial && <font color={color}><span style={dotMat.style} className="objekt_preview_text2">#{serial.toString().padStart(5, '0')}</span></font>}  
-            <font color={color}><p style={halavrBreitRg.style}>{season}</p></font>   
-            {eventhost && <font color={color}><small style={HelveticaNeueLight.style}>BY: <a href={eventhostlink}><u>{eventhost}</u></a></small></font>}
+            <font color={color}><p style={{...helveticaNeueBold.style, margin: "0px"}}>{member}</p></font>
+            <font color={color}><span style={{...helveticaNeueBold.style, margin: "0px"}} className="objekt_preview_text2">{id}</span></font>{serial && <font color={color}><span style={dotMat.style} className="objekt_preview_text2">#{serial.toString().padStart(5, '0')}</span></font>}  
+            <font color={color}><p style={{...halavrBreitRg.style, margin: "0px"}}>{season}</p></font>   
+            {eventhost && <font color={color}><small style={{...HelveticaNeueLight.style, margin: "0px"}}>BY: <a href={eventhostlink}><u>{eventhost}</u></a></small></font>}
             </div>
         
             </div>
