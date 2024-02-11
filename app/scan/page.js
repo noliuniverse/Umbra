@@ -44,7 +44,7 @@ export default function Scan() {
             var string = result?.text;
             
             const searchParams = new URLSearchParams(string.split("?")[1]);
-            if (searchParams.get('i').toString() == null) {setData("Not a valid code!");} else if (string.split("?")[0] != ('https://umbra-two.vercel.app/objekt')){setData("Not a valid code!");}
+            if (searchParams.get('i').toString() == null) {setData("Not a valid code!");} else if (string.split("?")[0] != ('https://umbra.wav.haus/objekt')){setData("Not a valid code!");}
             else {
               if (lastResult.current === result.text) {
                 return

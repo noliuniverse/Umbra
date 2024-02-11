@@ -161,7 +161,7 @@ if(!mounted) return null;
       </header>
             <div className="div1">
             <div className="dropdown">
-                <span className='whitetext' style={{background: "rgb(78,38,151)",background: "linear-gradient(90deg, rgba(78,38,151,1) 0%, rgba(0,0,0,1) 35%, rgba(41,28,66,1) 100%)", padding: "10px", borderRadius:"100px", margin:"auto", cursor: "pointer"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}><b>Press here to sign in OR sign up.</b></span>
+                <span className='whitetext' style={{background: "rgb(78,38,151)",background: "linear-gradient(90deg, rgba(78,38,151,1) 0%, rgba(0,0,0,1) 35%, rgba(41,28,66,1) 100%)", padding: "10px", borderRadius:"100px", margin:"auto", cursor: "pointer"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}><b>Press here to login OR sign up.</b></span>
                 {dropdownEnabled && <div className="dropdown-content" id="dropdownmenu" ref={dropdown}>
                 <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(false); setDropdownEnabled(false)}}>Sign-up</button>
                 <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(true); setDropdownEnabled(false)}}>Sign-in</button>
@@ -184,7 +184,7 @@ if(!mounted) return null;
                 <h1 className="text1">PASSWORD:</h1>
                 <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input1"/>
                 <br/>
-                <button className='button2' onClick={handleSignIn}>Sign in</button></div>}
+                <button className='button2' onClick={handleSignIn}>Login</button></div>}
                 <h1 className="whitetext">{warning}</h1>
             </div>
         </main>

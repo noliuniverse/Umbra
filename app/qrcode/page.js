@@ -85,8 +85,8 @@ export default function QR() {
             }
             }
             const { data, error } = await supabase.from('objektqrdata').insert({ card_uuid: a, qr_id: theUU.toString()})
-            setAQ("https://umbra-two.vercel.app/objekt?i=" +theUU.toString())
-            setError(null)
+            setAQ("https://umbra.wav.haus/objekt?i=" +theUU.toString())
+            setError(null);
             handleDownloadImage();
             console.log("Downloaded!")
 
