@@ -473,17 +473,28 @@ transition-duration: 300ms;
   }
 }
 
+.backButton {
+  background: rgb(78, 38, 151);
+  padding:5px;
+  color:white;
+  position: absolute;
+  left:10vw;
+  border-radius:10px;
+  font-weight:bold;
+  width: 40px;
+}
 
 /* FOR LOGIN DROPDOWN */
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+  width: 100%;
+  
 }
 
 .dropdown-content {
   display: block;
-  position: absolute;
+  width: fit-content;
+  margin: auto;
   background-color: #f9f9f9;
   border-radius: 3px;
   min-width: 200px;

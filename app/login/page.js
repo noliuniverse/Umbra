@@ -4,12 +4,13 @@ import Image from 'next/image'
 import { supabase } from '@/utils/supabaseClient'
 import { useRouter} from "next/navigation";
 import React, { useRef, useState, useEffect } from 'react';
-
+import eye from "../../public/eye.svg"
 
 export default function LoginPage() {
 
     const navRef = useRef();
     const dropdown = useRef()
+    const [visible, setVisible] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user_name, setuser_name] = useState('');
@@ -17,7 +18,7 @@ export default function LoginPage() {
     const [user, setUser] = useState(null);
     const [signIn, setSignIn] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [dropdownEnabled, setDropdownEnabled] = useState(false);
+    const [dropdownEnabled, setDropdownEnabled] = useState(true);
     const router = useRouter()
     const handleRedirect = (re) => {
         router.push(re)
@@ -160,29 +161,47 @@ if(!mounted) return null;
         </nav>
       </header>
             <div className="div1">
-            <div className="dropdown">
-                <span className='whitetext' style={{background: "rgb(78,38,151)",background: "linear-gradient(90deg, rgba(78,38,151,1) 0%, rgba(0,0,0,1) 35%, rgba(41,28,66,1) 100%)", padding: "10px", borderRadius:"100px", margin:"auto", cursor: "pointer"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}><b>Press here to login OR sign up.</b></span>
-                {dropdownEnabled && <div className="dropdown-content" id="dropdownmenu" ref={dropdown}>
+            {dropdownEnabled && <div className="dropdown">
+                <div className="dropdown-content" id="dropdownmenu" ref={dropdown}>
                 <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(false); setDropdownEnabled(false)}}>Sign-up</button>
                 <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(true); setDropdownEnabled(false)}}>Login</button>
-                </div>}
                 </div>
-                {(signIn == false) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
+                </div>}
+                {(dropdownEnabled == false) && <button className='backButton' onClick={() => {setVisible(false); setDropdownEnabled(true)}}>{"<"}</button>}
+                {(dropdownEnabled == false && signIn == false) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
                 <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input1"/>
                 <br/>
                 <h1 className="text1">PASSWORD:</h1>
-                <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input1"/>
+                <div style={{display: "flex", marginTop:"0px"}} className="input1">
+                <input style={{height:"24px", margin:"auto", marginRight:"5px"}} type={visible ? "text" : "password"} name="password"  value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Image
+                style={{cursor: "pointer"}}
+                onClick={()=>{setVisible(!visible)}}
+                    src={eye}
+                    alt="View your password"
+                    width={40}
+                    />
+                </div>
                 <br/>
                 <h1 className="text1">USERNAME:</h1>
                 <h3 className="whitetext">You can not change this later (for now).</h3>
                 <input type="username" name="username" value={user_name} onChange={(e) => setuser_name(e.target.value)} className="input1"/>
                 <button className='button2' onClick={handleSignUp}>Sign up</button>
                 </div>}
-                {(signIn == true) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
+                {(dropdownEnabled == false && signIn == true) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
                 <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input1"/>
                 <br/>
                 <h1 className="text1">PASSWORD:</h1>
-                <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input1"/>
+                <div style={{display: "flex", marginTop:"0px"}} className="input1">
+                <input style={{height:"24px", margin:"auto", marginRight:"5px"}} type={visible ? "text" : "password"} name="password"  value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Image
+                style={{cursor: "pointer"}}
+                onClick={()=>{setVisible(!visible)}}
+                    src={eye}
+                    alt="View your password"
+                    width={40}
+                    />
+                </div>
                 <br/>
                 <button className='button2' onClick={handleSignIn}>Login</button></div>}
                 <h1 className="whitetext">{warning}</h1>

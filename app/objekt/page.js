@@ -9,7 +9,7 @@ import ObjektGrid from '@/components/ObjektGrid';
 import { useInView } from "react-intersection-observer";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react';
-import localFont from '@next/font/local'
+import localFont from "next/font/local"
 import hostsdata from "../other/eventhosts.json";
 
 const HalvarBreitMd = localFont({src: "../other/HalvarBreit-Md.ttf"})
@@ -127,7 +127,6 @@ if(!mounted) return null;
 
     
     return (
-
         <main>
                 <header className="navbarheader">
                 <Image src="/UMBRALOGO.png" alt="Umbra" width="90" height="90" priority={true}  />
@@ -145,10 +144,12 @@ if(!mounted) return null;
                     <small className='whitetext'>Which host's objekt would you like to see?</small>
                 <div className='scrolling-div'>
                     {hostlist.map((item, index) => {
-                        return <div key={index} className='scrolling-div-child' onClick={() => {handleObjekts(item['eventhostname'].toString().replace(/ /g,"+"))}}>
-                        <img src={item['logo']} style={{width: "80px"}}></img>
-                        <p >{item['name']}</p>
-                    </div>
+                        return (
+                            <div key={index} className='scrolling-div-child' onClick={() => {handleObjekts(item['eventhostname'].toString().replace(/ /g,"+"))}}>
+                            <img src={item['logo']} style={{width: "80px"}}></img>
+                            <p >{item['name']}</p>
+                        </div>
+                        );
                     })}
                 </div>
                 {userid && <h1 className='whitetext bold bigel'>{userid}</h1>}
@@ -161,6 +162,5 @@ if(!mounted) return null;
                 
             </div>
         </main>
-
-    )
+    );
 }  
