@@ -164,7 +164,7 @@ if(!mounted) return null;
                 <span className='whitetext' style={{background: "rgb(78,38,151)",background: "linear-gradient(90deg, rgba(78,38,151,1) 0%, rgba(0,0,0,1) 35%, rgba(41,28,66,1) 100%)", padding: "10px", borderRadius:"100px", margin:"auto", cursor: "pointer"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}><b>Press here to login OR sign up.</b></span>
                 {dropdownEnabled && <div className="dropdown-content" id="dropdownmenu" ref={dropdown}>
                 <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(false); setDropdownEnabled(false)}}>Sign-up</button>
-                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(true); setDropdownEnabled(false)}}>Sign-in</button>
+                <button className='button2' style={{width:"100%"}} onClick={() => {setSignIn(true); setDropdownEnabled(false)}}>Login</button>
                 </div>}
                 </div>
                 {(signIn == false) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
