@@ -5,6 +5,7 @@ const nextConfig = {reactStrictMode: false,
           "i.seadn.io",
           "i.imgur.com",
           "upload.wikimedia.org",
+          "imagedelivery.net",
         ],
       },
       experimental: {

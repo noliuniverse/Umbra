@@ -25,6 +25,7 @@ export default function QR() {
   const [imagesrc, setImageSRC] = useState('')
   const [errormessage, setError] = useState(null)
   const [aQ, setAQ] = useState('');
+  const [r, setR] = useState('');
 
   const [loading, setLoading] = useState(true);
   const handleDownloadImage = async () => {
@@ -84,7 +85,10 @@ export default function QR() {
                 theUU = newUU;
             }
             }
-            const { data, error } = await supabase.from('objektqrdata').insert({ card_uuid: a, qr_id: theUU.toString()})
+            if (r == '') {
+              setR(null)
+            }
+            const { data, error } = await supabase.from('objektqrdata').insert({ card_uuid: a, qr_id: theUU.toString(), reason:  r})
             setAQ("https://umbra.wav.haus/objekt?i=" +theUU.toString())
             setError(null);
             handleDownloadImage();
@@ -126,11 +130,13 @@ if (loading) {return (
         <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <p className='whitetext'>PUT ID. (EX. 4)</p>
         <input type="username" name="qrname" value={a} onChange={(e) => setA(e.target.value)} className="input1"/>
+        <p className='whitetext'>Reason:</p>
+        <input type="text" name="reason" value={r} onChange={(e) => setR(e.target.value)} className="input1"/>
         <button id="thisbutton" className='button2' onClick={handleGenerate}>Generate</button>
         
         {aQ && <div ref={printRef}><div style={{width: "60%", margin:"auto", marginTop: "30px", marginBottom:"40px"}}> 
             <Canvas style={{margin: "0px"}} 
-    logo={{src: "URLCODEUMBRA.png", options: {width:"104"}}}
+    logo={{src: "URLCODEUMBRA.png", options: {width:"92"}}}
       text={aQ}
       options={{
         errorCorrectionLevel: 'M',

@@ -4,6 +4,7 @@ import localFont from "next/font/local"
 import { use, useEffect, useState } from "react";
 import { supabase } from '@/utils/supabaseClient'
 import { useRouter} from "next/navigation";
+import Image from 'next/image'
 import Objekt from "./objekt";
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
@@ -14,6 +15,10 @@ export default function ObjektInfo( { id }) {
     const router = useRouter()
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isFlipped, setFlipped] = useState(false);
+    const handleFlip = () => {
+      setFlipped(!isFlipped);
+  };
 
     const getObjekt = async () => {
         const { data:datas, error:errors } = await supabase
@@ -56,9 +61,29 @@ export default function ObjektInfo( { id }) {
     
     return <div>
         <div>
+
         {loading && <div className="lds-dual-ring"></div>}
         {data && <div className="inobjektinfo" style={{background: data["bg_color"]}}>
-            {data && <div className="objektflipclass side-1"><Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt></div>}
+            {data &&
+                <div>
+                <div className={`flip-card ${isFlipped ? "flipped" : ""}`}
+                    onClick={handleFlip} style={{margin: "auto"}}
+                >
+                    <div className="flip-card-inner">
+                        <div className="flip-card-front">
+                            <div className="card-content" >
+                            <Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
+                            </div>
+                        </div>
+                        <div className="flip-card-back">
+                            <div className="card-content">
+                            {data["back_photo"] && <Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>}
             {(data && data["back_photo"] && (false == true)) && <div className="objektflipclass side-2"><Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt></div>}
             <br></br>
             {data && <div style={{color: data["text_color"], fontSize:"90%",  margin:"auto", width: "70%", border:"3px"}}>

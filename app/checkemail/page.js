@@ -28,6 +28,9 @@ export default function CheckEmail() {
         <div className='div1'>
         <h1 className='whitetext bold big'>Please check your email to verify your account!</h1>
         <small className='whitetext'>Without verifying, you will not be able to sign in to UMBRA and use the software.</small>
+        
+        
+        
         </div>
     </main>
   )

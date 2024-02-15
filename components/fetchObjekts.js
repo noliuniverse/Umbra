@@ -130,7 +130,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
         {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids}></ObjektInfo></div></div>}
         <div  id="blur">
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
-        {dropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%"}} id="dropdownmenu" ref={dropdown}>
+        {dropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%", position:"absolute"}} id="dropdownmenu" ref={dropdown}>
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=oldest")}}>Oldest</button>
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=newest")}}>Newest</button>
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=serial")}}>Serial (hi-low)</button>
