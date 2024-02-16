@@ -570,6 +570,6 @@ transition-duration: 300ms;
 }
 
 .card-content {
-
+  display: flex;
   text-align: center;
 }
