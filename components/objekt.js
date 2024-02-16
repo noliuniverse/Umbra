@@ -44,8 +44,12 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
 
     useLayoutEffect(() => {
           if (targetRef.current) {
+            var theWidth = targetRef.current.offsetWidth;
+            if (targetRef.current.offsetWidth < 95)  {
+              theWidth = 200;
+            }
             setDimensions({
-              width: targetRef.current.offsetWidth,
+              width: theWidth,
               height: targetRef.current.offsetHeight
             });
         }
@@ -72,7 +76,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
             <Image className="objektimg" src={img}onLoad={() => {setLoaded(true); openImage();}} alt={id} width={700}
   height={700} onClick={slidefunction} ref={targetRef}/>
             {back && <img className="infoQR" src="UMBRA_QR.png" style={{position:"absolute", width:"28%", bottom:"20.6%", right:"24%"}}></img>}
-                <div className={stylestwo.sideBar} style={{color: color, fontSize: "100%", right:theRight}}>
+                <div className={stylestwo.sideBar} style={{color: color, fontSize: dimensions.width/7.5/2, right:theRight}}>
                     <span style={helveticaNeueBold.style} className="objekt_preview_text">{id}</span>
                     {serial && <span style={dotMat.style} className="objekt_preview_text3">#{serial.toString().padStart(5, '0')}</span>}
                 </div>
