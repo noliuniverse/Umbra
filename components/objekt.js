@@ -14,8 +14,9 @@ const HelveticaNeueLight = localFont({src: "../fonts/HelveticaNeueLight.otf"})
 
 
 //{ children },
-const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist }) => {
+const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist, back}) => {
     if (eventhost) {var maxHeight = "100px";} else {var maxHeight = "75px";}
+    if (back) {var theRight = "20px"} else {var theRight = "0px"}
     // 25 EACH LOGO
     const targetRef = useRef()
     const [loaded, setLoaded] = useState(null);
@@ -70,7 +71,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
         <div className="objektDiv">
             <Image className="objektimg" src={img}onLoad={() => {setLoaded(true); openImage();}} alt={id} width={700}
   height={700} onClick={slidefunction} ref={targetRef}/>
-                <div className={stylestwo.sideBar} style={{color: color, fontSize: dimensions.width/7.5/2}}>
+                <div className={stylestwo.sideBar} style={{color: color, fontSize: dimensions.width/7.5/2, right:theRight}}>
                     <span style={helveticaNeueBold.style} className="objekt_preview_text">{id}</span>
                     {serial && <span style={dotMat.style} className="objekt_preview_text3">#{serial.toString().padStart(5, '0')}</span>}
                 </div>

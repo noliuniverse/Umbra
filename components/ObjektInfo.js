@@ -77,7 +77,7 @@ export default function ObjektInfo( { id }) {
                         </div>
                         <div className="flip-card-back">
                             <div className="card-content">
-                            {data["back_photo"] && <Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>}
+                            {data["back_photo"] && <Objekt member={data["member"]} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]} back={true}></Objekt>}
 
                             </div>
                         </div>
