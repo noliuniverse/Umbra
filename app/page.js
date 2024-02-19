@@ -11,12 +11,18 @@ import itemsdata from "../json/Items.json";
 import { Carousel } from "react-bootstrap";
 import localFont from "next/font/local"
 import hostsdata from "./other/eventhosts.json";
+import Loader from '@/components/Loader';
+
+
+
 
 const ParaboleDisplay = localFont({src: "../fonts/Parabole-DisplayRegular.otf"})
 const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
 
 
 export default function Home() {
+
+
   let items = itemsdata["items"];
   const { bootstrap } = items;
   let hosts = hostsdata["hosts"];
@@ -62,7 +68,7 @@ if (loading) {return (
       </nav>
     </header>
       <div className="div1">
-      <div className="lds-dual-ring"></div>
+      <Loader></Loader>
       </div>
   </main>
   )}

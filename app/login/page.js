@@ -5,6 +5,7 @@ import { supabase } from '@/utils/supabaseClient'
 import { useRouter} from "next/navigation";
 import React, { useRef, useState, useEffect } from 'react';
 import eye from "../../public/eye.svg"
+import Loader from '@/components/Loader';
 
 export default function LoginPage() {
 
@@ -122,7 +123,7 @@ if(!mounted) return null;
         </nav>
       </header>
         <div className="div1">
-        <div className="lds-dual-ring"></div>
+        <Loader></Loader>
         </div>
     </main>
     )}

@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import ObjektModal from '@/components/ObjektModal';
 import { supabase } from '@/utils/supabaseClient'
 import { Noto_Kufi_Arabic } from 'next/font/google';
-
+import Loader from '@/components/Loader';
 
 export default function Scan() {
 
@@ -142,7 +142,7 @@ if (loading) {return (
       </nav>
     </header>
       <div className="div1">
-      <div className="lds-dual-ring"></div>
+      <Loader></Loader>
       </div>
   </main>
   )}

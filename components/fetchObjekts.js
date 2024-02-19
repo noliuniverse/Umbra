@@ -26,6 +26,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     const [modalop, setModal] = useState(false);
     const [dropdownEnabled, setDropdownEnabled] = useState(false);
     const [ids, setIDS] = useState(null);
+    const [serials, setSERIAL] = useState(null)
     const dropdown = useRef();
     const router = useRouter();
 
@@ -127,7 +128,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     
 
     return <Suspense>
-        {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids}></ObjektInfo></div></div>}
+        {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids} serial={serials}></ObjektInfo></div></div>}
         <div  id="blur">
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
         {dropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%", position:"absolute"}} id="dropdownmenu" ref={dropdown}>
@@ -137,7 +138,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
                 </div>}
         
         <div className="objektgrid" style={{zIndex: 1}}>
-    {objekts.map((item,index)=>{return <div key={index} onDoubleClick={() => {setIDS(item["uuid"]); setModals(true)}}><Objekt className="grid-objekt" unique={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/></div>
+    {objekts.map((item,index)=>{return <div key={index} onDoubleClick={() => {setIDS(item["uuid"]); setSERIAL(item["serial"]); setModals(true)}}><Objekt className="grid-objekt" unique={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/></div>
 })}
                         </div>
                         {hasPages && <button className="button2 more" style={{ marginTop: "60px", opacity:"10%"}}

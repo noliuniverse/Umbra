@@ -11,10 +11,13 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react';
 import localFont from "next/font/local"
 import hostsdata from "../other/eventhosts.json";
+import Loader from '@/components/Loader';
 
 const HalvarBreitMd = localFont({src: "../other/HalvarBreit-Md.ttf"})
 
 export default function Objekts() {
+
+
     const batchSize = 40;
     const navRef = useRef();
     const pathname = 'objekt'; // URLHERE.COM/pathname
@@ -119,7 +122,7 @@ if(!mounted) return null;
         </nav>
       </header>
         <div className="div1">
-        <div className="lds-dual-ring"></div>
+        <Loader></Loader>
         </div>
     </main>
     )}
@@ -138,7 +141,7 @@ if(!mounted) return null;
                 </nav>
             </header>
             <div className="div1" style={{paddingBottom: "10px"}}>
-            {pageloading == true && <div className="lds-dual-ring"></div>}
+            {pageloading == true && <l-grid size="120" speed="1.5" color="white" ></l-grid>}
                 {pageloading == false && <div>
                     <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Objekts:</h1></font>
                     <small className='whitetext'>Which host's objekt would you like to see?</small>
