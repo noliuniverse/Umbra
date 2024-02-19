@@ -20,7 +20,7 @@ export default function Objekts() {
 
     const batchSize = 40;
     const navRef = useRef();
-    const pathname = 'objekt'; // URLHERE.COM/pathname
+    const pathname = 'saros'; // URLHERE.COM/pathname
     const [pageloading, setPageLoading] = useState(false)
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -143,8 +143,8 @@ if(!mounted) return null;
             <div className="div1" style={{paddingBottom: "10px"}}>
             {pageloading == true && <l-grid size="120" speed="1.5" color="white" ></l-grid>}
                 {pageloading == false && <div>
-                    <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Objekts:</h1></font>
-                    <small className='whitetext'>Which host's objekt would you like to see?</small>
+                    <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Cards:</h1></font>
+                    <small className='whitetext'>Which host's cards would you like to see?</small>
                 <div className='scrolling-div'>
                     {hostlist.map((item, index) => {
                         return (
@@ -160,7 +160,7 @@ if(!mounted) return null;
                     <Suspense>
                 {(datas) && <div style={{paddingBottom: "20px"}}> <ObjektGrid datas={datas} userid={userid} searchParams={searchParams}></ObjektGrid></div>}
                 </Suspense>
-                {(datas && userid && datas.length == 0) && <p className="whitetext">Wow! Looks like the event host has no objekts!</p>}
+                {(datas && userid && datas.length == 0) && <p className="whitetext">Wow! Looks like the event host has no cards!</p>}
                 </div></div>}
                 
             </div>

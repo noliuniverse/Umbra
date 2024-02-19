@@ -66,10 +66,10 @@ export default function QR() {
         .select()
         .eq('uuid', a)
         if (datas == null) {
-            setError('This objekt is not valid.');
+            setError('This SAROS is not valid.');
           } 
         else if (datas.length == 0) {
-            setError('This objekt is not valid.');
+            setError('This SAROS is not valid.');
           } 
           else if (datas.length == 1) {
             var loop = true;
@@ -127,7 +127,7 @@ if (loading) {return (
       </header>
       <div className='div1'>
       <h1 className='whitetext bold big' style={{color: "rgb(127, 86, 201)"}}>Welcome to UMBRA!</h1>
-        <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
+        <p className='whitetext'>UMBRA is a fan-made cosmo client where people can collect custom SAROS made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <p className='whitetext'>PUT ID. (EX. 4)</p>
         <input type="username" name="qrname" value={a} onChange={(e) => setA(e.target.value)} className="input1"/>
         <p className='whitetext'>Reason:</p>

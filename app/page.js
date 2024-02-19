@@ -96,13 +96,13 @@ if (loading) {return (
       </div>
       <h1 className='whitetext big' style={{color: "white", fontWeight: "0px",letterSpacing:"-1px"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
       <div style={{width:"90%", margin:"auto"}}>
-       <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made cosmo client where people can collect custom objekts made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
+       <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made card collecting client where people can collect custom cards (SAROS) made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
-        <p className='whitetext'>If you want to include an objekt of yours in UMBRA, contact @wavnoil on twitter.</p>
+        <p className='whitetext'>If you want to include an card of yours in UMBRA, contact @wavnoil on twitter.</p>
        </div>
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
-        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/objekt")}>Event Objekts</button>
+        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/saros")}>Event Cards</button>
         <div className='partners whitetext' style={{margin:"auto", marginTop:"10px"}}>
         {hostlist.map((item, index) => {
                         return <a key={index} href={item["twtlink"]} className='partner'>

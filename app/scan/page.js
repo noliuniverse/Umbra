@@ -11,7 +11,7 @@ import Loader from '@/components/Loader';
 
 export default function Scan() {
 
-  // OBJEKT MODAl
+  // SAROS MODAl
   const [img, setimg] = useState('https://i.seadn.io/s/raw/files/42f630850aabd230c0bf508183fb4961.png?auto=format&dpr=1&w=256')
   const [theID, setTheID] = useState('309A')
   const [member, setMember] = useState('SooMin')
@@ -161,7 +161,7 @@ if (user) { return (
 
     <div className="div1" style={{paddingBottom:"20px"}}>
     <h1 className='whitetext bold'>Scan</h1>
-    <small className='whitetext'>Place your custom objekt's QR code in the center.</small>
+    <small className='whitetext'>Place your custom SAROS's QR code in the center.</small>
     { isRecording && <div className='qrreader' style={{margin: "auto"}}>
      <QrReader
               
