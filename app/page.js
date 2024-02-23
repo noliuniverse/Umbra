@@ -105,7 +105,7 @@ if (loading) {return (
         <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/saros")}>Event Cards</button>
         <div className='partners whitetext' style={{margin:"auto", marginTop:"10px"}}>
         {hostlist.map((item, index) => {
-                        return <a key={index} href={item["twtlink"]} className='partner'>
+                        return <a key={index} href={item["twtlink"]} target="_blank" className='partner'>
                         <img src={item["logo"]} style={{display: "block", width: "100px", margin: "auto"}}></img>
                         <p>
                         {item["display_name"]}</p>

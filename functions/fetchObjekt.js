@@ -1,6 +1,4 @@
 import { supabase } from '@/utils/supabaseClient'
-//import { useSearchParams } from 'next/navigation'
-
 
 export async function fetchObjekts(page, userid, batchSize, collection, searchParams) {
 
@@ -39,6 +37,8 @@ export async function fetchObjekts(page, userid, batchSize, collection, searchPa
     .eq('user_uuid', userid.toString())
     .order(row, { ascending: asc })
     .range(startNumber, endNumber)
+    try {return datas}
+    catch {return []}
     } else {
         var asc = true;
             if (searchParams.get('sort')){
@@ -58,9 +58,10 @@ export async function fetchObjekts(page, userid, batchSize, collection, searchPa
     .eq('eventhost', userid.toString())
     .order('uuid', { ascending: asc })
     .range(startNumber, endNumber)
-    }
-    
     try {return datas}
     catch {return []}
+    }
+    
+    
     
 }

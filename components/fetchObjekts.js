@@ -3,15 +3,15 @@ import { useEffect, useState, useRef } from "react"
 import { useRouter} from "next/navigation";
 import { supabase } from '@/utils/supabaseClient'
 import { debounce, has } from 'lodash'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { Suspense } from "react";
 import Objekt from "@/components/objekt.js";
 import { fetchObjekts } from "@/functions/fetchObjekt.js";
 import { useInView } from "react-intersection-observer";
 import { useCallback } from "react";
 import localFont from "next/font/local"
-import ObjektModal from "./ObjektModal";
 import ObjektInfo from "./ObjektInfo";
+import Loader from "./Loader";
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
@@ -29,10 +29,12 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     const [serials, setSERIAL] = useState(null)
     const dropdown = useRef();
     const router = useRouter();
+    var start = 0;
 
+    const searchParams =  useSearchParams()
     const {ref, inView} = useRef();
     let timer;
-    let loading = false;
+    let [loading, setLoading] = useState(false);
 
     const pathname = usePathname();
 
@@ -45,12 +47,10 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     const handleSort = async (filtertext) => {
         let path = pathname;
         let url = window.location.href;
-        console.log(filtertext.split('=')[1])
         if (url.includes("?")) {
             if (url.includes((filtertext.split('=')[0]+'='))){
                 let newUrl = new URL(url);
                 let params = new URLSearchParams(newUrl.search);
-                console.log(params.toString())
                 params.set(filtertext.split('=')[0], filtertext.split('=')[1])
                 window.location.href = url.split('?')[0] + '?' + params.toString();
             } else {window.location.href = url + "&" + filtertext;}
@@ -61,12 +61,20 @@ export default function FetchMoreObjekts  ({datas, userid}) {
        
         
     }
-    
+    const debounce = function(fn, d) {
+        if (timer) {
+          clearTimeout(timer);
+        }
+      
+        timer = setTimeout(fn, d);
+      }
     const fetchNextObjekts = async () => {
-        if (hasPages == true) {
-            const pageNumber = pagesLoaded+1;
+        start++;
+        if (hasPages == true && start == 1) {
             
-            fetchObjekts(pageNumber, userid, batchSize, true).then(res => {
+            const pageNumber = pagesLoaded+1;
+
+            fetchObjekts(pageNumber, userid, batchSize, true, searchParams).then(res => {
                 var vl = res.length;
                 
                 
@@ -84,34 +92,30 @@ export default function FetchMoreObjekts  ({datas, userid}) {
                 
                 
                 setPagesLoaded(pageNumber);
-                loading = false;
+                setLoading(false);
+                start = 0;
                 
-            });
+                
+                
+            })
+            
 
-        }
-
-        
-
-        
+        } 
     }
-    const debounce = function(fn, d) {
-        if (timer) {
-          clearTimeout(timer);
-        }
-      
-        timer = setTimeout(fn, d);
-      }
+    
     useEffect(() => {const intersectionObserver = new IntersectionObserver(entries => {
+        
         if (datas.length < batchSize) {
             setHasPages(false)
         }
         if (entries[0].isIntersecting && loading == false && hasPages == true) {
-            loading =true;
+            
+            
+            setLoading(true);
+       debounce(() => {fetchNextObjekts()}, 1000);
         
-       debounce(fetchNextObjekts, 1000);
         
-        
-      }loading=false;});
+      }});
 
     if (hasPages == true) {intersectionObserver.observe(document.querySelector(".more"));} })
     useEffect(() => {
@@ -141,8 +145,8 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     {objekts.map((item,index)=>{return <div key={index} onDoubleClick={() => {setIDS(item["uuid"]); setSERIAL(item["serial"]); setModals(true)}}><Objekt className="grid-objekt" unique={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/></div>
 })}
                         </div>
-                        {hasPages && <button className="button2 more" style={{ marginTop: "60px", opacity:"10%"}}
-                        >-</button>} 
+                        {hasPages && <div className="more"><Loader style={{ marginTop: "0px", opacity:"50%"}}
+                        ></Loader></div>} 
 </div></Suspense>
 
 
