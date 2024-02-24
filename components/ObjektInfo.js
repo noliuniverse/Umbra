@@ -180,7 +180,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
                     </div>
                     {data["eventhost"] && <div style={{display: "block", margin:"auto", marginLeft:"10px", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
                     <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Event</b></p>
-                    <a href={data["eventhostlink"]} style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["eventhost"]}</a> 
+                    <a href={data["eventhostlink"]} target="_blank" style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["eventhost"]}</a> 
                     </div>}
                     
                     </div>
