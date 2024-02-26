@@ -126,7 +126,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         
 
         {(loading == true) && <Loader></Loader>}
-        {(data) && <div style={{background: data["bg_color"], margin:"auto", borderRadius:"20px"}} className='objektBackground'>
+        {(data) && <div style={{background: data["bg_color"], margin:"auto"}} className='objektBackground'>
             <div className="inobjektinfo">
             {data &&
                 <div className="marginright">

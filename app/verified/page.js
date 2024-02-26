@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image'
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import { useRouter} from "next/navigation";
 import { supabase } from '@/utils/supabaseClient'
 
@@ -11,11 +11,9 @@ import { Noto_Kufi_Arabic } from 'next/font/google';
 export default function Verified() {
   const navRef = useRef();
   const router = useRouter();
-
   const handleRedirect = (re) => {
     router.push(re)
   }
-
 
   return (
     <main>

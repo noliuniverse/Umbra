@@ -16,8 +16,7 @@ const HelveticaNeueLight = localFont({src: "../fonts/HelveticaNeueLight.otf"})
 //{ children },
 const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist, back}) => {
     if (eventhost) {var maxHeight = "100px";} else {var maxHeight = "75px";}
-    if (back) {var theRight = "20px"} else {var theRight = "0px"}
-    // 25 EACH LOGO
+    if (back) {var theRight = "19px"} else {var theRight = "0px"}
     const targetRef = useRef()
     const [loaded, setLoaded] = useState(null);
     const [loadedOpacity, setLoadedOpacity] = useState("1%");
@@ -43,17 +42,23 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
     }
 
     useLayoutEffect(() => {
-          if (targetRef.current) {
-            var theWidth = targetRef.current.offsetWidth;
-            if (targetRef.current.offsetWidth < 95)  {
-              theWidth = 200;
-            }
-            setDimensions({
-              width: theWidth,
-              height: targetRef.current.offsetHeight
-            });
+      if (targetRef.current) {
+        
+        function updateDimension() {
+          var theWidth = targetRef.current.offsetWidth;
+        if (targetRef.current.offsetWidth < 90)  {
+          theWidth = 200;
         }
-      }, []);
+          setDimensions({
+            width: theWidth,
+            height: targetRef.current.offsetHeight
+          });
+        }
+        window.addEventListener('resize', updateDimension);
+        updateDimension();
+        return () => {window.removeEventListener('resize', updateDimension)}
+    }
+  }, []);
 
 
     function slideUp() {

@@ -141,7 +141,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
                 <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=serial")}}>Serial (hi-low)</button>
                 </div>}
         
-        <div className="objektgrid" style={{zIndex: 1}}>
+        <div className="objektgrid"  style={{zIndex: 1}}>
     {objekts.map((item,index)=>{return <div key={index} onDoubleClick={() => {setIDS(item["uuid"]); setSERIAL(item["serial"]); setModals(true)}}><Objekt className="grid-objekt" unique={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]}/></div>
 })}
                         </div>
