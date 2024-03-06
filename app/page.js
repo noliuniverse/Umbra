@@ -98,9 +98,9 @@ if (loading) {return (
       <div style={{width:"90%", margin:"auto"}}>
        <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made card collecting client where people can collect custom cards (SAROS) made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
         <br></br>
-        <p className='whitetext'>If you want to include an card of yours in UMBRA, contact @wavnoil on twitter.</p>
+        <p className='whitetext'>If you want to include an card of yours in UMBRA, contact <a target="_blank"  href='https://twitter.com/UMBRAcosmos'>@UMBRAcosmos</a> on twitter.</p>
        </div>
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
+        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" target="_blank"  style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
         <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/saros")}>Event Cards</button>
         <div className='partners whitetext' style={{margin:"auto", marginTop:"10px"}}>
