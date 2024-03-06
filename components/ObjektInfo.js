@@ -122,75 +122,77 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
             
       }
     
-    return <div>
-        
-
-        {(loading == true) && <Loader></Loader>}
-        {(data) && <div style={{background: data["bg_color"], margin:"auto"}} className='objektBackground'>
-            <div className="inobjektinfo">
-            {data &&
-                <div className="marginright">
-                <div className={`flip-card ${isFlipped ? "flipped" : ""}`}
-                    onClick={handleFlip} style={{margin: "auto"}}>
-                    <div className="flip-card-inner">
-                        <div className="flip-card-front">
-                            <div className="card-content" >
-                            <Objekt member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
-                            </div>
-                        </div>
-                        <div className="flip-card-back">
-                            <div className="card-content">
-                            {data["back_photo"] && <Objekt member={data["member"]} serial={serial} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]} back={true}></Objekt>}
-                            </div>
-                        </div>
+      if (loading) {return ( <Loader></Loader>)
+    }
+    if (data) {return  <div style={{background: data["bg_color"], margin:"auto"}} className='objektBackground'>
+    <div className="inobjektinfo">
+    {data &&
+        <div className="marginright">
+        <div className={`flip-card ${isFlipped ? "flipped" : ""}`}
+            onClick={handleFlip} style={{margin: "auto"}}>
+            <div className="flip-card-inner">
+                <div className="flip-card-front">
+                    <div className="card-content" >
+                    <Objekt member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
                     </div>
                 </div>
-                </div>}
-            <br></br>
-            {(data) && <div style={{color: data["text_color"], fontSize:"90%", minWidth:"fit-content",width: "70%", border:"3px", display:"grid", gap:"10px",borderRadius:"10px", background: "rgb(255, 255, 255, 0.25)", padding:"5px"}} className="marginleft">
-                <div style={{display: "flex"}}>
-                    <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Name</b></p>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["member"]}</p> 
+                <div className="flip-card-back">
+                    <div className="card-content">
+                    {data["back_photo"] && <Objekt member={data["member"]} serial={serial} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]} back={true}></Objekt>}
                     </div>
-                    <div style={{display: "block", background:newestShade(data['bg_color']), margin:"auto", marginLeft:"10px", paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>ID</b></p>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["card_id"]}</p> 
-                    </div>
-                    </div>
-                    
-                    <div style={{display: "flex"}}>
-                    <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Artist</b></p>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["artist"].join(", ")}</p>
-                    </div>
-                    <div style={{display: "block", margin:"auto", marginLeft:"10px", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Minted</b></p>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["minted"]}</p> 
-                    </div>
-                    </div>
-                    
-
-                    
-
-                    <div style={{display: "flex"}}>
-                    <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Season</b></p>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["season"]}</p>
-                    </div>
-                    {data["eventhost"] && <div style={{display: "block", margin:"auto", marginLeft:"10px", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
-                    <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Event</b></p>
-                    <a href={data["eventhostlink"]} target="_blank" style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["eventhost"]}</a> 
-                    </div>}
-                    
-                    </div>
-                    
-                    
-                </div>}
                 </div>
+            </div>
+        </div>
+        </div>}
+    <br></br>
+     <div style={{color: data["text_color"], fontSize:"90%", minWidth:"fit-content",width: "70%", border:"3px", display:"grid", gap:"10px",borderRadius:"10px", background: "rgb(255, 255, 255, 0.25)", padding:"5px"}} className="marginleft">
+        <div style={{display: "flex"}}>
+            <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Name</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["member"]}</p> 
+            </div>
+            <div style={{display: "block", background:newestShade(data['bg_color']), margin:"auto", marginLeft:"10px", paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>ID</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["card_id"]}</p> 
+            </div>
+            </div>
+            
+            <div style={{display: "flex"}}>
+            <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Artist</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["artist"].join(", ")}</p>
+            </div>
+            <div style={{display: "block", margin:"auto", marginLeft:"10px", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Minted</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["minted"]}</p> 
+            </div>
+            </div>
+            
+
+            
+
+            <div style={{display: "flex"}}>
+            <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Season</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["season"]}</p>
+            </div>
+            {data["eventhost"] && <div style={{display: "block", margin:"auto", marginLeft:"10px", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Event</b></p>
+            <a href={data["eventhostlink"]} target="_blank" style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["eventhost"]}</a> 
             </div>}
             
-    </div>
+            </div>
+            
+            
+        </div>
+        </div>
+    </div>}
+    return (
+        <Loader></Loader>
+    )
+        
+            
+    
 
 
 

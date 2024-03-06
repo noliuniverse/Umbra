@@ -73,7 +73,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
       }
 
       
-    return <div >
+    return <div style={{height:"100%"}}>
       
             {(loaded == null) && <div className='objekt-skeleton' key={unique}/>}
       <div style={{opacity: loadedOpacity, width: "100%"}}>

@@ -30,21 +30,22 @@ export default function QR() {
   const [loading, setLoading] = useState(true);
   const handleDownloadImage = async () => {
     try {const element = printRef.current;
-        const canvas = await html2canvas(element, { letterRendering: 1, useCORS:true, allowTaint     : true, onrendered     : function (canvas) {                 } });
+        const canvas = await html2canvas(element, { letterRendering: 2, useCORS:true, allowTaint     : true, onrendered     : function (canvas) {                 } });
     
         const data = canvas.toDataURL('image/png');
         const link = document.createElement('a');
     
         if (typeof link.download === 'string') {
           link.href = data;
-          link.download = 'image.png';
+          link.download = r.replace(/ /g,"_")+'.png';
     
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
+          console.log("Downloaded!")
         } else {
           window.open(data);
-        }} catch (e) {console.info(e)}
+        }} catch (e) {console.info(e);console.log("Failed...?")}
   };
   useEffect(() => {
     async function getUser(){
@@ -89,10 +90,10 @@ export default function QR() {
               setR(null)
             }
             const { data, error } = await supabase.from('objektqrdata').insert({ card_uuid: a, qr_id: theUU.toString(), reason:  r})
-            setAQ("https://umbra.wav.haus/objekt?i=" +theUU.toString())
+            setAQ("https://umbra.wav.haus/saros?i=" +theUU.toString())
             setError(null);
             handleDownloadImage();
-            console.log("Downloaded!")
+            
 
 
 
