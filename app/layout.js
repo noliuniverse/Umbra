@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'UMBRA',
-  description: 'For fans by fans?',
+  description: 'Collect cards made by fans like you.',
 }
 
 export default function RootLayout({ children }) {
