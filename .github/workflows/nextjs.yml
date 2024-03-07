@@ -81,6 +81,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+        env:
+          NPM_CONFIG_LEGACY_PEER_DEPS: true
 
   # Deployment job
   deploy:
