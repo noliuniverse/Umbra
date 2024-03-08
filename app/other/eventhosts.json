@@ -12,7 +12,13 @@
             "logo":"WAVer_INAlogo.png",
             "eventhostname" : "WAVer_INA",
             "twtlink": "https://twitter.com/WAVer_INA",
-            "display_name":"WAVer_INA (Indonesia)"}
+            "display_name":"WAVer_INA (Indonesia)"},
+            {"id": 3,
+            "name" : "UMBRA Events",
+            "logo":"UMBRATRANSLOGO2.png",
+            "eventhostname" : "UMBRA",
+            "twtlink": "https://twitter.com/UMBRAcosmos",
+            "display_name":"UMBRA Events"}
         ]
     }
 }
