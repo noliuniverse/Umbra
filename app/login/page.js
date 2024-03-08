@@ -5,6 +5,7 @@ import { supabase } from '@/utils/supabaseClient'
 import { useRouter} from "next/navigation";
 import React, { useRef, useState, useEffect } from 'react';
 import eye from "../../public/eye.svg"
+import cleye from "../../public/closed-eye.svg"
 import Loader from '@/components/Loader';
 
 export default function LoginPage() {
@@ -85,7 +86,7 @@ if(!mounted) return null;
         setPassword('');
         setEmail('');
         setuser_name('');
-        router.push("/checkemail")
+        router.push("/verified")
         router.refresh();
         
         
@@ -178,7 +179,7 @@ if(!mounted) return null;
                 <Image
                 style={{cursor: "pointer"}}
                 onClick={()=>{setVisible(!visible)}}
-                    src={eye}
+                    src={visible ? eye : cleye}
                     alt="View your password"
                     width={40}
                     />
@@ -198,7 +199,7 @@ if(!mounted) return null;
                 <Image
                 style={{cursor: "pointer"}}
                 onClick={()=>{setVisible(!visible)}}
-                    src={eye}
+                src={visible ? eye : cleye}
                     alt="View your password"
                     width={40}
                     />
