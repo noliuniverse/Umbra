@@ -25,7 +25,7 @@ export default function Verified() {
       </header>
         <div className='div1'>
         <h1 className='whitetext bold big'>You are verified!</h1>
-        <small className='whitetext'>Click the home button to go back home!</small>
+        <small className='whitetext'>Click the home button to go back home and login back in to get started!</small>
         </div>
     </main>
   )
