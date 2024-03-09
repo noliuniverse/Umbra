@@ -286,12 +286,11 @@ body {
   margin-top:-90px;
 
 }
-[aria-hidden="true"]  { display: none; }
 @media only screen and (max-width: 600px) {
   .objektinfo {
 
      width: 100%;
-     margin-top:10px;
+     margin-top:0px;
 
   }
 }
