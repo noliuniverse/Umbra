@@ -60,6 +60,23 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
     }
   }, []);
 
+  useLayoutEffect(()=>{
+    function updateDimension() {
+      var theWidth = targetRef.current.offsetWidth;
+    if (targetRef.current.offsetWidth < 90)  {
+      theWidth = 200;
+    }
+      setDimensions({
+        width: theWidth,
+        height: targetRef.current.offsetHeight
+      });
+    }
+    setTimeout(function(){
+      updateDimension()
+  }, 500);
+    
+  }, [loaded])
+
 
     function slideUp() {
         try {var elem = document.getElementById(unique)
