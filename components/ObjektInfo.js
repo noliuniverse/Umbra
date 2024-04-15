@@ -109,7 +109,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         setLoading(false)
     }
     }
-    getObjekt();
+    useEffect(()=>{getObjekt();}, [])
     const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
     const sendToUser = async () => {
         setuserLoading(true);
