@@ -65,8 +65,9 @@ if(!mounted) return null;
     .eq('username', user_name)
 
     if (datas.length != 0) {setWarning("Username already being used"); return}
-    if (user_name.replace(" ", "") == user_name == false) {setWarning("No spaces on your username"); return}
-    if (user_name.length > 16) {setWarning("Username has to be shorter than 16 characters."); return}
+    if ((user_name.replace(" ", "") == user_name) == false) {setWarning("No spaces on your username"); return}
+    if (user_name.length > 16) {setWarning("Username has to be 16 characters or shorter."); return}
+    if (user_name.length <= 1) {setWarning("Username has to be longer than 1 character."); return}
     if (password.length <= 6) {setWarning("Password has to be longer than 6 characters."); return}
     if (email.replace(" ", "") == email == false) {setWarning("No spaces on your email"); return}
     if (password.replace(" ", "") == password == false) {setWarning("No spaces on your password"); return}

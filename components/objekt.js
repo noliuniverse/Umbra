@@ -14,12 +14,13 @@ const HelveticaNeueLight = localFont({src: "../fonts/HelveticaNeueLight.otf"})
 
 
 //{ children },
-const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist, back, typeOfFormat}) => {
+const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist, back, typeOfFormat, scale}) => {
     if (eventhost) {var maxHeight = "100px";} else {var maxHeight = "75px";}
     if (back) {var theRight = "20px"} else {var theRight = "0px"}
     if (typeOfFormat) {if (parseInt(typeOfFormat)==2) {var theRightQR = "21%";}} else {var theRightQR = "24%";}
     if (typeOfFormat) {if (parseInt(typeOfFormat)==2) {var theBottomQR = "15.6%";}} else {var theBottomQR = "20.6%";}
     if (typeOfFormat) {if (parseInt(typeOfFormat)==2) {var theWidthQR = "28%"}} else {var theWidthQR = "28%"}
+    if (scale) {var theScale = scale.toString();} else {var theScale="100%"}
     
     const targetRef = useRef()
     const [loaded, setLoaded] = useState(null);
@@ -94,7 +95,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
       }
 
       
-    return <div style={{height:"100%"}}>
+    return <div style={{height:"100%", scale:theScale}}>
       
             {(loaded == null) && <div className='objekt-skeleton' key={unique}/>}
       <div style={{opacity: loadedOpacity, width: "100%"}}>

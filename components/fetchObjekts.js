@@ -177,7 +177,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     
 
     return <Suspense>
-        {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids} serial={serials}></ObjektInfo></div></div>}
+        {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids} serial={serials} userid={userid}></ObjektInfo></div></div>}
         <div  id="blur">
         {(group == true || idol == true) && <p style={{color: "rgb(78, 38, 151)", margin:"auto auto 10px auto", scale:"60%", cursor:"pointer", width:"200px", background: "white", padding:"10px", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {window.location.href = window.location.href.split('?')[0];}}>Remove Filter</p>}
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", cursor:"pointer", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
