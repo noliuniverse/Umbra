@@ -191,9 +191,9 @@ export default function FetchMoreObjekts  ({datas, userid}) {
                 {(group == true) && <div style={{width:"100%", color:"rgb(78, 38, 151)", backgroundColor:"white", margin:"auto"}}>Artist: {getGroup()}</div>}
                 {(idol == true) && <div style={{width:"100%", color:"rgb(78, 38, 151)", backgroundColor:"white", margin:"auto"}}>Idol: {getIdol()}</div>}
                 {(group == true) && <div>
-                    {groupListsData[getGroup()].map((item, index) => {return <button key={index} className='button2' style={{width:"100%"}} onClick={() => {handleSort("idol=" + item)}}>{item}</button>})}</div>}
+                    {groupListsData[getGroup()]['members'].map((item, index) => {return <button key={index} className='button2' style={{width:"100%"}} onClick={() => {handleSort("idol=" + item)}}>{item}</button>})}</div>}
                 {(group == false) && <div>
-                    {Object.keys(groupListsData).slice(0, -1).map((item, index) => {return <button key={index} className='button2' style={{width:"100%"}} onClick={() => {handleSort("group=" + item)}}>{item}</button>})}
+                    {Object.keys(groupListsData).slice(0, -1).map((item, index) => {return <button key={index} className='button2' style={{width:"100%"}} onClick={() => {handleSort("group=" + item)}}>{(groupListsData[item]["logo"]) && <img src={groupListsData[item]["logo"]} style={{width:"28px", position:"absolute"}}></img>}{item}</button>})}
                 </div>}
                 </div>}
         

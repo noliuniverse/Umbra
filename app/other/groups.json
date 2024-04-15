@@ -1,5 +1,5 @@
 {"listOfGroups":{
-    "tripleS": ["SeoYeon", "HyeRin", "JiWoo", "ChaeYeon", "YooYeon", "SooMin", "NaKyoung", "YuBin", "Kaede", "DaHyun", "Kotone", "YeonJi", "Nien", "SoHyun", "Xinyu", "Mayu", "Lynn", "JooBin", "HaYeon", "ShiOn", "ChaeWon", "Sullin", "SeoAh", "JiYeon"],
-    "UMBRA":["Umbra.SAR"],
-    "808 Return : Not Found":[]
+    "tripleS": {"logo":"https://i.imgur.com/GmREjtL.png","members":["SeoYeon", "HyeRin", "JiWoo", "ChaeYeon", "YooYeon", "SooMin", "NaKyoung", "YuBin", "Kaede", "DaHyun", "Kotone", "YeonJi", "Nien", "SoHyun", "Xinyu", "Mayu", "Lynn", "JooBin", "HaYeon", "ShiOn", "ChaeWon", "Sullin", "SeoAh", "JiYeon"]},
+    "UMBRA":{"logo":"UMBRATRANSLOGO2.png","members":["Umbra.SAR"]},
+    "808 Return : Not Found":{"members":[]}
 }}
