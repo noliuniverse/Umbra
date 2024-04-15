@@ -428,8 +428,8 @@ div#blur.active {
 
 @media only screen and (max-width: 600px) {
   .sending{
-    height: 80vh;
-    max-height: 530px;
+    height: 60vh;
+    max-height: 500px;
     margin-top: -130px;
 
   }
