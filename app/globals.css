@@ -428,7 +428,10 @@ div#blur.active {
 
 @media only screen and (max-width: 600px) {
   .sending{
-    height:70vh;
+    height: 60vh;
+    max-height: 500px;
+
+
   }
 }
 
@@ -554,7 +557,7 @@ transition-duration: 300ms;
 
 .backButton.trading {
   left: 4.5%;
-  top: 12%;
+  top: 17%;
 }
 
 .sendGrid {
