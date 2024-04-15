@@ -82,7 +82,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
     const getObjekt = async () => {
         const { data:datas, error:errors } = await supabase
     .from('objektdata')
-    .select('member, season, photo, artist, text_color, bg_color, back_photo, card_id, eventhost, eventhostlink')
+    .select('member, season, photo, artist, text_color, bg_color, back_photo, card_id, eventhost, eventhostlink, type')
     .eq('uuid', parseInt(id))
     const { data:datas1, error:errors1 } = await supabase
     .from('objektcollection')
@@ -138,7 +138,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
                 </div>
                 <div className="flip-card-back">
                     <div className="card-content">
-                    {data["back_photo"] && <Objekt member={data["member"]} serial={serial} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]} back={true}></Objekt>}
+                    {data["back_photo"] && <Objekt member={data["member"]} serial={serial} season={data["season"]} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["back_photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]} back={true} typeOfFormat={data["type"]}></Objekt>}
                     </div>
                 </div>
             </div>

@@ -14,9 +14,13 @@ const HelveticaNeueLight = localFont({src: "../fonts/HelveticaNeueLight.otf"})
 
 
 //{ children },
-const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist, back}) => {
+const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist, back, typeOfFormat}) => {
     if (eventhost) {var maxHeight = "100px";} else {var maxHeight = "75px";}
-    if (back) {var theRight = "19px"} else {var theRight = "0px"}
+    if (back) {var theRight = "20px"} else {var theRight = "0px"}
+    if (typeOfFormat) {if (parseInt(typeOfFormat)==2) {var theRightQR = "21%";}} else {var theRightQR = "24%";}
+    if (typeOfFormat) {if (parseInt(typeOfFormat)==2) {var theBottomQR = "15.6%";}} else {var theBottomQR = "20.6%";}
+    if (typeOfFormat) {if (parseInt(typeOfFormat)==2) {var theWidthQR = "28%"}} else {var theWidthQR = "28%"}
+    
     const targetRef = useRef()
     const [loaded, setLoaded] = useState(null);
     const [loadedOpacity, setLoadedOpacity] = useState("1%");
@@ -73,7 +77,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
     }
     setTimeout(function(){
       updateDimension()
-  }, 500);
+  }, 100);
     
   }, [loaded])
 
@@ -97,7 +101,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
         <div className="objektDiv">
             <Image className="objektimg" src={img}onLoad={() => {setLoaded(true); openImage();}} alt={id} width={700}
   height={700} onClick={slidefunction} ref={targetRef}/>
-            {back && <img className="infoQR" src="UMBRA_QR.png" style={{position:"absolute", width:"28%", bottom:"20.6%", right:"24%"}}></img>}
+            {back && <img className="infoQR" src="UMBRA_QR.png" style={{position:"absolute", width:theWidthQR, bottom:theBottomQR, right:theRightQR}}></img>}
                 <div className={stylestwo.sideBar} style={{color: color, fontSize: dimensions.width/7.5/2, right:theRight}}>
                     <span style={helveticaNeueBold.style} className="objekt_preview_text">{id}</span>
                     {serial && <span style={dotMat.style} className="objekt_preview_text3">#{serial.toString().padStart(5, '0')}</span>}

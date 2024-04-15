@@ -40,13 +40,15 @@ export default function Collection() {
                 var startNumber = 0;
                 const { data:datas1, error:errors1 } = await supabase
         .from('objektcollection')
-        .select('id, serial, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id)')
+        .select('id, serial, uuid, created_at, objektdata(member, season, photo, artist, text_color, bg_color, card_id, eventhost, eventhostlink)')
         .eq('user_uuid', user.id.toString())
         if (startNumber+batchSize > datas1.length) {
             endNumber = datas1.length;
         }
         var asc = false;
-        var row = 'created_at'
+        var row = 'created_at';
+        var group = null;
+        var idol = null;
         
         if (searchParams.get('sort')){
             if (searchParams.get('sort') == "oldest"){
@@ -63,20 +65,52 @@ export default function Collection() {
         }
             
         }
-        const { data:datas, error:errors } = await supabase
+        if (searchParams.get('group')){
+            group = searchParams.get('group');
+            
+        }
+        if (searchParams.get('idol')){
+            idol = searchParams.get('idol');
+            
+        }
+
+        
+            const { data:datas, error:errors } = await supabase
         .from('objektcollection')
-        .select('id, serial, created_at, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id, eventhost, eventhostlink)')
+        .select('id, serial, created_at, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id, eventhost, eventhostlink, type)')
         .eq('user_uuid', user.id.toString())
         .order(row, { ascending: asc })
         .range(startNumber, endNumber)
-    
+        if (group != null){
+            const { data:datas2, error:errors2 } = await supabase
+        .from('objektcollection')
+        .select('id, serial, created_at, uuid, objektdata(member, season, photo, artist, text_color, bg_color, card_id, eventhost, eventhostlink, type)')
+        .eq('user_uuid', user.id.toString())
+        .order(row, { ascending: asc })
+        
+            var datass = Object.values(datas2).filter(item => item.objektdata.artist.includes(group));
+            if (idol != null) {
+                datass = Object.values(datass).filter(item => item.objektdata.member.includes(idol));
+            }
+            datass = datass.splice(0, 40)
             if (errors) {
                 console.info(errors)
             }
             if (datas) {
-                
+                setDatas(datass)
+            }
+        }
+        else {
+            if (errors) {
+                console.info(errors)
+            }
+            if (datas) {
                 setDatas(datas)
-            }}
+            }
+        }
+        
+    
+            }
             
             fetchObjekts()
             
