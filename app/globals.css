@@ -428,7 +428,7 @@ div#blur.active {
 
 @media only screen and (max-width: 600px) {
   .sending{
-    height: 60vh;
+    height: 65vh;
     max-height: 500px;
     margin-top: -130px;
 
@@ -587,18 +587,6 @@ gap:10px;
       bottom:10%;
       margin-top:200px
     }
-    @media only screen and (max-width: 600px) {
-      .buttonYesSure {
-        margin-top:200px
-      }
-    }
-  
-    @media only screen and (max-width: 900px) {
-      .buttonYesSure {
-        margin-top:200px;
-      }
-    }
-  
     @media only screen and (max-width: 1200px) {
       .buttonYesSure {
         margin-top:200px;
@@ -606,7 +594,27 @@ gap:10px;
 
       }
     }
+    @media only screen and (max-width: 900px) {
+      .buttonYesSure {
+        margin-top:200px;
+      }
+    }
+    @media only screen and (max-width: 600px) {
+      .buttonYesSure {
+        margin-top:52vh;
+        
+      }
+    }
 
+    @media only screen and (max-width: 600px) {
+      .objektSend {
+       top:-3vh;
+      }
+    }
+  
+    
+  
+    
 
   
 

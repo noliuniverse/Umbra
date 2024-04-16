@@ -120,7 +120,6 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         .eq('user_uuid', userid.toString())
         .eq('uuid', parseInt(id))
         .eq('serial', parseInt(serial))
-        console.log(theUser)
         if (datas.length != 1) {
             
             console.log("You don't own this anymore!")
@@ -189,11 +188,12 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         </div>
     }
     if (tradingScreen == null) {
-        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", width:"300px", position:"sticky", margin:"auto", borderRadius:"20px", paddingBottom:"10px",  paddingTop:"20px"}}>
-            {!userLoading && <div><button className='backButton trading' onClick={() => {setTradingScreen(false);}}>{"<"}</button>
+        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", width:"300px", margin:"auto", borderRadius:"20px", paddingTop:"20px"}}>
+            {!userLoading && <button className='backButton trading'  onClick={() => {setTradingScreen(false);}}>{"<"}</button>}
+            {!userLoading && <div>
             <h1 style={{fontSize:"27px"}}><b>Are you sure you want to send:</b></h1>
             <h2 style={{fontSize:"20px", width:"60%", margin:"auto"}}><u>{data["artist"]} {data["member"]} {data["card_id"]}#{serial.toString().padStart(5, '0')}</u> to {user[1]}</h2>
-            <div style={{height:"100px", position:"relative"}}><Objekt scale={"50%"} member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
+            <div className="objektSend" style={{height:"100px", position:"relative"}}><Objekt scale={"50%"} member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
             </div>
             <div style={{padding:"1px", height:"400px"}}></div>
             </div>}
