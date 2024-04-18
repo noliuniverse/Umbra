@@ -174,7 +174,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
       if (loading) {return ( <Loader></Loader>)
     }
     if (done == true) {
-        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", borderRadius:"20px",  paddingTop:"20px"}}>
+        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%",  paddingTop:"20px"}}>
             {!userLoading && <div><button className='backButton trading' onClick={() => {window.location.href = window.location.href.split('?')[0];}}>{"<"}</button>
             <h1 style={{fontSize:"27px"}}><b>You have Sent....</b></h1>
             <h2 style={{fontSize:"20px", width:"60%", margin:"auto"}}>{data["artist"]} {data["member"]} {data["card_id"]}#{serial.toString().padStart(5, '0')} to <u>{user[1]}</u></h2>
@@ -188,7 +188,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         </div>
     }
     if (tradingScreen == null) {
-        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", borderRadius:"20px", paddingTop:"20px"}}>
+        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", paddingTop:"20px"}}>
             {!userLoading && <button className='backButton trading'  onClick={() => {setTradingScreen(false);}}>{"<"}</button>}
             {!userLoading && <div>
             <h1 style={{fontSize:"27px"}}><b>Are you sure you want to send:</b></h1>
@@ -202,7 +202,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         </div>
     }
     if (tradingScreen == true) {
-        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", borderRadius:"20px", paddingTop:"20px"}}>
+        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", paddingTop:"20px"}}>
             <button className='backButton trading' onClick={() => {setTradingScreen(false);}}>{"<"}</button>
             <h1 style={{fontSize:"23px"}}><b>Search for the UMBRA User:</b></h1>
             <form action={searchFor}><input style={{background:"rgb(78, 38, 151)", color:"white", marginTop:"10px", width:"150px", borderRadius:"20px 0px 0px 20px", paddingLeft:"5px"}} value={sendUser} onChange={(e) => setSendUser(e.target.value)}></input><input type="submit" style={{paddingLeft:"10px", paddingRight:"10px",background:"rgb(78, 38, 151)", borderRadius:"0px 20px 20px 0px"}} value="🔎"></input></form>
