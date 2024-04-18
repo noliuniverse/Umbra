@@ -206,7 +206,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
             <button className='backButton trading' onClick={() => {setTradingScreen(false);}}>{"<"}</button>
             <h1 style={{fontSize:"23px"}}><b>Search for the UMBRA User:</b></h1>
             <form action={searchFor}><input style={{background:"rgb(78, 38, 151)", color:"white", marginTop:"10px", width:"150px", borderRadius:"20px 0px 0px 20px", paddingLeft:"5px"}} value={sendUser} onChange={(e) => setSendUser(e.target.value)}></input><input type="submit" style={{paddingLeft:"10px", paddingRight:"10px",background:"rgb(78, 38, 151)", borderRadius:"0px 20px 20px 0px"}} value="🔎"></input></form>
-            <div style={{overflowY:"scroll", height:"77%", marginTop:"7px"}}><div className="sendGrid" >{userMap.map((item, index)=> {return <button key={index} style={{...halavrBreitRg.style}} onClick={() => {setuser([item['id'], item['username']]);setTradingScreen(null)}}><div><img style={{width:"30px", marginRight:"4px", borderRadius:"20px"}} src={item['avatar_url']}></img>{item['username']}</div></button>})}</div></div>
+            <div style={{overflowY:"scroll", height:"67%", marginTop:"7px"}}><div className="sendGrid" >{userMap.map((item, index)=> {return <button key={index} style={{...halavrBreitRg.style}} onClick={() => {setuser([item['id'], item['username']]);setTradingScreen(null)}}><div><img style={{width:"30px", marginRight:"4px", borderRadius:"20px"}} src={item['avatar_url']}></img>{item['username']}</div></button>})}</div></div>
             {userLoading && <Loader></Loader>}
         </div>
     }
