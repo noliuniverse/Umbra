@@ -188,7 +188,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         </div>
     }
     if (tradingScreen == null) {
-        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", paddingTop:"20px", overflowY:"visible"}}>
+        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", paddingTop:"20px", overflowY:"scroll"}}>
             {!userLoading && <button className='backButton trading'  onClick={() => {setTradingScreen(false);}}>{"<"}</button>}
             {!userLoading && <div>
             <h1 style={{fontSize:"27px"}}><b>Are you sure you want to send:</b></h1>
