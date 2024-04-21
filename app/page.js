@@ -85,6 +85,8 @@ if (loading) {return (
         </nav>
       </header>
         <div className='div1' style={{width: "100%", marginBottom: "10px"}}>
+          <p className='whitetext'>Click below to find trades with others!</p>
+        <a href="https://twitter.com/UMBRAcosmos/status/1782172827241623616" target="_blank"  style={{width: "100%", minWidth: "150px", textAlign: "center", marginBottom:"10px", textDecoration:"none", background:"#f2ebff", color:"black", borderRadius:"0px"}} className='button2'>TRADING HUB is OPEN!</a>
         <div className='carousel'>
       <Carousel activeIndex={index} onSelect={handleSelect}>
           {bootstrap.map((item) => (
@@ -100,6 +102,7 @@ if (loading) {return (
         <br></br>
         <p className='whitetext'>If you want to include an card of yours in UMBRA, contact <a target="_blank"  href='https://twitter.com/UMBRAcosmos'>@UMBRAcosmos</a> on twitter.</p>
        </div>
+
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" target="_blank"  style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
         <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/saros")}>Event Cards</button>
