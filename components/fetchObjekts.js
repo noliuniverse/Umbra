@@ -1,5 +1,5 @@
 import styles from "@/app/globals.css"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, use } from "react"
 import { useRouter} from "next/navigation";
 import { supabase } from '@/utils/supabaseClient'
 import { debounce, has } from 'lodash'
@@ -31,6 +31,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     const [filterdropdownEnabled, setFilterDropdownEnabled] = useState(false);
     const filterDropdown = useRef();
     const [ids, setIDS] = useState(null);
+    const [thisID, setThisID] = useState(null)
     const [group, setGroup] = useState(false);
     const [idol, setIdol] = useState(false);
     const [serials, setSERIAL] = useState(null)
@@ -177,7 +178,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
     
 
     return <Suspense>
-        {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids} serial={serials} userid={userid}></ObjektInfo></div></div>}
+        {modalop && <div className="objektinfo"><div className="x" style={{padding:"10px", margin: "auto", position: "absolute", cursor: "pointer"}} onClick={()=>{setModals(false)}}><p>X</p></div><div className="objektinfodiv"><ObjektInfo id={ids} serial={serials} userid={userid} thisID={thisID}></ObjektInfo></div></div>}
         <div  id="blur">
         {(group == true || idol == true) && <p style={{color: "rgb(78, 38, 151)", margin:"auto auto 10px auto", scale:"60%", cursor:"pointer", width:"200px", background: "white", padding:"10px", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {window.location.href = window.location.href.split('?')[0];}}>Remove Filter</p>}
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", cursor:"pointer", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
@@ -198,7 +199,7 @@ export default function FetchMoreObjekts  ({datas, userid}) {
                 </div>}
         
         <div className="objektgrid"  style={{zIndex: 1}}>
-    {objekts.map((item,index)=>{return <div key={index} onDoubleClick={() => {setIDS(item["uuid"]); setSERIAL(item["serial"]); setModals(true)}}><Objekt className="grid-objekt" unique={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]} typeOfFormat={item["objektdata"]["type"]}/></div>
+    {objekts.map((item,index)=>{return <div key={index} onDoubleClick={() => {setThisID(item["id"]); setIDS(item["uuid"]); setSERIAL(item["serial"]); setModals(true);}}><Objekt className="grid-objekt" unique={index} member={item["objektdata"]["member"]} season={item["objektdata"]["season"]} bckcolor={item["objektdata"]["bg_color"]} color={item["objektdata"]["text_color"]} created_at={(Date.now())-(new Date(item["created_at"].toString())) <= 86400000} id={item["objektdata"]["card_id"]} serial={item["serial"]} img={item["objektdata"]["photo"]} artist={item["objektdata"]["artist"]}  eventhost={item["objektdata"]["eventhost"]} eventhostlink={item["objektdata"]["eventhostlink"]} uuid={item["objektdata"]["id"]} typeOfFormat={item["objektdata"]["type"]}/></div>
 })}
                         </div>
                         {hasPages && <div className="more"><Loader style={{ marginTop: "0px", opacity:"50%"}}

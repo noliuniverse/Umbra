@@ -11,7 +11,7 @@ const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 
-export default function ObjektInfo( { id, serial, userid }) {
+export default function ObjektInfo( { id, serial, userid, thisID}) {
    
     const router = useRouter()
     const [data, setData] = useState(null);
@@ -125,6 +125,8 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
             console.log("You don't own this anymore!")
             return
         } else {
+            const { data:dataIN, error:errorIN } = await supabase.from('objekttrades').insert({ from_user: userid.toString(), to_user: theUser[0].toString(), collection_id:  parseInt(thisID)})
+
             const { error } = await supabase
             .from('objektcollection')
             .update({ user_uuid: theUser[0].toString(), created_at: ((new Date()).toISOString()).toLocaleString('en-US')})
@@ -191,14 +193,14 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", paddingTop:"20px", overflowY:"scroll"}}>
             {!userLoading && <button className='backButton trading'  onClick={() => {setTradingScreen(false);}}>{"<"}</button>}
             {!userLoading && <div>
-            <h1 style={{fontSize:"27px"}}><b>Are you sure you want to send:</b></h1>
-            <h2 style={{fontSize:"20px", width:"60%", margin:"auto"}}><u>{data["artist"]} {data["member"]} {data["card_id"]}#{serial.toString().padStart(5, '0')}</u> to {user[1]}</h2>
+            <h1 style={{fontSize:"25px"}}><b>Are you sure you want to send:</b></h1>
+            <h2 style={{fontSize:"17px", width:"60%", margin:"auto"}}><u>{data["artist"]} {data["member"]} {data["card_id"]}#{serial.toString().padStart(5, '0')}</u> to {user[1]}</h2>
             <div className="objektSend" style={{height:"100px", position:"relative"}}><Objekt scale={"50%"} member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
             </div>
-            <div style={{padding:"1px", height:"400px"}}></div>
+            <div style={{padding:"1px", height:"50px"}}></div>
             </div>}
             {userLoading && <Loader></Loader>}
-            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky" }} onClick={sendToUser}>Yes!</button>}
+            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={sendToUser}>Yes!</button>}
         </div>
     }
     if (tradingScreen == true) {
