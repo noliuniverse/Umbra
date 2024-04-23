@@ -146,7 +146,7 @@ if (loading) {return (
 
         <a href="https://forms.gle/rjVYADMtUKjqCqDJA" target="_blank"  style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>{translate('bugsug')}</u></a>
         <h1 className='whitetext' style={{marginTop:"20px"}}>{translate('partnerh')}</h1>
-        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/saros")}>{translate('eventcards')}</button>
+        <button className='button2' style={{width: "40%", width:"fit-content",  minWidth: "200px", textAlign: "center", fontSize:"100%"}}  onClick={() => handleRedirect("/saros")}>{translate('eventcards')}</button>
         <div className='partners whitetext' style={{margin:"auto", marginTop:"10px"}}>
         {hostlist.map((item, index) => {
                         return <a key={index} href={item["twtlink"]} target="_blank" className='partner'>
