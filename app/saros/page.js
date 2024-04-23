@@ -11,13 +11,44 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react';
 import localFont from "next/font/local"
 import hostsdata from "../other/eventhosts.json";
+import languagedata from "../other/languages.json";
 import Loader from '@/components/Loader';
 
 const HalvarBreitMd = localFont({src: "../other/HalvarBreit-Md.ttf"})
 
 export default function Objekts() {
+    // language set-up
 
-
+  let transcript = languagedata["langs"];
+  const validLangs = languagedata["validLangs"];
+  const [languageABR, setLanguageABR] = useState("en")
+  useEffect(()=>{
+      if (localStorage.getItem("umbraLang") == null) {
+      localStorage.setItem("umbraLang", "en");
+      var langabr = "en";
+      } else {
+      var langabr = localStorage.getItem("umbraLang");
+      }
+      //console.log(validLangs)
+      if (validLangs.includes(langabr) == true) {
+      setLanguageABR(langabr);
+      localStorage.setItem("umbraLang", langabr.toString());
+      } else {
+      setLanguageABR("en");
+      localStorage.setItem("umbraLang", "en");
+      }
+      
+      
+  }, [])
+  const translate = (str) => {
+      var returnStr = transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str];
+      if (returnStr == null) {
+          returnStr = "808 Error : Words not found";
+      }
+      return returnStr 
+  }
+  // other code
+    
     const batchSize = 40;
     const navRef = useRef();
     const pathname = 'saros'; // URLHERE.COM/pathname
@@ -143,8 +174,8 @@ if(!mounted) return null;
             <div className="div1" style={{paddingBottom: "10px"}}>
             {pageloading == true && <l-grid size="120" speed="1.5" color="white" ></l-grid>}
                 {pageloading == false && <div>
-                    <font style={HalvarBreitMd.style} className='whitetext'><h1>Event Cards:</h1></font>
-                    <small className='whitetext'>Which host's cards would you like to see?</small>
+                    <font style={HalvarBreitMd.style} className='whitetext'><h1>{translate('eventcards2')}:</h1></font>
+                    <small className='whitetext'>{translate('whichcard')}</small>
                 <div className='scrolling-div'>
                     {hostlist.map((item, index) => {
                         return (
@@ -160,7 +191,7 @@ if(!mounted) return null;
                     <Suspense>
                 {(datas) && <div style={{paddingBottom: "20px"}}> <ObjektGrid datas={datas} userid={userid} searchParams={searchParams}></ObjektGrid></div>}
                 </Suspense>
-                {(datas && userid && datas.length == 0) && <p className="whitetext">Wow! Looks like the event host has no cards!</p>}
+                {(datas && userid && datas.length == 0) && <p className="whitetext">{translate('hostdonthavesaros')}</p>}
                 </div></div>}
                 
             </div>

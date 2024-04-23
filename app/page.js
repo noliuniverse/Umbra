@@ -11,6 +11,7 @@ import itemsdata from "../json/Items.json";
 import { Carousel } from "react-bootstrap";
 import localFont from "next/font/local"
 import hostsdata from "./other/eventhosts.json";
+import languagedata from "./other/languages.json";
 import Loader from '@/components/Loader';
 
 
@@ -19,16 +20,56 @@ import Loader from '@/components/Loader';
 const ParaboleDisplay = localFont({src: "../fonts/Parabole-DisplayRegular.otf"})
 const ParaboleRegular = localFont({src: "../fonts/Parabole-TextRegular.otf"})
 
-
+// {translate('trade')}
 export default function Home() {
+  // language set-up
 
+  
+  let transcript = languagedata["langs"];
+  const validLangs = languagedata["validLangs"];
+  const [languageABR, setLanguageABR] = useState("en")
+  useEffect(()=>{
+    if (localStorage.getItem("umbraLang") == null) {
+      localStorage.setItem("umbraLang", "en");
+      var langabr = "en";
+    } else {
+      var langabr = localStorage.getItem("umbraLang");
+    }
+    //console.log(validLangs)
+    if (validLangs.includes(langabr) == true) {
+      setLanguageABR(langabr);
+      localStorage.setItem("umbraLang", langabr.toString());
+    } else {
+      setLanguageABR("en");
+      localStorage.setItem("umbraLang", "en");
+    }
+    
+    
+  }, [])
+  const translate = (str) => {
+    return transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str]
+  }
+  const changeLanguage = (str) => {
+    if (validLangs.includes(str.toString()) == true) {
+      setLanguageABR(str);
+      localStorage.setItem("umbraLang", str.toString());
+    } else {
+      setLanguageABR("en");
+      localStorage.setItem("umbraLang", "en");
+    }
+  }
+  // other code
+  
+  
 
+  
   let items = itemsdata["items"];
   const { bootstrap } = items;
   let hosts = hostsdata["hosts"];
   const { hostlist } = hosts;
 
   const [data, setData] = useState('No result');
+  const [settingsOpen, setSettingsOpen] = useState(false);
   
   const router = useRouter()
   const navRef = useRef();
@@ -85,8 +126,8 @@ if (loading) {return (
         </nav>
       </header>
         <div className='div1' style={{width: "100%", marginBottom: "10px"}}>
-          <p className='whitetext'>Click below to find trades with others!</p>
-        <a href="https://twitter.com/UMBRAcosmos/status/1782172827241623616" target="_blank"  style={{width: "100%", minWidth: "150px", textAlign: "center", marginBottom:"10px", textDecoration:"none", background:"#f2ebff", color:"black", borderRadius:"0px"}} className='button2'>TRADING HUB is OPEN!</a>
+          <p className='whitetext'>{translate('clicktofind')}</p>
+        <a href="https://twitter.com/UMBRAcosmos/status/1782172827241623616" target="_blank"  style={{width: "100%", minWidth: "150px", textAlign: "center", marginBottom:"10px", textDecoration:"none", background:"#f2ebff", color:"black", borderRadius:"0px"}} className='button2'>{translate('trade-open')}</a>
         <div className='carousel'>
       <Carousel activeIndex={index} onSelect={handleSelect}>
           {bootstrap.map((item) => (
@@ -98,14 +139,14 @@ if (loading) {return (
       </div>
       <h1 className='whitetext big' style={{color: "white", fontWeight: "0px",letterSpacing:"-1px"}}><span style={ParaboleDisplay.style}><span style={ParaboleRegular.style}>Wel</span>co<span style={ParaboleRegular.style}>m</span>e <span style={ParaboleRegular.style}>to</span> </span><span style={ParaboleDisplay.style}>U<span style={ParaboleRegular.style}>M</span>B<span style={ParaboleRegular.style}>R</span>A!</span></h1>
       <div style={{width:"90%", margin:"auto"}}>
-       <p className='whitetext' style={{padding: "10px", margin: "3%"}}>UMBRA is a fan-made card collecting client where people can collect custom cards (SAROS) made by other fans. Ways of getting them include cupsleeve events, tripleS fan meetups, and etc! Sign up using the login button above!</p>
+       <p className='whitetext' style={{padding: "10px", margin: "3%"}}>{translate('umbra-is1')}</p>
         <br></br>
-        <p className='whitetext'>If you want to include an card of yours in UMBRA, contact <a target="_blank"  href='https://twitter.com/UMBRAcosmos'>@UMBRAcosmos</a> on twitter.</p>
+        <p className='whitetext'>{translate('include1p1')} <a target="_blank"  href='https://twitter.com/UMBRAcosmos'>@UMBRAcosmos</a> {translate('include1p2')}</p>
        </div>
 
-        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" target="_blank"  style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>Bug/Suggestion</u></a>
-        <h1 className='whitetext' style={{marginTop:"20px"}}>PARTNERED EVENT HOSTS:</h1>
-        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/saros")}>Event Cards</button>
+        <a href="https://forms.gle/rjVYADMtUKjqCqDJA" target="_blank"  style={{width: "40%", minWidth: "150px", textAlign: "center"}} className='button2'><u>{translate('bugsug')}</u></a>
+        <h1 className='whitetext' style={{marginTop:"20px"}}>{translate('partnerh')}</h1>
+        <button className='button2' style={{width: "40%", minWidth: "150px", textAlign: "center"}}  onClick={() => handleRedirect("/saros")}>{translate('eventcards')}</button>
         <div className='partners whitetext' style={{margin:"auto", marginTop:"10px"}}>
         {hostlist.map((item, index) => {
                         return <a key={index} href={item["twtlink"]} target="_blank" className='partner'>
@@ -116,6 +157,22 @@ if (loading) {return (
                     })}
         
         
+        </div>
+        <hr style={{color:"white", marginTop:"10px"}}></hr>
+        <div className='footer'>
+          <button className='button2' onClick={()=>{setSettingsOpen(!settingsOpen)}} style={{margin:"auto"}}>Settings</button>
+          {settingsOpen && <div className='settings'>
+            <p>{translate('language')}</p>
+            <div className='langGrid'>
+              <button className='button3' onClick={()=>{changeLanguage("en")}}>🇺🇸 English</button>
+              <button className='button3' onClick={()=>{changeLanguage("pt-br")}}>🇧🇷 Português</button>
+            </div>
+            <br></br>
+            <p>English: <a target="_blank"  href='https://twitter.com/UMBRAcosmos'><u>@UMBRAcosmos</u></a></p>
+            <p>Português: <a target="_blank"  href='https://twitter.com/bbangkyos'><u>@bbangkyos</u></a></p>
+            </div>}
+          
+          
         </div>
         </div>
     </main>

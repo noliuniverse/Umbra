@@ -13,6 +13,7 @@ import localFont from "next/font/local"
 import ObjektInfo from "./ObjektInfo";
 import Loader from "./Loader";
 import groupsdata from "@/app/other/groups.json"
+import languagedata from "@/app/other/languages.json"
 
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
@@ -20,6 +21,40 @@ const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
 
 //{ children },
 export default function FetchMoreObjekts  ({datas, userid}) {
+    // language set-up
+
+    let transcript = languagedata["langs"];
+    const validLangs = languagedata["validLangs"];
+    const [languageABR, setLanguageABR] = useState("en")
+    useEffect(()=>{
+        if (localStorage.getItem("umbraLang") == null) {
+        localStorage.setItem("umbraLang", "en");
+        var langabr = "en";
+        } else {
+        var langabr = localStorage.getItem("umbraLang");
+        }
+        //console.log(validLangs)
+        if (validLangs.includes(langabr) == true) {
+        setLanguageABR(langabr);
+        localStorage.setItem("umbraLang", langabr.toString());
+        } else {
+        setLanguageABR("en");
+        localStorage.setItem("umbraLang", "en");
+        }
+        
+        
+    }, [])
+    const translate = (str) => {
+        var returnStr = transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str];
+        if (returnStr == null) {
+            returnStr = "808 Error : Words not found";
+        }
+        return returnStr 
+    }
+
+    // other code
+
+
     const [objekts, setObjekts] = useState(datas)
     const [hasPages, setHasPages] = useState(true)
     const NEW_LIMIT = 86400000; // created less than a day ago is considered new
@@ -184,9 +219,9 @@ export default function FetchMoreObjekts  ({datas, userid}) {
         <span style={{color: "rgb(78, 38, 151)", background: "white", padding:"10px", paddingBottom:"5px", cursor:"pointer", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setDropdownEnabled(!dropdownEnabled)}}>Sort</span>
         <span style={{color: "rgb(78, 38, 151)", marginLeft:"10px", background: "white", padding:"10px", cursor:"pointer", paddingBottom:"5px", paddingTop:"5px", borderRadius:"20px"}} onClick={() => {setFilterDropdownEnabled(!filterdropdownEnabled)}}>Filter</span>
         {dropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%", position:"absolute"}} id="dropdownmenu" ref={dropdown}>
-                <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=oldest")}}>Oldest</button>
-                <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=newest")}}>Newest</button>
-                <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=serial")}}>Serial (hi-low)</button>
+                <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=oldest")}}>{translate('oldest')}</button>
+                <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=newest")}}>{translate('newest')}</button>
+                <button className='button2' style={{width:"100%"}} onClick={() => {handleSort("sort=serial")}}>{translate('serialhl')}</button>
                 </div>}
         {filterdropdownEnabled && <div className="dropdown-content" style={{marginLeft:"50%", position:"absolute", height:"fit-content", maxHeight:"180px", overflowY:"scroll"}} id="dropdownmenu" ref={filterDropdown}>
                 {(group == true) && <div style={{width:"100%", color:"rgb(78, 38, 151)", backgroundColor:"white", margin:"auto"}}>Artist: {getGroup()}</div>}

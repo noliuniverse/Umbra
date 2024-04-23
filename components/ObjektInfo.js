@@ -10,9 +10,44 @@ import Loader from "./Loader";
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
 const halavrBreitRg = localFont({src: "../fonts/HalvarBreit-Rg copy 2.ttf"})
+import languagedata from "@/app/other/languages.json"
+
 
 export default function ObjektInfo( { id, serial, userid, thisID}) {
+   // language set-up
+
+   let transcript = languagedata["langs"];
+   const validLangs = languagedata["validLangs"];
+   const [languageABR, setLanguageABR] = useState("en")
+   useEffect(()=>{
+       if (localStorage.getItem("umbraLang") == null) {
+       localStorage.setItem("umbraLang", "en");
+       var langabr = "en";
+       } else {
+       var langabr = localStorage.getItem("umbraLang");
+       }
+       //console.log(validLangs)
+       if (validLangs.includes(langabr) == true) {
+       setLanguageABR(langabr);
+       localStorage.setItem("umbraLang", langabr.toString());
+       } else {
+       setLanguageABR("en");
+       localStorage.setItem("umbraLang", "en");
+       }
+       
+       
+   }, [])
+   const translate = (str) => {
+       var returnStr = transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str];
+       if (returnStr == null) {
+           returnStr = "808 Error : Words not found";
+       }
+       return returnStr 
+   }
    
+   // other code
+
+
     const router = useRouter()
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -178,14 +213,14 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
     if (done == true) {
         return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%",  paddingTop:"20px"}}>
             {!userLoading && <div><button className='backButton trading' onClick={() => {window.location.href = window.location.href.split('?')[0];}}>{"<"}</button>
-            <h1 style={{fontSize:"27px"}}><b>You have Sent....</b></h1>
-            <h2 style={{fontSize:"20px", width:"60%", margin:"auto"}}>{data["artist"]} {data["member"]} {data["card_id"]}#{serial.toString().padStart(5, '0')} to <u>{user[1]}</u></h2>
-            <p style={{marginTop:"10px"}}>🎊 Success!</p>
+            <h1 style={{fontSize:"27px"}}><b>{translate('youhavesent')}</b></h1>
+            <h2 style={{fontSize:"20px", width:"60%", margin:"auto"}}>{translate('cardtou1')} <u>{translate('cardtou2').toString().replace("[CARD]", data["artist"] + " " + data["member"] + " " + data["card_id"] + "#" + serial.toString().padStart(5, '0'))}</u> {translate('cardtou3')} <u>{translate('usertou1').replace("[USERNAME]", user[1].toString())}</u> {translate('usertou2')}</h2>
+            <p style={{marginTop:"10px"}}>🎊 {translate('success')}!</p>
             <div style={{height:"100px", position:"relative"}}><Objekt scale={"60%"} member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
             </div>
             </div>}
             {userLoading && <Loader></Loader>}
-            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={()=>{setLoading(true);window.location.href = window.location.href.split('?')[0];}}>Exit.</button>}
+            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={()=>{setLoading(true);window.location.href = window.location.href.split('?')[0];}}>{translate('exit')}</button>}
 
         </div>
     }
@@ -193,20 +228,20 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", paddingTop:"20px", overflowY:"scroll"}}>
             {!userLoading && <button className='backButton trading'  onClick={() => {setTradingScreen(false);}}>{"<"}</button>}
             {!userLoading && <div>
-            <h1 style={{fontSize:"25px"}}><b>Are you sure you want to send:</b></h1>
-            <h2 style={{fontSize:"17px", width:"60%", margin:"auto"}}><u>{data["artist"]} {data["member"]} {data["card_id"]}#{serial.toString().padStart(5, '0')}</u> to {user[1]}</h2>
+            <h1 style={{fontSize:"25px"}}><b>{translate('yousuresend')}</b></h1>
+            <h2 style={{fontSize:"17px", width:"60%", margin:"auto"}}>{translate('cardtou1')} <u>{translate('cardtou2').toString().replace("[CARD]", data["artist"] + " " + data["member"] + " " + data["card_id"] + "#" + serial.toString().padStart(5, '0'))}</u> {translate('cardtou3')} {translate('usertou1').replace("[USERNAME]", user[1].toString())} {translate('usertou2')}</h2>
             <div className="objektSend" style={{height:"100px", position:"relative"}}><Objekt scale={"50%"} member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
             </div>
             <div style={{padding:"1px", height:"50px"}}></div>
             </div>}
             {userLoading && <Loader></Loader>}
-            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={sendToUser}>Yes!</button>}
+            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={sendToUser}>{translate('yes')}!</button>}
         </div>
     }
     if (tradingScreen == true) {
         return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%", paddingTop:"20px"}}>
             <button className='backButton trading' onClick={() => {setTradingScreen(false);}}>{"<"}</button>
-            <h1 style={{fontSize:"23px"}}><b>Search for the UMBRA User:</b></h1>
+            <h1 style={{fontSize:"23px"}}><b>{translate('searchfor')}</b></h1>
             <form action={searchFor}><input style={{background:"rgb(78, 38, 151)", color:"white", marginTop:"10px", width:"150px", borderRadius:"20px 0px 0px 20px", paddingLeft:"5px"}} value={sendUser} onChange={(e) => setSendUser(e.target.value)}></input><input type="submit" style={{paddingLeft:"10px", paddingRight:"10px",background:"rgb(78, 38, 151)", borderRadius:"0px 20px 20px 0px"}} value="🔎"></input></form>
             <div style={{overflowY:"scroll", height:"67%", marginTop:"7px"}}><div className="sendGrid" >{userMap.map((item, index)=> {return <button key={index} style={{...halavrBreitRg.style}} onClick={() => {setuser([item['id'], item['username']]);setTradingScreen(null)}}><div><img style={{width:"30px", marginRight:"4px", borderRadius:"20px"}} src={item['avatar_url']}></img>{item['username']}</div></button>})}</div></div>
             {userLoading && <Loader></Loader>}
@@ -237,7 +272,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
      <div style={{color: data["text_color"], fontSize:"90%", minWidth:"fit-content",width: "70%", border:"3px", display:"grid", gap:"10px",borderRadius:"10px", background: "rgb(255, 255, 255, 0.25)", padding:"5px"}} className="marginleft">
         <div style={{display: "flex"}}>
             <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
-            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Name</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>{translate('name')}</b></p>
             <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["member"]}</p> 
             </div>
             <div style={{display: "block", background:newestShade(data['bg_color']), margin:"auto", marginLeft:"10px", paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
@@ -248,11 +283,11 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
             
             <div style={{display: "flex"}}>
             <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
-            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Artist</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>{translate('artist')}</b></p>
             <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["artist"].join(", ")}</p>
             </div>
             <div style={{display: "block", margin:"auto", marginLeft:"10px", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"fit-content"}}>
-            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Minted</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>{translate('minted')}</b></p>
             <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["minted"]}</p> 
             </div>
             </div>
@@ -262,7 +297,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
 
             <div style={{display: "flex"}}>
             <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
-            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>Season</b></p>
+            <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>{translate('season')}</b></p>
             <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}>{data["season"]}</p>
             </div>
             <div style={{background:"rgb(56,56,58)", background:"linear-gradient(138deg, rgba(56,56,58,1) 0%, rgba(79,79,81,1) 46%, rgba(163,162,165,1) 53%, rgba(56,56,58,1) 83%)", marginLeft:"10px", padding:"2px", borderRadius:"10px", cursor:"pointer"}} onClick={()=>{setTradingScreen(true);}}>
@@ -272,7 +307,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
             </div>
             </div>
             {data["eventhost"] && <div style={{fontSize:"10px",display: "block", margin:"auto", marginLeft:"10px", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"90%"}}>
-            This SAROS was given at an Event by <a href={data["eventhostlink"]} target="_blank" style={{whiteSpace:"nowrap", marginBottom:"0px", color:data["text_color"]}}><u>{data["eventhost"]}</u></a> 
+            {translate('givenbyp1')} <a href={data["eventhostlink"]} target="_blank" style={{whiteSpace:"nowrap", marginBottom:"0px", color:data["text_color"]}}><u>{data["eventhost"]}</u></a> {translate('givenbyp2')}
             </div>}
         </div>
         

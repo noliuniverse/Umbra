@@ -624,7 +624,38 @@ gap:10px;
       }
     }
   
+    .footer{
+      color:white;
+      padding: 20px;
+    }
     
+    .langGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 250px;
+      margin: auto;
+      border:1px solid;
+      border-radius: 10px;
+      background-color: #989898;
+    }
+    .settings{
+      background-color: #222222;
+      width:fit-content;
+      margin: auto;
+      padding: 10px;
+      margin-top: 2px;
+    }
+    .button3:hover{
+      background-color: #cdcdcd;
+    }
+    .button3:focus{
+      background-color: #7e2abe;
+    }
+    .button3 {
+      background-color: #989898;
+      transition: 0.2s;
+      border-radius: 10px;
+    }
   
     
 

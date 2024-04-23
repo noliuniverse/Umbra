@@ -7,9 +7,40 @@ import React, { useRef, useState, useEffect } from 'react';
 import eye from "../../public/eye.svg"
 import cleye from "../../public/closed-eye.svg"
 import Loader from '@/components/Loader';
+import languagedata from "../other/languages.json";
 
 export default function LoginPage() {
+    // language set-up
 
+    let transcript = languagedata["langs"];
+    const validLangs = languagedata["validLangs"];
+    const [languageABR, setLanguageABR] = useState("en")
+    useEffect(()=>{
+        if (localStorage.getItem("umbraLang") == null) {
+        localStorage.setItem("umbraLang", "en");
+        var langabr = "en";
+        } else {
+        var langabr = localStorage.getItem("umbraLang");
+        }
+        //console.log(validLangs)
+        if (validLangs.includes(langabr) == true) {
+        setLanguageABR(langabr);
+        localStorage.setItem("umbraLang", langabr.toString());
+        } else {
+        setLanguageABR("en");
+        localStorage.setItem("umbraLang", "en");
+        }
+        
+        
+    }, [])
+    const translate = (str) => {
+        var returnStr = transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str];
+        if (returnStr == null) {
+            returnStr = "808 Error : Words not found";
+        }
+        return returnStr 
+    }
+    // other code
     const navRef = useRef();
     const dropdown = useRef()
     const [visible, setVisible] = useState(false);
@@ -143,8 +174,8 @@ if(!mounted) return null;
                 </nav>
             </header>
             <div className="div1">
-            <h1 className="whitetext bigger">You're already logged in.</h1>
-            <small className="whitetext">Check your email to make sure you're verified. Without verifying, you are more likely to be flagged as a bot and possibly banned.</small>
+            <h1 className="whitetext bigger">{translate('alreadyloggedin')}</h1>
+            <small className="whitetext">{translate('loginmessage')}</small>
             <button className="button2" onClick={handleLogout}>Sign-out?</button>
             </div>
         </main>
@@ -186,11 +217,12 @@ if(!mounted) return null;
                     />
                 </div>
                 <br/>
-                <h1 className="text1">USERNAME:</h1>
-                <h3 className="whitetext">You can not change this later (for now).</h3>
+                <h1 className="text1">{translate('username').toString().toUpperCase()}:</h1>
+                <h3 className="whitetext">{translate('cantchange')}</h3>
                 <input type="username" name="username" value={user_name} onChange={(e) => setuser_name(e.target.value)} className="input1"/>
                 <button className='button2' onClick={handleSignUp}>Sign up</button>
                 </div>}
+
                 {(dropdownEnabled == false && signIn == true) && <div style={{marginTop:"5%"}}><h1 className="text1">EMAIL:</h1>
                 <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input1"/>
                 <br/>

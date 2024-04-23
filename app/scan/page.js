@@ -8,9 +8,43 @@ import ObjektModal from '@/components/ObjektModal';
 import { supabase } from '@/utils/supabaseClient'
 import { Noto_Kufi_Arabic } from 'next/font/google';
 import Loader from '@/components/Loader';
+import languagedata from "../other/languages.json";
+
 
 export default function Scan() {
+  // language set-up
 
+  let transcript = languagedata["langs"];
+  const validLangs = languagedata["validLangs"];
+  const [languageABR, setLanguageABR] = useState("en")
+  useEffect(()=>{
+      if (localStorage.getItem("umbraLang") == null) {
+      localStorage.setItem("umbraLang", "en");
+      var langabr = "en";
+      } else {
+      var langabr = localStorage.getItem("umbraLang");
+      }
+      //console.log(validLangs)
+      if (validLangs.includes(langabr) == true) {
+      setLanguageABR(langabr);
+      localStorage.setItem("umbraLang", langabr.toString());
+      } else {
+      setLanguageABR("en");
+      localStorage.setItem("umbraLang", "en");
+      }
+      
+      
+  }, [])
+  const translate = (str) => {
+      var returnStr = transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str];
+      if (returnStr == null) {
+          returnStr = "808 Error : Words not found";
+      }
+      return returnStr 
+  }
+  // other code
+
+  
   // SAROS MODAl
   const [img, setimg] = useState('https://i.seadn.io/s/raw/files/42f630850aabd230c0bf508183fb4961.png?auto=format&dpr=1&w=256')
   const [theID, setTheID] = useState('309A')
@@ -160,8 +194,8 @@ if (user) { return (
     </header>
 
     <div className="div1" style={{paddingBottom:"20px"}}>
-    <h1 className='whitetext bold'>Scan</h1>
-    <small className='whitetext'>Place your custom SAROS's QR code in the center.</small>
+    <h1 className='whitetext bold'>{translate('scan')}</h1>
+    <small className='whitetext'>{translate('placeyour')}</small>
     { isRecording && <div className='qrreader' style={{margin: "auto"}}>
      <QrReader
               
@@ -206,7 +240,7 @@ if (user) { return (
       </header>
 
       <div className="div1">
-      <h1 className='whitetext bold'>Scan</h1>
+      <h1 className='whitetext bold'>{translate('scan')}</h1>
        
             <p className='whitetext'>You need to sign in to get access to scanning!</p>
             </div>

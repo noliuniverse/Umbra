@@ -8,8 +8,40 @@ import FetchMoreObjekts from '@/components/fetchObjekts.js';
 import { useInView } from "react-intersection-observer";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react';
+import languagedata from "../other/languages.json";
 
 export default function Collection() {
+    // language set-up
+
+    let transcript = languagedata["langs"];
+    const validLangs = languagedata["validLangs"];
+    const [languageABR, setLanguageABR] = useState("en")
+    useEffect(()=>{
+        if (localStorage.getItem("umbraLang") == null) {
+        localStorage.setItem("umbraLang", "en");
+        var langabr = "en";
+        } else {
+        var langabr = localStorage.getItem("umbraLang");
+        }
+        //console.log(validLangs)
+        if (validLangs.includes(langabr) == true) {
+        setLanguageABR(langabr);
+        localStorage.setItem("umbraLang", langabr.toString());
+        } else {
+        setLanguageABR("en");
+        localStorage.setItem("umbraLang", "en");
+        }
+        
+        
+    }, [])
+    const translate = (str) => {
+        var returnStr = transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str];
+        if (returnStr == null) {
+            returnStr = "808 Error : Words not found";
+        }
+        return returnStr 
+    }
+    // other code
     const batchSize = 40;
     const navRef = useRef();
 
@@ -153,7 +185,7 @@ if(!mounted) return null;
       </header>
         <div className="div1">
         <p className="whitetext"><small>Username: </small><span className="big bold"></span></p>
-        <small className="whitetext" style={{ margin: "auto"}}>Double press on card (SAROS) to view info.</small>
+        <small className="whitetext" style={{ margin: "auto"}}>{translate('doublepress')}</small>
         <br></br>
         <div className='objektgrid'>
         {Array.from({length: 20}).map((item,index)=>{return <div className='objekt-skeleton' key={index}/>})}
@@ -175,13 +207,13 @@ if(!mounted) return null;
                 </nav>
             </header>
             <div className="div1" style={{paddingBottom: "10px"}}>
-                <p className="whitetext"><small>Username: </small><span className="big bold">{user_name}</span></p>
-                <small className="whitetext" style={{ margin: "auto"}}>Double press on card (SAROS) to view info.</small>
+                <p className="whitetext"><small>{translate('username')}: </small><span className="big bold">{user_name}</span></p>
+                <small className="whitetext" style={{ margin: "auto"}}>{translate('doublepress')}</small>
                 <br/>
                 <Suspense>
             {datas && <div style={{paddingBottom: "20px", paddingTop: "10px"}}> <FetchMoreObjekts datas={datas} userid={user.id}></FetchMoreObjekts></div>}
             </Suspense>
-            {(datas && datas.length == 0) && <p className="whitetext">Wow! Looks like you have no SAROS!</p>}
+            {(datas && datas.length == 0) && <p className="whitetext">{translate('donthavesaros')}</p>}
             </div>
         </main>
         )}
