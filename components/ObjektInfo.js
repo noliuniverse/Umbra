@@ -211,13 +211,15 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
       if (loading) {return ( <Loader></Loader>)
     }
     if (done == true) {
-        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%",  paddingTop:"20px"}}>
+        return <div className="sending" style={{zIndex:"20", background:"#9e7dc7", color:"black", padding:"4px", bottom:"50%",  paddingTop:"20px", overflowY:"scroll"}}>
             {!userLoading && <div><button className='backButton trading' onClick={() => {window.location.href = window.location.href.split('?')[0];}}>{"<"}</button>
             <h1 style={{fontSize:"27px"}}><b>{translate('youhavesent')}</b></h1>
             <h2 style={{fontSize:"20px", width:"60%", margin:"auto"}}>{translate('cardtou1')} <u>{translate('cardtou2').toString().replace("[CARD]", data["artist"] + " " + data["member"] + " " + data["card_id"] + "#" + serial.toString().padStart(5, '0'))}</u> {translate('cardtou3')} <u>{translate('usertou1').replace("[USERNAME]", user[1].toString())}</u> {translate('usertou2')}</h2>
-            <p style={{marginTop:"10px"}}>🎊 {translate('success')}!</p>
-            <div style={{height:"100px", position:"relative"}}><Objekt scale={"60%"} member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
+            <p style={{marginTop:"10px"}}>🎊 {translate('success')}</p>
+            <div className="objektSend" style={{height:"100px", position:"relative"}}><Objekt scale={"50%"} member={data["member"]} season={data["season"]} serial={serial} bckcolor={data["bg_color"]} color={data["text_color"]} id={data["card_id"]} img={data["photo"]} artist={data["artist"]}  eventhost={data["eventhost"]} eventhostlink={data["eventhostlink"]}></Objekt>
             </div>
+            <div style={{padding:"1px", height:"50px"}}></div>
+
             </div>}
             {userLoading && <Loader></Loader>}
             {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={()=>{setLoading(true);window.location.href = window.location.href.split('?')[0];}}>{translate('exit')}</button>}
@@ -235,7 +237,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
             <div style={{padding:"1px", height:"50px"}}></div>
             </div>}
             {userLoading && <Loader></Loader>}
-            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={sendToUser}>{translate('yes')}!</button>}
+            {!userLoading && <button className="buttonYesSure" style={{padding:"10px", background:"rgb(78, 38, 151)", fontWeight:"bold", color:"white", position:"sticky", bottom:"1%"}} onClick={sendToUser}>{translate('yes')}</button>}
         </div>
     }
     if (tradingScreen == true) {

@@ -185,7 +185,7 @@ if(!mounted) return null;
       </header>
         <div className="div1">
         <p className="whitetext"><small>Username: </small><span className="big bold"></span></p>
-        <small className="whitetext" style={{ fontSize:"80%", position:"absolute", left:"10%", right:"10%", top:"21.2%"}}>{translate('doublepress')}</small>
+        <small className="whitetext" style={{ fontSize:"80%", position:"absolute", left:"10%", right:"10%", top:"173px"}}>{translate('doublepress')}</small>
         <br></br>
         <div className='objektgrid'>
         {Array.from({length: 20}).map((item,index)=>{return <div className='objekt-skeleton' key={index}/>})}
