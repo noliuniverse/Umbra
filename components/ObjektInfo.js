@@ -269,7 +269,7 @@ if (secondvar.substring(0, 15) == 'linear-gradient') {
         </div>
         </div>}
     <br></br>
-     <div style={{color: data["text_color"], fontSize:"90%", minWidth:"fit-content",width: "70%", border:"3px", display:"grid", gap:"10px",borderRadius:"10px", background: "rgb(255, 255, 255, 0.25)", padding:"5px"}} className="marginleft">
+     <div style={{color: data["text_color"], fontSize:"90%", minWidth:"250px",width: "70%", border:"3px", display:"grid", gap:"10px",borderRadius:"10px", background: "rgb(255, 255, 255, 0.25)", padding:"5px"}} className="marginleft">
         <div style={{display: "flex"}}>
             <div style={{display: "block", margin:"auto", background:newestShade(data['bg_color']), paddingLeft:"10px", paddingRight:"10px", borderRadius:"10px", width:"100%"}}>
             <p style={{whiteSpace:"nowrap", marginBottom:"0px"}}><b>{translate('name')}</b></p>
