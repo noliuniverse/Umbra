@@ -18,7 +18,13 @@
             "logo":"UMBRATRANSLOGO2.png",
             "eventhostname" : "UMBRA",
             "twtlink": "https://twitter.com/UMBRAcosmos",
-            "display_name":"UMBRA Events"}
+            "display_name":"UMBRA Events"},
+            {"id": 4,
+            "name" : "UNIS Brasil",
+            "logo":"UNISBRASILlogo.png",
+            "eventhostname" : "UNIS BRASIL",
+            "twtlink": "https://twitter.com/UNISBRASIL",
+            "display_name":"UNIS BRASIL"}
         ]
     }
 }
