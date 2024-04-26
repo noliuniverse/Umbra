@@ -127,7 +127,7 @@ export default function Scan() {
               .select()
               .eq('uuid', parseInt(uuid))
               .eq('serial', collection.length+1)
-              if (alrthere.length > 0) {} else {const { data, error } = await supabase.from('objektcollection').insert({ uuid: parseInt(uuid), serial: parseInt(collection.length+1), user_uuid: user.id.toString()})}
+              if (alrthere.length > 0) {} else {const { data, error } = await supabase.from('objektcollection').insert({ uuid: parseInt(uuid), serial: parseInt(collection.length+1), user_uuid: user.id.toString(), user_minted:user.id.toString()})}
               const { data:alrthere2, error:errors42 } = await supabase
               .from('objektcollection')
               .select()
