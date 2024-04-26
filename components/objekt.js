@@ -3,7 +3,7 @@ import styles from "@/app/globals.css"
 import stylestwo from "@/app/sidebar.module.css"
 import Image from 'next/image'
 import localFont from "next/font/local"
-import { useRef, useState, useLayoutEffect } from "react"
+import { useRef, useState, useLayoutEffect, useEffect } from "react"
 import ObjektInfo from '@/components/ObjektInfo';
 import languagedata from "@/app/other/languages.json"
 
