@@ -5,6 +5,7 @@ import Image from 'next/image'
 import localFont from "next/font/local"
 import { useRef, useState, useLayoutEffect } from "react"
 import ObjektInfo from '@/components/ObjektInfo';
+import languagedata from "@/app/other/languages.json"
 
 const dotMat = localFont({src: "../fonts/dotmat.ttf"})
 const helveticaNeueBold = localFont({src: "../fonts/helvetica-neue-bold.ttf"})
@@ -15,6 +16,39 @@ const HelveticaNeueLight = localFont({src: "../fonts/HelveticaNeueLight.otf"})
 
 //{ children },
 const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, member, season, eventhost, eventhostlink, artist, back, typeOfFormat, scale}) => {
+
+  // language set-up
+
+  let transcript = languagedata["langs"];
+  const validLangs = languagedata["validLangs"];
+  const [languageABR, setLanguageABR] = useState("en")
+  useEffect(()=>{
+      if (localStorage.getItem("umbraLang") == null) {
+      localStorage.setItem("umbraLang", "en");
+      var langabr = "en";
+      } else {
+      var langabr = localStorage.getItem("umbraLang");
+      }
+      //console.log(validLangs)
+      if (validLangs.includes(langabr) == true) {
+      setLanguageABR(langabr);
+      localStorage.setItem("umbraLang", langabr.toString());
+      } else {
+      setLanguageABR("en");
+      localStorage.setItem("umbraLang", "en");
+      }
+      
+      
+  }, [])
+  const translate = (str) => {
+      var returnStr = transcript[languageABR][str] ? transcript[languageABR][str] : transcript["en"][str];
+      if (returnStr == null) {
+          returnStr = "808 Error : Words not found";
+      }
+      return returnStr 
+  }
+  // other code
+  
     if (eventhost) {var maxHeight = "100px";} else {var maxHeight = "75px";}
     if (back) {var theRight = "20px"} else {var theRight = "0px"}
     if (typeOfFormat) {if (parseInt(typeOfFormat)==2) {var theRightQR = "21%";}} else {var theRightQR = "24%";}
@@ -108,7 +142,7 @@ const Objekt = ( { unique, bckcolor, color, created_at, id, serial, img, uuid, m
                     {serial && <span style={dotMat.style} className="objekt_preview_text3">#{serial.toString().padStart(5, '0')}</span>}
                 </div>
                 <div style={helveticaNeueBold.style}>
-                {created_at && <div style={{ position: "absolute", bottom: dimensions.width/7.5/4.5, left: dimensions.width/7.5/5,background: "rgb(127, 86, 201)", background: "rgb(127, 86, 201, 0.65)", paddingRight: "5%", paddingLeft: "5%",borderRadius: "10px", textAlign: "center",margin: "auto", minWidth:"40px", fontSize: "80%", width:"30%"}} className="whitetext">NEW</div>}
+                {created_at && <div style={{ position: "absolute", bottom: dimensions.width/7.5/4.5, left: dimensions.width/7.5/5,background: "rgb(127, 86, 201)", background: "rgb(127, 86, 201, 0.65)", paddingRight: "5%", paddingLeft: "5%",borderRadius: "10px", textAlign: "center",margin: "auto", minWidth:"40px", fontSize: "80%", width:"30%"}} className="whitetext">{translate('new')}</div>}
                 </div>
                 </div>
             <div style={{background:"gray",background: bckcolor,width:"100%", height:"0px", margin: "auto",borderRadius: "10px", overflow: "hidden"}} id={unique}>

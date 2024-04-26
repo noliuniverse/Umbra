@@ -42,7 +42,8 @@
             "cantchange":"You can not change this later (for now).",
             "donthavesaros":"Wow! Looks like you have no SAROS!",
             "hostdonthavesaros":"Wow! Looks like the event host has no cards!",
-            "loadedinto":"Loaded into UMBRA!"
+            "loadedinto":"Loaded into UMBRA!",
+            "new":"NEW"
         },
         "pt-br": {
             "trade-open":"ABA DE TROCAS está ABERTA!", 
@@ -86,7 +87,8 @@
             "cantchange":"Não podes mudar seu nome de usuário (por agora).",
             "donthavesaros":"Nossa! Você não tem SAROS.",
             "hostdonthavesaros":"Nossa! O organizador do Evento não tem SAROS!",
-            "loadedinto":"Carregado no UMBRA!"
+            "loadedinto":"Carregado no UMBRA!",
+            "new":"NOVO"
         }
     },
     "validLangs":["en", "pt-br"]
